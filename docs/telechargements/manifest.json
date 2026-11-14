@@ -311,9 +311,9 @@
       "tempo": "148 BPM",
       "key": "Mi mineur (Em)",
       "duration": "≈ 2 min 10",
-      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "status": "maquette spartiate posée — session à sauvegarder, validation par extraits.",
       "files": {
-        "als": null,
+        "als": "als/16-david-lisnard-le-rock-du-gouvernement-commando.als",
         "paroles": "paroles/16-david-lisnard-le-rock-du-gouvernement-commando.paroles.md",
         "ficheTechnique": "fiches/16-david-lisnard-le-rock-du-gouvernement-commando.fiche-technique.md",
         "versionLongue": null
@@ -351,7 +351,7 @@
       "tempo": "118 BPM",
       "key": "La mineur (Am)",
       "duration": "≈ 2 min 20",
-      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "status": "maquette spartiate posée — session à sauvegarder, validation par extraits.",
       "files": {
         "als": "als/18-laurent-wauquiez-i-will-survive-la-droite.als",
         "paroles": "paroles/18-laurent-wauquiez-i-will-survive-la-droite.paroles.md",
@@ -553,7 +553,7 @@
       "duration": "≈ 2 min 40",
       "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
       "files": {
-        "als": null,
+        "als": "als/28-eric-zemmour-la-france-francaise.als",
         "paroles": "paroles/28-eric-zemmour-la-france-francaise.paroles.md",
         "ficheTechnique": "fiches/28-eric-zemmour-la-france-francaise.fiche-technique.md",
         "versionLongue": null
@@ -579,7 +579,7 @@
         "versionLongue": null
       },
       "media": {
-        "mp3": null,
+        "mp3": "https://archive.org/download/candidats-2027-exports/29%20-%20Bruno%20Retailleau%20-%20L%27Hiver%20d%C3%A9mographique.mp3",
         "midi": null
       }
     },

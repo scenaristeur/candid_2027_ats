@@ -1,6 +1,6 @@
-# 16 — David Lisnard — Le Rock du Gouvernement Commando
+# 16 - David Lisnard - Le Rock du Gouvernement Commando
 
-**Statut** : préparation documentaire — aucune session Ableton ouverte pour ce morceau.
+**Statut** : maquette spartiate posée — session à sauvegarder, validation par extraits.
 **Tempo** : 148 BPM *(proposition, à valider)*
 **Tonalité** : Mi mineur (Em) *(proposition, à valider à l'oreille)*
 **Signature** : 4/4
@@ -71,46 +71,57 @@ Morceau court et sec : c'est une des rares chansons de l'album qui peut finir pa
 
 ## 9. Session et steps de production
 
-> La structure complète (§3) reste la cible lointaine. **À ce stade, on ne construit que trois scènes : Intro / Refrain / Outro.** Le tableau §5 décrit la couleur idéale ; l'implémentation réelle en 8 pistes mutualisées est ci-dessous. En cas de conflit, **c'est §9 qui fait foi**.
+> **Maquette spartiate, une session par chanson.** 6 pistes, un rôle par piste, pas de rack à
+> chaînes. La forme est jouée dans **un seul clip long par piste** (272 temps) : riff 8, couplet 1,
+> refrain, couplet 2, refrain, solo 8, refrain final, outro 4. En cas de conflit, **c'est §9 qui fait foi**.
 
-**Session** : A — Rock / punk
-**Scènes réservées** : S10–S12 (Intro / Refrain / Outro) — scène S16 libre
-**Tempo de scène** : 148 BPM · **Tonalité de travail** : Mi mineur (Em) · **Signature** : 4/4
-**Chaînes à armer** : Harmonie = guitare garage · Mélodie = lead guitare · Texture = orgue garage
-**Kit de batterie de la session** : Kit rock-punk (.adg à choisir dans le browser)
+**Session** : `16 - David Lisnard - Le Rock du Gouvernement Commando.als`
+**Tempo** : 148 BPM · **Tonalité de travail** : Mi mineur (Em) · **Signature** : 4/4
+**Forme** : 68 mesures / 272 temps — Riff 8 · Couplet 1 12 · Refrain 8 · Couplet 2 12 · Refrain 8 · Solo 8 · Refrain final 8 · Outro 4
+**Grille** : couplet `| Em | C | G | D |` · refrain `| C | G | D | Em |` · solo `| Em | C | G | D |`
 
-| Piste | Index | Rôle | Instrument / chaîne |
-| :--- | :--- | :--- | :--- |
-| `1-Batterie` | 0 | Rythme | Drum Rack — kit rock/punk |
-| `2-Basse` | 1 | Fondation | Drift — basse drive (2 chaînes : ronde / saturée) |
-| `3-Harmonie` | 2 | Accords | Instrument Rack — 5 chaînes guitare/orgue |
-| `4-Mélodie` | 3 | Hook | Instrument Rack — 5 chaînes leads |
-| `5-Texture` | 4 | Nappe / bruit | Instrument Rack — 2 chaînes : orgue, bruit blanc |
-| `6-Percs/FX` | 5 | Transitions | Drum Rack / Simpler — tambourin, crash, noise |
-| `7-Guide` | 6 | Voix guide | Drift — voix douce |
-| `8-Voix` | 7 | Chant final | Audio |
+| Piste | Index | Rôle | Instrument | Réglage de maquette |
+| :--- | :--- | :--- | :--- | :--- |
+| `1-Batterie` | 0 | Garage | Gen Purpose Kit (Drum Rack) | 36 kick, 38 snare, 42 hats, 49 crash |
+| `2-Guitare` | 1 | Riff / solo | Drift | Osc 1 saw · Osc 2 square · LP 0,70 · Volume 0,70 |
+| `3-Basse` | 2 | Fondation | Drift | Osc 1/2 saw · Osc 2 oct −1 · LP 0,45 · Volume 0,75 |
+| `4-Orgue` | 3 | Nappe garage | Drift | Osc 1 saw · Osc 2 triangle · LP 0,60 · Volume 0,40 |
+| `5-Guide` | 4 | Mélodie guide | Drift | Osc 1 triangle · Osc 2 off · Volume 0,70 |
+| `6-Voix` | 5 | Chant final | Audio | vide pour l'instant |
+
+**Niveaux** : volumes de piste 0,78 (batterie), 0,75 (basse), 0,72 (guide), 0,68 (guitare),
+0,45 (orgue), 0,85 (voix). Pas de Utility, pas de saturation, pas d'EQ : le garage est sec.
+**Validation par extraits** : `data/analyses/lisnard_intro_03.wav` (RMS 0,071), `lisnard_couplet_03.wav`
+(0,127), `lisnard_refrain_03.wav` (0,131), `lisnard_solo_03.wav` (0,078), `lisnard_refrain_final_03.wav`
+(0,129). Peak maximal 0,722, aucun échantillon écrêté. La guitare seule sort à 0,401 de peak
+(`lisnard_gtr_only_03.wav`), le guide seul à 0,249 (`lisnard_guide_only.wav`).
 
 ### Steps
 
-1. **Créer les scènes.** Dans la session A, trois scènes consécutives : `S10 <Candidat> Intro`, `S11 <Candidat> Refrain`, `S12 <Candidat> Outro`. La scène S16 reste vide (réserve).
-2. **Tempo et tonalité.** Régler le tempo de scène à 148 BPM (propriété de scène ; si l'outil ne l'expose pas, le faire à la main) et vérifier 4/4. La tonalité Mi mineur (Em) est un repère d'écriture, pas un réglage à automatiser.
-3. **Armer les chaînes.** Harmonie = guitare garage, Mélodie = lead guitare, Texture = orgue garage. Vérifier le **chain selector** de chaque rack sur la valeur du candidat : c'est ce qui permet 5 sons différents sur la même piste.
-4. **Écrire l'harmonie du refrain.** 8 mesures, grille `| C | G | D | Em |`. Accords réels (vérifier les notes contre le nom), pas de renversement inutile. Vélocités 70–85, légères variations pour éviter le MIDI plat.
-5. **Écrire basse et batterie.** Motif du style (Rock garage, guitares saturées, batterie sèche), 8 mesures. Vélocités : kick 90–100, snare 85–95, hats 55–75. La basse suit la fondamentale, sans doubler la voix.
-6. **Écrire le hook puis le guide vocal.** Mélodie du refrain sur `4-Mélodie`, 1 note par syllabe, tessiture **E3–B3 (64–71)**. Paroles : `PAROLES.md`. Guide chanté sur `7-Guide`, vélocités qui phrasent (75–110), pas une note plate.
-7. **Intro (4–8 mesures).** Un ou deux éléments seulement : texture + basse, ou batterie + nappe. Ne pas jouer le refrain avant la scène Refrain.
-8. **Outro / transition (4 mesures).** Accord tenu + transition Marseillaise : « Contre nous de la tyrannie… des déficits ! ». Si l'outro est coupée, garder au moins 2 mesures de queue pour l'enchaînement.
-9. **Valider, puis figer.** Solo chaque piste, capture **une à la fois**, noter le RMS et ce qui a changé. Ensuite : nommer les clips, noter tempo/tonalité dans la fiche, et ne plus toucher la scène validée.
+1. **Ouvrir la session** et la sauvegarder sous son nom dans le dossier du morceau.
+2. **Vérifier le tempo** (148 BPM), la signature 4/4 et la tonalité de travail (Em).
+3. **Garder 6 pistes** : batterie, guitare, basse, orgue, guide, voix. Pas de piste supplémentaire.
+4. **Un clip de 272 temps par piste** dans la scène 1. Riff de 8 mesures, solo de 8 mesures, outro de 4.
+5. **Batterie** : garage — kick 0/1,5/2/3,5, snare 1/3, hats en croches, crash au début de section.
+6. **Guitare** : riff intro, accords de quinte au couplet et au refrain, lead dans le solo.
+7. **Basse** : fondamentale en croches, quinte au dernier temps.
+8. **Orgue** : accords tenus, volume bas. Il remplit le garage sans masquer la guitare.
+9. **Guide** : motif de 4 notes par mesure, dans E3–B3 (64–71). **Silence pendant le solo.**
+10. **Écouter des extraits**, pas la forme entière : intro, couplet, refrain, solo. Valider ou corriger,
+    puis remplir les valeurs réelles ci-dessus.
 
 ### Garde-fous
 
-- **8 pistes maximum.** Si un instrument manque, ajouter une **chaîne** dans un rack — jamais une piste.
-- **5 chaînes par rack au maximum.** Préférer Drift/Simpler à Surge XT : le coût CPU de Surge est par voix.
-- **16 scènes maximum** : 15 utilisées (5 candidats × 3) + 1 libre.
-- **Ne pas changer le kit de batterie** de la session sans revalider les quatre autres candidats.
-- **Une seule capture à la fois.** Le set Ableton ne doit pas jouer pendant une capture.
-- Une scène validée ne se réouvre pas pour « améliorer » : on note l'idée pour la suivante.
+- **6 pistes suffisent** pour cette maquette. Ne pas ajouter de piste pour un détail.
+- **Pas de rack à chaînes**, pas de Surge XT : le coût CPU et le temps de réglage ne sont pas justifiés ici.
+- **Une seule capture à la fois**, et vérifier le WAV (peak < 1,0) plutôt que le RMS du tool.
+- **Pas de capture intégrale à ce stade** : des extraits de 8–10 s par section suffisent à valider.
+- **La guitare doit être un mur, pas un mur qui écrase la voix** : monter le filtre et le volume du
+  Drift, puis redescendre le fader. C'est ce qui a été fait ici.
+- **Le morceau peut finir par un couperet**, sans longue outro. C'est un choix, pas un oubli.
+- Une maquette validée se fige : on note l'idée pour la suivante, on ne la réouvre pas.
 
 ## Paroles
 
-Voir `PAROLES.md` dans ce dossier (squelette à écrire).
+Voir `PAROLES.md` : version multi-sections (différence, discours, partisans, refrain), avec
+structure, base factuelle et garde-fous — notamment le périmètre des 200–300 milliards et la CSG.

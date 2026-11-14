@@ -326,6 +326,10 @@ Chaque page générée contient :
 
 La page 404 est en `noindex, nofollow`.
 
+Les titres de pages privilégient la requête « Paroles de … » ; le `<h1>` contient
+le candidat **et** le titre de la chanson ; la navigation principale reste
+visible sur mobile (elle passe sur une deuxième ligne au lieu d’être masquée).
+
 > **Ne pas modifier `docs/index.html` à la main** : il est régénéré par
 > `build_site.py`. La balise de vérification Google est portée par la constante
 > `GOOGLE_SITE_VERIFICATION` dans le script.

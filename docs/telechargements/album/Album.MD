@@ -158,3 +158,5 @@ sources/Candid_2027_ats/
 3. Quand la maquette tient, remplir la fiche technique avec les valeurs réelles.
 4. Passer au candidat suivant, **une session neuve par chanson** — David ouvre et sauvegarde,
    je configure la maquette.
+5. **Affiner les programmes et les personnalités** à partir de sources publiques comme
+   https://2027etmoi.fr/ — vérifier et dater chaque information avant de l'intégrer aux fiches.

@@ -53,10 +53,9 @@ ALBUM_DATE_ISO = "2026-11-14"
 GOOGLE_SITE_VERIFICATION = "a5K2yNZpsgoUVcvzllet8yvUxdDlO5TJaP8tZLZsK-I"
 ALBUM_NAME = "Candidats 2027 — l’album"
 ALBUM_DESCRIPTION = (
-    "Un album d’information civique : une chanson par candidat à la présidentielle "
-    "de 2027. Ce sont pour l’instant des maquettes, générées par IA et à corriger. "
-    "Les contributions de musicien·nes et surtout de chanteur·ses sont sollicitées "
-    "pour les voix, les arrangements et le mix."
+    "31 maquettes, une par candidat à la présidentielle de 2027. Paroles, fiches "
+    "techniques et sessions Ableton à télécharger. Contributions ouvertes aux "
+    "musicien·nes et surtout aux chanteur·ses."
 )
 
 # Palette éditoriale : une couleur par titre, cyclique.
@@ -380,6 +379,7 @@ def album_jsonld(tracks: list[dict]) -> dict:
                 "url": f"{SITE_URL}/",
                 "image": f"{SITE_URL}/assets/og/album.png",
                 "datePublished": ALBUM_DATE_ISO,
+                "dateModified": ALBUM_DATE_ISO,
                 "inLanguage": "fr-FR",
                 "numTracks": len(tracks),
                 "isAccessibleForFree": True,
@@ -400,6 +400,8 @@ def song_jsonld(track: dict, description: str, image_url: str) -> dict:
         "trackNumber": track["num"],
         "inLanguage": "fr-FR",
         "isAccessibleForFree": True,
+        "datePublished": ALBUM_DATE_ISO,
+        "dateModified": ALBUM_DATE_ISO,
         "image": image_url,
         "byArtist": {"@id": f"{SITE_URL}/#organization"},
         "album": {"@id": f"{SITE_URL}/#album"},
@@ -450,6 +452,8 @@ def song_jsonld(track: dict, description: str, image_url: str) -> dict:
                 "name": f"{track['num']:02d} — {track['candidate']} — {track['title']}",
                 "description": description,
                 "inLanguage": "fr-FR",
+                "datePublished": ALBUM_DATE_ISO,
+                "dateModified": ALBUM_DATE_ISO,
                 "isPartOf": {"@id": f"{SITE_URL}/#album"},
                 "primaryImageOfPage": {"@type": "ImageObject", "url": image_url},
             },
@@ -467,6 +471,8 @@ def webpage_jsonld(name: str, description: str, page_path: str, image_url: str, 
         "name": name,
         "description": description,
         "inLanguage": "fr-FR",
+        "datePublished": ALBUM_DATE_ISO,
+        "dateModified": ALBUM_DATE_ISO,
         "isPartOf": {"@id": f"{SITE_URL}/#website"},
         "primaryImageOfPage": {"@type": "ImageObject", "url": image_url},
         "about": {"@id": f"{SITE_URL}/#album"},
@@ -536,6 +542,7 @@ def head(
 <meta name="twitter:image" content="{e(image_url)}">
 <meta name="twitter:image:alt" content="{e(title)}">
 <meta name="google-site-verification" content="{GOOGLE_SITE_VERIFICATION}">
+<link rel="sitemap" type="application/xml" href="{SITE_URL}/sitemap.xml">
 <link rel="icon" href="{prefix}assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="{prefix}assets/style.css">
 {ld}
@@ -892,7 +899,7 @@ def build_index(tracks: list[dict]) -> str:
 {contribute_block()}
 """
     return page(
-        "Candidats 2027 — l’album · 31 chansons, 31 candidats",
+        "Candidats 2027 — 31 maquettes, 31 candidats",
         ALBUM_DESCRIPTION,
         0,
         body,
@@ -1128,8 +1135,7 @@ def build_song(track: dict, tracks: list[dict]) -> str:
     {cover(track, large=True)}
     <div class="song-intro">
       <p class="eyebrow">Titre {track['num']:02d} sur 31 · {e(track['style_short'] or 'Chanson')}</p>
-      <h1>{e(track['candidate'])}</h1>
-      <p class="song-title">{e(track['title'])}</p>
+      <h1 class="song-h1"><span class="h1-candidate">{e(track['candidate'])}</span><span class="h1-title">{e(track['title'])}</span></h1>
       <p class="song-lede">{e(track['atmosphere'])}{(' — ' + e(track['style'])) if track['style'] and track['style'] != track['atmosphere'] else ''}</p>
       <dl class="meta-chips">
         <div><dt>Tempo</dt><dd>{e(track['tempo'] or '—')}</dd></div>
@@ -1226,14 +1232,14 @@ def build_song(track: dict, tracks: list[dict]) -> str:
 </nav>
 """
     description = (
-        f"Paroles, fiche technique et session Ableton de « {track['title']} » "
-        f"({track['candidate']}), titre {track['num']:02d} de l’album Candidats 2027. "
-        f"{track['style_short'] or 'Chanson'} — brouillon généré par IA, corrections bienvenues."
+        f"Paroles, fiche technique et maquette de « {track['title']} » "
+        f"({track['candidate']}). Titre {track['num']:02d}/31 de l’album "
+        "Candidats 2027, ouvert aux contributions."
     )
     image_rel = f"assets/og/{track['num']:02d}.png"
     image_url = f"{SITE_URL}/{image_rel}"
     return page(
-        f"{track['num']:02d} — {track['candidate']} — {track['title']} · Candidats 2027",
+        f"Paroles de « {track['title']} » — {track['candidate']} | Candidats 2027",
         description,
         1,
         body,

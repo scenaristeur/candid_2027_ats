@@ -4,8 +4,32 @@
   "item": "candidats-2027-exports",
   "baseUrl": "https://archive.org/download/candidats-2027-exports",
   "requireVerified": true,
-  "checkedAt": "2026-11-14T13:33:27+00:00",
+  "checkedAt": "2026-11-14T14:24:34+00:00",
   "files": {
+    "15": {
+      "mp3": {
+        "file": "15 - François Asselineau - Le Frexit intégral.mp3",
+        "url": "https://archive.org/download/candidats-2027-exports/15%20-%20Fran%C3%A7ois%20Asselineau%20-%20Le%20Frexit%20int%C3%A9gral.mp3",
+        "canonicalUrl": "https://archive.org/download/candidats-2027-exports/15%20-%20Fran%C3%A7ois%20Asselineau%20-%20Le%20Frexit%20int%C3%A9gral.mp3",
+        "bytes": null,
+        "verified": false,
+        "contentType": null,
+        "http": 404,
+        "via": "canonical"
+      }
+    },
+    "16": {
+      "mp3": {
+        "file": "16 - David Lisnard - Le Rock du Gouvernement Commando.mp3",
+        "url": "https://archive.org/download/candidats-2027-exports/16%20-%20David%20Lisnard%20-%20Le%20Rock%20du%20Gouvernement%20Commando.mp3",
+        "canonicalUrl": "https://archive.org/download/candidats-2027-exports/16%20-%20David%20Lisnard%20-%20Le%20Rock%20du%20Gouvernement%20Commando.mp3",
+        "bytes": null,
+        "verified": false,
+        "contentType": null,
+        "http": 404,
+        "via": "canonical"
+      }
+    },
     "17": {
       "mp3": {
         "file": "17 - Teddy Riner - Le Judo de la Nation.mp3",
@@ -15,6 +39,18 @@
         "verified": true,
         "contentType": "audio/mpeg",
         "http": 200,
+        "via": "canonical"
+      }
+    },
+    "18": {
+      "mp3": {
+        "file": "18 - Laurent Wauquiez - I Will Survive (sous-titre à confirmer).mp3",
+        "url": "https://archive.org/download/candidats-2027-exports/18%20-%20Laurent%20Wauquiez%20-%20I%20Will%20Survive%20%28sous-titre%20%C3%A0%20confirmer%29.mp3",
+        "canonicalUrl": "https://archive.org/download/candidats-2027-exports/18%20-%20Laurent%20Wauquiez%20-%20I%20Will%20Survive%20%28sous-titre%20%C3%A0%20confirmer%29.mp3",
+        "bytes": null,
+        "verified": false,
+        "contentType": null,
+        "http": 404,
         "via": "canonical"
       }
     },
@@ -71,10 +107,10 @@
         "file": "29 - Bruno Retailleau - L'Hiver démographique.mp3",
         "url": "https://archive.org/download/candidats-2027-exports/29%20-%20Bruno%20Retailleau%20-%20L%27Hiver%20d%C3%A9mographique.mp3",
         "canonicalUrl": "https://archive.org/download/candidats-2027-exports/29%20-%20Bruno%20Retailleau%20-%20L%27Hiver%20d%C3%A9mographique.mp3",
-        "bytes": null,
-        "verified": false,
-        "contentType": null,
-        "http": 404,
+        "bytes": 6109517,
+        "verified": true,
+        "contentType": "audio/mpeg",
+        "http": 200,
         "via": "canonical"
       }
     }
