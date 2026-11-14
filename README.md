@@ -18,6 +18,12 @@ techniques, les sessions Ableton et les exports MP3/MIDI.
 > pas un outil politique visant à favoriser ou défavoriser un candidat. La
 > démarche souhaite respecter la **neutralité** et l’**égalité** de traitement
 > entre les candidats.
+>
+> **Ce sont pour l’instant des maquettes.** Les voix, les arrangements et le mix
+> restent à faire. Les contributions de **musicien·nes** et surtout de
+> **chanteur·ses** sont sollicitées : une voix, un instrument, un beat ou un mix
+> peuvent suffire à faire exister un titre. Voir
+> <https://scenaristeur.github.io/candid_2027_ats/participer.html#voix>.
 
 ## Sommaire
 
@@ -57,6 +63,21 @@ L’accueil affiche des statistiques calculées à chaque build :
 - nombre de sessions Ableton publiées ;
 - nombre de paroles complètes ;
 - nombre de fiches techniques.
+
+### Appel aux musicien·nes et chanteur·ses
+
+Les 31 titres sont des **maquettes**. Les paroles, les fiches, les sessions
+Ableton et quelques exports existent, mais les voix ne sont pas encore
+enregistrées. Les contributions sont ouvertes :
+
+- **voix lead, chœurs, interprétation** — priorité du projet ;
+- guitare, piano, basse, cuivres, batterie, beat, arrangements ;
+- mix et mastering ;
+- corrections de paroles, de faits ou de fiches.
+
+Les liens « Proposer une voix » sont pré-remplis sur chaque page de titre et sur
+`/participer.html#voix`. Le modèle d’issue `contribution.yml` permet de décrire
+la proposition, les fichiers et les crédits.
 
 ## 2. Démarrage rapide
 
@@ -498,8 +519,11 @@ ou l’image manquante. Corriger puis relancer `build_site.py` et
 
 Les corrections et contributions passent par les issues GitHub :
 
+- **Voix / interprétation** : priorité du projet — une voix lead, des chœurs,
+  une intention.
+- **Musique** : instrument, arrangement, beat, mix.
 - **Correction factuelle** : source datée obligatoire.
-- **Contribution** : paroles, session Ableton, mix, voix, visuel ou site.
+- **Contribution** : paroles, session Ableton, visuel ou site.
 
 Les règles éditoriales sont publiées sur `/projet.html` et rappelées sur
 `/participer.html` : on critique le programme, pas la personne ; un chiffre =

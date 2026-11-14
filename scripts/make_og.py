@@ -135,7 +135,7 @@ def draw_album_og(path: Path) -> None:
 
     draw.text(
         (82, 448),
-        "31 chansons · 31 candidats",
+        "31 maquettes · 31 candidats",
         font=font(SEGOE_BOLD, 32),
         fill=INK,
     )
@@ -147,8 +147,8 @@ def draw_album_og(path: Path) -> None:
     )
     draw.text(
         (82, 550),
-        "Paroles · fiches techniques · sessions Ableton",
-        font=font(SEGOE, 22),
+        "Maquettes ouvertes · voix et instruments bienvenus",
+        font=font(SEGOE, 21),
         fill=MUTED,
     )
 
@@ -182,7 +182,7 @@ def draw_song_og(track: dict, path: Path) -> None:
         draw.text((82, y), line, font=title_font, fill=track["accent"])
         y += int(title_font.size * 1.12)
 
-    draw.text((82, 548), "Candidats 2027 · brouillons générés par IA", font=font(SEGOE, 21), fill=MUTED)
+    draw.text((82, 548), "Candidats 2027 · maquette ouverte · propose ta voix", font=font(SEGOE, 21), fill=MUTED)
 
     draw_circle(draw, track["accent"], f"{track['num']:02d}", track["initials"], dark=False)
     image.save(path, "PNG", optimize=True)

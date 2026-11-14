@@ -1,6 +1,6 @@
-# 29 — Bruno Retailleau — L'Hiver démographique
+# 29 - Bruno Retailleau - L'Hiver démographique
 
-**Statut** : préparation documentaire — aucune session Ableton ouverte pour ce morceau.
+**Statut** : maquette spartiate posée — session à sauvegarder, validation par extraits.
 **Tempo** : 88 BPM *(proposition, à valider)*
 **Tonalité** : Sol mineur (Gm) *(proposition, à valider à l'oreille)*
 **Signature** : 4/4
@@ -71,46 +71,58 @@ Chant de veillée : privilégier une voix seule, puis un chœur masculin très s
 
 ## 9. Session et steps de production
 
-> La structure complète (§3) reste la cible lointaine. **À ce stade, on ne construit que trois scènes : Intro / Refrain / Outro.** Le tableau §5 décrit la couleur idéale ; l'implémentation réelle en 8 pistes mutualisées est ci-dessous. En cas de conflit, **c'est §9 qui fait foi**.
+> **Maquette spartiate, une session par chanson.** 6 pistes, un rôle par piste, pas de rack à
+> chaînes. La forme est jouée dans **un seul clip long par piste** (224 temps) : intro 4, couplet 1,
+> refrain, couplet 2, refrain, pont, refrain final, outro 4. En cas de conflit, **c'est §9 qui fait foi**.
 
-**Session** : C — Traditionnel / militaire / populaire
-**Scènes réservées** : S13–S15 (Intro / Refrain / Outro) — scène S16 libre
-**Tempo de scène** : 88 BPM · **Tonalité de travail** : Sol mineur (Gm) · **Signature** : 4/4
-**Chaînes à armer** : Harmonie = accordéon / cordes · Mélodie = fifre · Texture = tambour
-**Kit de batterie de la session** : Tambour + grosse caisse (Impulse ou kit .adg)
+**Session** : `29 - Bruno Retailleau - L'Hiver démographique.als`
+**Tempo** : 88 BPM · **Tonalité de travail** : Sol mineur (Gm) · **Signature** : 4/4
+**Forme** : 56 mesures / 224 temps — Intro 4 · Couplet 1 8 · Refrain 8 · Couplet 2 8 · Refrain 8 · Pont 8 · Refrain final 8 · Outro 4
+**Grille** : couplet `| Gm | Eb | Bb | F |` · refrain `| Eb | Bb | F | Gm |` · pont `| Cm | Gm | Eb | F |`
 
-| Piste | Index | Rôle | Instrument / chaîne |
-| :--- | :--- | :--- | :--- |
-| `1-Batterie` | 0 | Rythme | Impulse / Drum Rack — tambour, grosse caisse |
-| `2-Basse` | 1 | Fondation | Drift — basse acoustique |
-| `3-Harmonie` | 2 | Accords | Instrument Rack — 5 chaînes accordéon/guitare/piano |
-| `4-Mélodie` | 3 | Hook | Instrument Rack — 5 chaînes fifre/cuivres |
-| `5-Texture` | 4 | Chœur / ambiance | Instrument Rack — 2 chaînes : chœur, salle |
-| `6-Percs/FX` | 5 | Transitions | Percussions — tambourin, caisse |
-| `7-Guide` | 6 | Voix guide | Drift — voix douce |
-| `8-Voix` | 7 | Chant final | Audio |
+| Piste | Index | Rôle | Instrument | Réglage de maquette |
+| :--- | :--- | :--- | :--- | :--- |
+| `1-Tambour` | 0 | Marche | Gen Purpose Kit (Drum Rack) | 36 kick, 38 snare, 37 rim, 41 tom, 49 crash |
+| `2-Fifre` | 1 | Mélodie | Drift | Osc 1 triangle · Osc 2 sine oct +1 · LP 0,90 · Volume 0,75 |
+| `3-Basse` | 2 | Fondation | Drift | Osc 1 triangle · Osc 2 sine oct −1 · LP 0,40 · Volume 0,75 |
+| `4-Chœur` | 3 | Réponse | Drift | Osc 1/2 saw · détune 0,5 · attaque 0,30 · LP 0,50 · Volume 0,40 |
+| `5-Guide` | 4 | Mélodie guide | Drift | Osc 1 triangle · Osc 2 off · Volume 0,70 |
+| `6-Voix` | 5 | Chant final | Audio | vide pour l'instant |
+
+**Niveaux** : volumes de piste 0,80 (tambour), 0,75 (fifre, basse), 0,78 (guide), 0,45 (chœur),
+0,85 (voix). Pas de Utility, pas de saturation, pas d'EQ : la grange sonne sec.
+**Validation par extraits** : `data/analyses/retailleau_intro_02.wav` (RMS 0,084), `retailleau_couplet_03.wav`
+(0,169), `retailleau_refrain_02.wav` (0,187), `retailleau_pont_02.wav` (0,181), `retailleau_refrain_final_02.wav`
+(0,183). Peak maximal 0,919, aucun échantillon écrêté. Le fifre seul sort à 0,291 de peak
+(`retailleau_fifre_only_03.wav`), le guide seul à 0,298 (`retailleau_guide_only.wav`) : le fifre
+répond, il ne couvre pas la voix.
 
 ### Steps
 
-1. **Créer les scènes.** Dans la session C, trois scènes consécutives : `S13 <Candidat> Intro`, `S14 <Candidat> Refrain`, `S15 <Candidat> Outro`. La scène S16 reste vide (réserve).
-2. **Tempo et tonalité.** Régler le tempo de scène à 88 BPM (propriété de scène ; si l'outil ne l'expose pas, le faire à la main) et vérifier 4/4. La tonalité Sol mineur (Gm) est un repère d'écriture, pas un réglage à automatiser.
-3. **Armer les chaînes.** Harmonie = accordéon / cordes, Mélodie = fifre, Texture = tambour. Vérifier le **chain selector** de chaque rack sur la valeur du candidat : c'est ce qui permet 5 sons différents sur la même piste.
-4. **Écrire l'harmonie du refrain.** 8 mesures, grille `| Eb | Bb | F | Gm |`. Accords réels (vérifier les notes contre le nom), pas de renversement inutile. Vélocités 70–85, légères variations pour éviter le MIDI plat.
-5. **Écrire basse et batterie.** Motif du style (Chant traditionnel vendéen, tambour et fifre, ton grave), 8 mesures. Vélocités : kick 90–100, snare 85–95, hats 55–75. La basse suit la fondamentale, sans doubler la voix.
-6. **Écrire le hook puis le guide vocal.** Mélodie du refrain sur `4-Mélodie`, 1 note par syllabe, tessiture **E3–B3 (64–71)**. Paroles : `PAROLES.md`. Guide chanté sur `7-Guide`, vélocités qui phrasent (75–110), pas une note plate.
-7. **Intro (4–8 mesures).** Un ou deux éléments seulement : texture + basse, ou batterie + nappe. Ne pas jouer le refrain avant la scène Refrain.
-8. **Outro / transition (4 mesures).** Accord tenu + transition Marseillaise : « Entendez-vous… dans nos campagnes ? ». Si l'outro est coupée, garder au moins 2 mesures de queue pour l'enchaînement.
-9. **Valider, puis figer.** Solo chaque piste, capture **une à la fois**, noter le RMS et ce qui a changé. Ensuite : nommer les clips, noter tempo/tonalité dans la fiche, et ne plus toucher la scène validée.
+1. **Ouvrir la session** et la sauvegarder sous son nom dans le dossier du morceau.
+2. **Vérifier le tempo** (88 BPM), la signature 4/4 et la tonalité de travail (Gm).
+3. **Garder 6 pistes** : tambour, fifre, basse, chœur, guide, voix. Pas de piste supplémentaire.
+4. **Un clip de 224 temps par piste** dans la scène 1. Intro de 4 mesures, outro de 4 mesures.
+5. **Tambour** : marche — kick 0/2, snare 1/3, rim en ghost notes, tom au refrain, rolls en fin de section.
+6. **Fifre** : phrase à l'intro et au refrain, tenues au couplet, solo au pont. Il doit rester sous la voix.
+7. **Basse** : fondamentale en appui, quinte au contretemps, tierce au refrain.
+8. **Chœur** : accords tenus au refrain et à l'outro, volume bas. Réponse masculine simple.
+9. **Guide** : motif de 4 notes par mesure, dans E3–B3 (64–71). Repère, pas voix finale.
+10. **Écouter des extraits**, pas la forme entière : intro, couplet, refrain, pont. Valider ou corriger,
+    puis remplir les valeurs réelles ci-dessus.
 
 ### Garde-fous
 
-- **8 pistes maximum.** Si un instrument manque, ajouter une **chaîne** dans un rack — jamais une piste.
-- **5 chaînes par rack au maximum.** Préférer Drift/Simpler à Surge XT : le coût CPU de Surge est par voix.
-- **16 scènes maximum** : 15 utilisées (5 candidats × 3) + 1 libre.
-- **Ne pas changer le kit de batterie** de la session sans revalider les quatre autres candidats.
-- **Une seule capture à la fois.** Le set Ableton ne doit pas jouer pendant une capture.
-- Une scène validée ne se réouvre pas pour « améliorer » : on note l'idée pour la suivante.
+- **6 pistes suffisent** pour cette maquette. Ne pas ajouter de piste pour un détail.
+- **Pas de rack à chaînes**, pas de Surge XT : le coût CPU et le temps de réglage ne sont pas justifiés ici.
+- **Une seule capture à la fois**, et vérifier le WAV (peak < 1,0) plutôt que le RMS du tool.
+- **Pas de capture intégrale à ce stade** : des extraits de 8–10 s par section suffisent à valider.
+- **Le fifre ne doit pas couvrir la voix** : monter le filtre et le volume du Drift, puis redescendre
+  le fader sous le guide. C'est ce qui a été fait ici.
+- **Ne pas moquer le folklore** : le tambour et le fifre disent la rigueur, pas la caricature.
+- Une maquette validée se fige : on note l'idée pour la suivante, on ne la réouvre pas.
 
 ## Paroles
 
-Voir `PAROLES.md` dans ce dossier (squelette à écrire).
+Voir `PAROLES.md` : version multi-sections (différence, discours, partisans, refrain), avec
+structure, base factuelle et garde-fous — notamment les 197 milliards et la conformité du référendum.

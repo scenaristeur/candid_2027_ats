@@ -6,7 +6,13 @@ body:
   - type: markdown
     attributes:
       value: |
-        Merci de contribuer à l'album. Décris précisément ce que tu proposes et, si tu joins un fichier, indique son format et ses conditions de réutilisation.
+        Merci de contribuer à l’album. **Les 31 titres sont encore des maquettes** :
+        les voix, les arrangements et le mix restent à faire. Les contributions de
+        **musicien·nes** et surtout de **chanteur·ses** sont particulièrement
+        bienvenues.
+
+        Décris précisément ce que tu proposes et, si tu joins un fichier, indique
+        son format et ses conditions de réutilisation.
   - type: input
     id: titre
     attributes:

@@ -53,8 +53,9 @@ ALBUM_DATE_ISO = "2026-11-14"
 ALBUM_NAME = "Candidats 2027 — l’album"
 ALBUM_DESCRIPTION = (
     "Un album d’information civique : une chanson par candidat à la présidentielle "
-    "de 2027. Titres, paroles et musiques générés par IA — brouillons de "
-    "vulgarisation à corriger. Paroles, fiches techniques et sessions Ableton à télécharger."
+    "de 2027. Ce sont pour l’instant des maquettes, générées par IA et à corriger. "
+    "Les contributions de musicien·nes et surtout de chanteur·ses sont sollicitées "
+    "pour les voix, les arrangements et le mix."
 )
 
 # Palette éditoriale : une couleur par titre, cyclique.
@@ -576,7 +577,7 @@ def footer(depth: int) -> str:
   <div class="wrap footer-grid">
     <div>
       <p class="footer-brand">Candidats 2027 — l’album</p>
-      <p class="footer-note">Un album d’information civique : une chanson par candidat à la présidentielle de 2027. Maquettes, paroles et fiches techniques en libre consultation.</p>
+      <p class="footer-note">Un album d’information civique : une chanson par candidat à la présidentielle de 2027. Ce sont pour l’instant des maquettes — musicien·nes et surtout chanteur·ses, les contributions sont ouvertes.</p>
     </div>
     <nav aria-label="Liens de pied de page">
       <a href="{prefix}index.html#titres">Les titres</a>
@@ -725,23 +726,29 @@ def download_card(
 
 
 def contribute_block(track: dict | None = None) -> str:
+    voice_link = f"{SITE_URL}/participer.html#voix"
     if track:
         title = quote(f"[Correction] {track['num']:02d} — {track['candidate']} — {track['title']}")
         correction = f"{REPO_URL}/issues/new?template=correction.yml&title={title}"
         contribution_title = quote(f"[Contribution] {track['num']:02d} — {track['candidate']}")
         contribution = f"{REPO_URL}/issues/new?template=contribution.yml&title={contribution_title}"
-        intro = f"Une source datée, une nuance, une meilleure formulation pour «&nbsp;{e(track['title'])}&nbsp;» ?"
+        voice_title = quote(
+            f"[Contribution] {track['num']:02d} — {track['candidate']} — voix / interprétation"
+        )
+        voice_link = f"{REPO_URL}/issues/new?template=contribution.yml&title={voice_title}"
+        intro = f"Une voix, un instrument, une source datée pour «&nbsp;{e(track['title'])}&nbsp;» ?"
     else:
         correction = f"{REPO_URL}/issues/new?template=correction.yml"
         contribution = f"{REPO_URL}/issues/new?template=contribution.yml"
-        intro = "Une source datée, une nuance, une meilleure formulation ?"
+        intro = "Une voix, un instrument, une source datée ?"
     return f"""<section class="contribute" aria-labelledby="contribuer-titre">
   <div class="contribute-inner">
     <p class="eyebrow">Participer</p>
     <h2 id="contribuer-titre">Le projet est ouvert.</h2>
-    <p>{intro} Le site, les paroles et les fiches sont versionnés : chaque proposition peut être discutée et tracée.</p>
+    <p>{intro} Les maquettes sont là pour être reprises : musicien·nes et surtout chanteur·ses, vos contributions sont sollicitées. Le site, les paroles et les fiches sont versionnés : chaque proposition peut être discutée et tracée.</p>
     <div class="contribute-actions">
-      <a class="btn btn-primary" href="{correction}">Proposer une correction factuelle<span aria-hidden="true">↗</span></a>
+      <a class="btn btn-primary" href="{voice_link}">Proposer une voix<span aria-hidden="true">↗</span></a>
+      <a class="btn btn-ghost" href="{correction}">Proposer une correction factuelle<span aria-hidden="true">↗</span></a>
       <a class="btn btn-ghost" href="{contribution}">Contribuer à une chanson<span aria-hidden="true">↗</span></a>
       <a class="btn btn-ghost" href="{REPO_URL}" rel="noopener">Voir le dépôt<span aria-hidden="true">↗</span></a>
     </div>
@@ -784,14 +791,14 @@ def build_index(tracks: list[dict]) -> str:
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <p class="kicker"><span class="kicker-dot" aria-hidden="true"></span>Album d’information civique · brouillons générés par IA · présidentielle 2027</p>
+      <p class="kicker"><span class="kicker-dot" aria-hidden="true"></span>Album d’information civique · maquettes générées par IA · présidentielle 2027 <span class="status-pill">maquettes</span></p>
       <h1>Candidats<br><em>2027</em></h1>
-      <p class="lede">Trente et une chansons, un candidat par titre. Comprendre en quelques minutes ce qui distingue chaque programme, ce qu’il promet, ce qu’il coûte — et ce qu’on peut lui opposer.</p>
+      <p class="lede">Trente et une chansons, un candidat par titre. Pour l’instant, ce sont des <strong>maquettes</strong> : les voix, les arrangements et le mix restent à faire. Comprendre ce qui distingue chaque programme, ce qu’il promet, ce qu’il coûte — et ce qu’on peut lui opposer.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#titres">Explorer les 31 titres</a>
-        <a class="btn btn-ghost" href="participer.html">Participer au projet</a>
+        <a class="btn btn-ghost" href="participer.html#voix">Proposer une voix</a>
       </div>
-      <p class="hero-note">Brouillons de vulgarisation générés par IA — paroles, fiches techniques et sessions Ableton à télécharger. Sources datées du {TRUTH_DATE}.</p>
+      <p class="hero-note">Musicien·nes, chanteur·ses, interprètes : les maquettes sont ouvertes. Paroles, fiches techniques et sessions Ableton à télécharger. Sources datées du {TRUTH_DATE}.</p>
     </div>
     <div class="hero-poster" aria-hidden="true">
       <div class="poster">
@@ -808,11 +815,28 @@ def build_index(tracks: list[dict]) -> str:
 
 <section class="stats" aria-label="Le projet en chiffres">
   <div class="wrap stats-grid">
-    <div><strong>{total}</strong><span>titres</span></div>
+    <div><strong>{total}</strong><span>maquettes</span></div>
     {media_stats}
     <div><strong>{als_count}</strong><span>sessions Ableton publiées</span></div>
     <div><strong>{full_count}</strong><span>paroles complètes</span></div>
     <div><strong>31</strong><span>fiches techniques</span></div>
+  </div>
+</section>
+
+<section class="maquette-call" id="maquettes" aria-labelledby="maquettes-titre">
+  <div class="wrap maquette-grid">
+    <div>
+      <p class="eyebrow">État du projet</p>
+      <h2 id="maquettes-titre">Ce sont encore<br><em>des maquettes.</em></h2>
+    </div>
+    <div class="maquette-text">
+      <p>Les 31 titres existent aujourd’hui à l’état d’ébauches : paroles, fiches techniques, sessions Ableton, exports MP3 et MIDI. Les voix, les arrangements, l’interprétation et le mix restent largement à faire.</p>
+      <p><strong>Nous cherchons des musicien·nes — et surtout des chanteur·ses.</strong> Une voix, une guitare, un piano, une basse, des cuivres, un beat, un mix : chaque contribution peut faire avancer un titre. Les maquettes sont là pour être reprises, pas pour être figées.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="participer.html#voix">Proposer une voix</a>
+        <a class="btn btn-ghost" href="{REPO_URL}/issues/new?template=contribution.yml&title=%5BContribution%5D%20instrument%20ou%20mix">Proposer un instrument ou un mix</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -876,8 +900,9 @@ def build_index(tracks: list[dict]) -> str:
         og_type="music.album",
         og_image="assets/og/album.png",
         keywords=(
-            "Candidats 2027, album, chansons, présidentielle 2027, paroles, "
-            "fiches techniques, Ableton, IA, vulgarisation, neutralité"
+            "Candidats 2027, album, maquettes, chansons, présidentielle 2027, "
+            "paroles, fiches techniques, Ableton, IA, chanteur, chanteuse, "
+            "musicien, contribution, vulgarisation, neutralité"
         ),
         jsonld=album_jsonld(tracks),
     )
@@ -903,6 +928,14 @@ def build_song(track: dict, tracks: list[dict]) -> str:
         f"[Correction] {track['num']:02d} — {track['candidate']} — {track['title']}"
     )
     correction_url = f"{REPO_URL}/issues/new?template=correction.yml&title={correction_title}"
+    voice_issue_title = quote(
+        f"[Contribution] {track['num']:02d} — {track['candidate']} — voix / interprétation"
+    )
+    voice_issue_url = f"{REPO_URL}/issues/new?template=contribution.yml&title={voice_issue_title}"
+    instrument_title = quote(
+        f"[Contribution] {track['num']:02d} — {track['candidate']} — instrument / arrangement"
+    )
+    instrument_url = f"{REPO_URL}/issues/new?template=contribution.yml&title={instrument_title}"
     als_issue_title = quote(
         f"[Contribution] {track['num']:02d} — {track['candidate']} — session Ableton"
     )
@@ -1112,6 +1145,18 @@ def build_song(track: dict, tracks: list[dict]) -> str:
   </div>
 </header>
 
+<aside class="voice-callout" aria-labelledby="voix-titre">
+  <div class="voice-callout-text">
+    <p class="eyebrow">Maquette ouverte</p>
+    <h2 id="voix-titre">Il manque une voix.</h2>
+    <p>Ce titre est encore une maquette. Tu chantes, tu joues d’un instrument, tu mixes ? Propose une interprétation, une piste ou un arrangement : les contributions de musicien·nes et surtout de chanteur·ses sont sollicitées.</p>
+  </div>
+  <div class="voice-callout-actions">
+    <a class="btn btn-primary" href="{voice_issue_url}">Proposer une voix</a>
+    <a class="btn btn-ghost" href="{instrument_url}">Proposer un instrument</a>
+  </div>
+</aside>
+
 <section class="downloads-section" id="telecharger" aria-labelledby="telecharger-titre">
   <div class="wrap">
     <div class="section-head compact">
@@ -1197,7 +1242,8 @@ def build_song(track: dict, tracks: list[dict]) -> str:
         og_image=image_rel,
         keywords=(
             f"{track['candidate']}, {track['title']}, {track['style_short']}, "
-            "chanson, présidentielle 2027, paroles, fiche technique, Candidats 2027"
+            "maquette, chanson, présidentielle 2027, paroles, fiche technique, "
+            "voix, chanteur, musicien, contribution, Candidats 2027"
         ),
         jsonld=song_jsonld(track, description, image_url),
     )
@@ -1217,7 +1263,7 @@ def build_project(album_text: str) -> str:
   <div class="wrap narrow">
     <p class="eyebrow">Le projet</p>
     <h1>Une chanson par candidat.<br><em>Rien de plus, rien de moins.</em></h1>
-    <p class="lede">Note d’intention, méthode de production et règles éditoriales de l’album Candidats 2027. Les titres, paroles et musiques sont générés par IA : ce sont des brouillons de vulgarisation, potentiellement erronés. C’est un exercice de collaboration musicale et culturelle partagé, pas un outil politique visant à favoriser ou défavoriser un candidat ; la démarche vise la neutralité et l’égalité. Ce document est daté du {TRUTH_DATE}.</p>
+    <p class="lede">Note d’intention, méthode de production et règles éditoriales de l’album Candidats 2027. Les titres, paroles et musiques sont générés par IA : ce sont pour l’instant des maquettes, potentiellement erronées. Les contributions de musicien·nes et surtout de chanteur·ses sont sollicitées. C’est un exercice de collaboration musicale et culturelle partagé, pas un outil politique visant à favoriser ou défavoriser un candidat ; la démarche vise la neutralité et l’égalité. Ce document est daté du {TRUTH_DATE}.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="telechargements/album/Album.MD" download>Télécharger la note (Markdown)</a>
       <a class="btn btn-ghost" href="index.html#titres">Voir les titres</a>
@@ -1235,7 +1281,8 @@ def build_project(album_text: str) -> str:
 """
     description = (
         "Note d’intention, méthode de production et règles éditoriales de l’album "
-        "Candidats 2027 : une chanson par candidat à la présidentielle, générée par IA."
+        "Candidats 2027 : des maquettes générées par IA, ouvertes aux musicien·nes "
+        "et surtout aux chanteur·ses."
     )
     return page(
         "Le projet · Candidats 2027",
@@ -1263,18 +1310,44 @@ def build_project(album_text: str) -> str:
 def build_contribute() -> str:
     correction = f"{REPO_URL}/issues/new?template=correction.yml"
     contribution = f"{REPO_URL}/issues/new?template=contribution.yml"
+    voice = (
+        f"{REPO_URL}/issues/new?template=contribution.yml&title="
+        + quote("[Contribution] voix / interprétation")
+    )
+    instrument = (
+        f"{REPO_URL}/issues/new?template=contribution.yml&title="
+        + quote("[Contribution] instrument / arrangement")
+    )
     body = f"""
 <header class="page-hero">
   <div class="wrap narrow">
     <p class="eyebrow">Participer</p>
     <h1>Le projet est un<br><em>chantier ouvert.</em></h1>
-    <p class="lede">Les paroles, les fiches et les sessions sont des ébauches générées par IA, publiées pour être lues, jouées, corrigées et améliorées. L’album est un exercice de collaboration musicale et culturelle partagé, pas un outil politique : il ne vise ni à favoriser ni à défavoriser un candidat, et revendique la neutralité et l’égalité de traitement.</p>
+    <p class="lede">Les paroles, les fiches et les sessions sont des ébauches générées par IA, publiées pour être lues, jouées, corrigées et surtout <strong>interprétées</strong>. Ce sont des maquettes : les voix, les arrangements et le mix restent à faire. L’album est un exercice de collaboration musicale et culturelle partagé, pas un outil politique : il ne vise ni à favoriser ni à défavoriser un candidat, et revendique la neutralité et l’égalité de traitement.</p>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="{correction}">Signaler une erreur factuelle<span aria-hidden="true">↗</span></a>
+      <a class="btn btn-primary" href="{voice}">Proposer une voix<span aria-hidden="true">↗</span></a>
+      <a class="btn btn-ghost" href="{correction}">Signaler une erreur factuelle<span aria-hidden="true">↗</span></a>
       <a class="btn btn-ghost" href="{contribution}">Proposer une contribution<span aria-hidden="true">↗</span></a>
     </div>
   </div>
 </header>
+
+<section class="voice-section" id="voix" aria-labelledby="voix-titre">
+  <div class="wrap voice-inner">
+    <div>
+      <p class="eyebrow">Appel à voix</p>
+      <h2 id="voix-titre">Les maquettes attendent<br><em>des interprètes.</em></h2>
+    </div>
+    <div>
+      <p>Les 31 titres sont des maquettes : les instruments, les paroles et les fiches existent, mais les voix ne sont pas encore enregistrées. C’est le moment de proposer une interprétation, une couleur, une intention.</p>
+      <p><strong>Chanteur·ses, chanteurs, chanteuses, musicien·nes :</strong> une voix lead, un chœur, une guitare, un piano, une basse, des cuivres, un beat ou un mix peuvent suffire à faire exister un titre. Aucune contribution n’est trop petite.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="{voice}">Proposer une voix<span aria-hidden="true">↗</span></a>
+        <a class="btn btn-ghost" href="{instrument}">Proposer un instrument<span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="participate">
   <div class="wrap">
@@ -1293,8 +1366,8 @@ def build_contribute() -> str:
       </article>
       <article class="participate-card">
         <span class="participate-num">03</span>
-        <h2>Faire de la musique</h2>
-        <p>Une session Ableton est publiée pour chaque maquette disponible. Tu peux la reprendre, la mixer, changer un instrument — à condition de documenter ce que tu changes dans la fiche technique.</p>
+        <h2>Jouer, chanter, mixer</h2>
+        <p>Une session Ableton est publiée pour chaque maquette disponible. Tu peux la reprendre, enregistrer une voix, changer un instrument ou mixer — à condition de documenter ce que tu changes dans la fiche technique.</p>
         <a class="text-link" href="index.html#titres">Voir les sessions<span aria-hidden="true">↗</span></a>
       </article>
       <article class="participate-card">
@@ -1340,8 +1413,9 @@ def build_contribute() -> str:
 {contribute_block()}
 """
     description = (
-        "Contribuer à l’album Candidats 2027 : vérifier un fait, écrire des paroles, "
-        "reprendre une session Ableton ou améliorer le site."
+        "Contribuer à l’album Candidats 2027 : proposer une voix, un instrument, "
+        "un mix, vérifier un fait, écrire des paroles ou améliorer le site. "
+        "Les maquettes sont ouvertes aux musicien·nes et surtout aux chanteur·ses."
     )
     return page(
         "Participer · Candidats 2027",
@@ -1517,6 +1591,13 @@ Cet album est un exercice de collaboration musicale et culturelle partagé,
 pas un outil politique visant à favoriser ou défavoriser un candidat.
 La démarche souhaite respecter la neutralité et l'égalité de traitement
 entre les candidats.
+
+État du projet
+--------------
+Ce sont pour l'instant des maquettes : les voix, les arrangements et le mix
+restent à faire. Les contributions de musicien·nes et surtout de chanteur·ses
+sont sollicitées. Une voix, un instrument, un beat ou un mix peuvent suffire
+à faire exister un titre.
 
 Règles
 ------

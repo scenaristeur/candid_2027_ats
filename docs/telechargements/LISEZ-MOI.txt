@@ -34,6 +34,13 @@ pas un outil politique visant à favoriser ou défavoriser un candidat.
 La démarche souhaite respecter la neutralité et l'égalité de traitement
 entre les candidats.
 
+État du projet
+--------------
+Ce sont pour l'instant des maquettes : les voix, les arrangements et le mix
+restent à faire. Les contributions de musicien·nes et surtout de chanteur·ses
+sont sollicitées. Une voix, un instrument, un beat ou un mix peuvent suffire
+à faire exister un titre.
+
 Règles
 ------
 - Critiquer le programme, pas la personne.
