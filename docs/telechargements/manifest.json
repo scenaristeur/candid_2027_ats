@@ -291,7 +291,7 @@
       "tempo": "100 BPM",
       "key": "Ré mineur (Dm)",
       "duration": "≈ 2 min 20",
-      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "status": "maquette spartiate posée — session à sauvegarder, validation par extraits.",
       "files": {
         "als": "als/15-francois-asselineau-le-frexit-integral.als",
         "paroles": "paroles/15-francois-asselineau-le-frexit-integral.paroles.md",
@@ -339,7 +339,7 @@
         "versionLongue": null
       },
       "media": {
-        "mp3": null,
+        "mp3": "https://archive.org/download/candidats-2027-exports/17%20-%20Teddy%20Riner%20-%20Le%20Judo%20de%20la%20Nation.mp3",
         "midi": null
       }
     },
