@@ -97,6 +97,7 @@ def check_seo() -> list[str]:
         '<meta property="og:description"',
         '<meta property="og:image"',
         '<meta name="twitter:card"',
+        '<meta name="google-site-verification"',
         '<link rel="canonical"',
     )
     for page in sorted(DOCS.rglob("*.html")):

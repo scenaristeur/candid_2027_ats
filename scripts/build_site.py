@@ -50,6 +50,7 @@ ARCHIVE_ITEM_URL = "https://archive.org/details/candidats-2027-exports"
 SITE_URL = os.environ.get("CANDIDAT_SITE_URL", "https://scenaristeur.github.io/candid_2027_ats").rstrip("/")
 TRUTH_DATE = "14 novembre 2026"
 ALBUM_DATE_ISO = "2026-11-14"
+GOOGLE_SITE_VERIFICATION = "a5K2yNZpsgoUVcvzllet8yvUxdDlO5TJaP8tZLZsK-I"
 ALBUM_NAME = "Candidats 2027 — l’album"
 ALBUM_DESCRIPTION = (
     "Un album d’information civique : une chanson par candidat à la présidentielle "
@@ -534,6 +535,7 @@ def head(
 <meta name="twitter:description" content="{e(description)}">
 <meta name="twitter:image" content="{e(image_url)}">
 <meta name="twitter:image:alt" content="{e(title)}">
+<meta name="google-site-verification" content="{GOOGLE_SITE_VERIFICATION}">
 <link rel="icon" href="{prefix}assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="{prefix}assets/style.css">
 {ld}

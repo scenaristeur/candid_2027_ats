@@ -310,6 +310,8 @@ Chaque page générée contient :
 - une URL canonique et une alternative `hreflang="fr"` ;
 - des directives `robots` (`index, follow`, previews larges) ;
 - des mots-clés ;
+- la balise de vérification **Google Search Console**
+  (`GOOGLE_SITE_VERIFICATION` dans `scripts/build_site.py`) ;
 - les balises **Open Graph** (`og:type`, `og:title`, `og:description`,
   `og:url`, `og:image`, dimensions et texte alternatif) ;
 - les balises **Twitter/X** (`summary_large_image`) ;
@@ -323,6 +325,10 @@ Chaque page générée contient :
 - un `robots.txt` pointant vers le sitemap.
 
 La page 404 est en `noindex, nofollow`.
+
+> **Ne pas modifier `docs/index.html` à la main** : il est régénéré par
+> `build_site.py`. La balise de vérification Google est portée par la constante
+> `GOOGLE_SITE_VERIFICATION` dans le script.
 
 ### Images Open Graph
 
