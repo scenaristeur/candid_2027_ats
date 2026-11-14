@@ -59,31 +59,44 @@ Le script lit le dossier d’exports en lecture seule, associe chaque fichier à
 numéro de titre et écrit `site/media.json` avec les URLs
 `https://archive.org/download/candidats-2027-exports/…`.
 
-### 2. Déposer les fichiers sur Internet Archive
+### 2. Renseigner les clés IA-S3
 
-Créer un compte sur <https://archive.org>, puis :
+Créer un compte sur <https://archive.org>, puis générer les clés sur
+<https://archive.org/account/s3.php>. Les placer dans `.env` (ignoré par Git) :
+
+```dotenv
+INTERNET_ARCHIVE_S3_ACCESS_key=…
+INTERNET_ARCHIVE_S3_SECRET_KEY=…
+```
+
+Le fichier `.env.example` sert de modèle. Les scripts acceptent aussi les
+variables standard `IA_ACCESS_KEY_ID` et `IA_SECRET_ACCESS_KEY`.
+
+### 3. Envoyer les exports
 
 ```powershell
 pip install internetarchive
-ia configure
+python scripts/upload_media.py --item candidats-2027-exports
 ```
 
-Uploader l’ensemble des fichiers (le script affiche la commande complète) :
+Le script :
+
+- charge les clés depuis `.env` ;
+- compare les empreintes MD5 avec les fichiers déjà présents sur Internet
+  Archive ;
+- n’envoie que les nouveaux fichiers ou ceux qui ont changé ;
+- relance automatiquement `prepare_media.py --verify`.
+
+Pour voir ce qui serait envoyé sans rien téléverser :
 
 ```powershell
-$files = Get-ChildItem "C:\Users\admin\Music\exports ableton\Candid_2027_ats\mp3","C:\Users\admin\Music\exports ableton\Candid_2027_ats\midi" -File -Recurse | ForEach-Object FullName
-ia upload candidats-2027-exports $files `
-  --metadata="title:Candidats 2027 — exports audio et MIDI" `
-  --metadata="creator:Candidats 2027" `
-  --metadata="date:2026-11-14" `
-  --metadata="language:fre" `
-  --metadata="collection:opensource_audio"
+python scripts/upload_media.py --item candidats-2027-exports --dry-run
 ```
 
 L’identifiant `candidats-2027-exports` est un exemple : il doit être unique sur
 Internet Archive. On peut le changer avec `--item`.
 
-### 3. Vérifier puis régénérer le site
+### 4. Vérifier puis régénérer le site
 
 ```powershell
 python scripts/prepare_media.py --item candidats-2027-exports --verify
@@ -94,8 +107,14 @@ python scripts/check_site.py
 Les fichiers vérifiés apparaissent alors sur la page du titre : lecteur audio,
 téléchargement MP3, téléchargement MIDI, badge sur l’accueil et filtre « MP3 ».
 
+Si `archive.org/download/…` renvoie encore une erreur pendant que la
+dérivation de l’item est en cours, `prepare_media.py` utilise automatiquement
+l’URL du nœud de stockage (`ia601009.us.archive.org/…`) qui sert déjà le
+fichier. L’URL canonique est conservée dans `canonicalUrl` et reprendra la main
+lorsqu’elle répondra.
+
 Pour remplacer un export, on réuploade le fichier sous le même nom, puis on
-relance `prepare_media.py --verify` et le build.
+relance `upload_media.py` (le MD5 détecte le changement) et le build.
 
 ### Alternative : lecteur local
 
@@ -186,9 +205,11 @@ Le fichier `docs/.nojekyll` évite le traitement Jekyll.
 
 ```text
 .
+├── .env.example            # modèle de clés IA-S3 (le vrai .env est ignoré)
 ├── scripts/
 │   ├── build_site.py       # génère docs/ depuis les sources (lecture seule)
 │   ├── prepare_media.py    # associe les exports MP3/MIDI à Internet Archive
+│   ├── upload_media.py     # envoie les nouveaux exports (MD5) puis vérifie
 │   ├── check_site.py       # vérifie liens, structure et fichiers attendus
 │   └── markdown.py         # rendu Markdown minimal, sans dépendance
 ├── site/

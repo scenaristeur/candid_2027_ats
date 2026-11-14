@@ -391,9 +391,9 @@
       "tempo": "116 BPM",
       "key": "Do majeur (C)",
       "duration": "≈ 2 min 20",
-      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "status": "maquette spartiate posée — session à sauvegarder, validation par extraits.",
       "files": {
-        "als": null,
+        "als": "als/20-fabien-roussel-vivre-le-temps-des-cerises-electrique.als",
         "paroles": "paroles/20-fabien-roussel-vivre-le-temps-des-cerises-electrique.paroles.md",
         "ficheTechnique": "fiches/20-fabien-roussel-vivre-le-temps-des-cerises-electrique.fiche-technique.md",
         "versionLongue": null
@@ -439,7 +439,7 @@
         "versionLongue": null
       },
       "media": {
-        "mp3": null,
+        "mp3": "https://archive.org/download/candidats-2027-exports/22%20-%20Marine%20Tondelier%20-%20La%20Danse%20de%20la%20Premi%C3%A8re%20R%C3%A9publique%20%C3%A9cologique.mp3",
         "midi": null
       }
     },
@@ -451,7 +451,7 @@
       "tempo": "76 BPM",
       "key": "La mineur (Am)",
       "duration": "≈ 2 min 35",
-      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "status": "maquette spartiate posée — session à sauvegarder, validation par extraits.",
       "files": {
         "als": "als/23-natacha-polony-l-etat-d-urgence-de-la-production.als",
         "paroles": "paroles/23-natacha-polony-l-etat-d-urgence-de-la-production.paroles.md",
@@ -491,9 +491,9 @@
       "tempo": "70 BPM",
       "key": "La mineur (Am)",
       "duration": "≈ 2 min 45",
-      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "status": "maquette spartiate posée — session à sauvegarder, validation par extraits.",
       "files": {
-        "als": null,
+        "als": "als/25-bernard-cazeneuve-le-contrat.als",
         "paroles": "paroles/25-bernard-cazeneuve-le-contrat.paroles.md",
         "ficheTechnique": "fiches/25-bernard-cazeneuve-le-contrat.fiche-technique.md",
         "versionLongue": null

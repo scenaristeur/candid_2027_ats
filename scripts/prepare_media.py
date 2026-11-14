@@ -35,6 +35,8 @@ DEFAULT_EXPORTS = Path(
     )
 )
 
+USER_AGENT = "Candidats2027-site/1.0 (DeepSeek V4.1 Flash 1017)"
+
 KINDS = {".mp3": "mp3", ".mid": "midi", ".midi": "midi"}
 
 
@@ -88,7 +90,7 @@ def scan(exports: Path) -> tuple[dict[int, dict[str, Path]], list[str]]:
 def probe(url: str) -> dict:
     """Vérifie une URL : HEAD puis, si besoin, GET avec Range."""
     result = {"verified": False, "bytes": None, "contentType": None, "http": None}
-    headers = {"User-Agent": "Candidats2027-site/1.0"}
+    headers = {"User-Agent": USER_AGENT}
 
     for method in ("HEAD", "GET"):
         request = urllib.request.Request(url, method=method, headers=headers)
@@ -115,6 +117,30 @@ def probe(url: str) -> dict:
     return result
 
 
+def item_node_base(item: str) -> str | None:
+    """Récupère la base du nœud de stockage (d1 + dir) pour un item.
+
+    Utile quand le redirecteur archive.org/download est encore en attente de
+    dérivation alors que le fichier est déjà servi par le nœud.
+    """
+    try:
+        with urllib.request.urlopen(
+            urllib.request.Request(
+                f"https://archive.org/metadata/{item}",
+                headers={"User-Agent": USER_AGENT},
+            ),
+            timeout=30,
+        ) as response:
+            data = json.load(response)
+        host = data.get("d1") or data.get("server")
+        directory = data.get("dir")
+        if host and directory:
+            return f"https://{host}{directory}"
+    except (urllib.error.URLError, TimeoutError, OSError, json.JSONDecodeError):
+        return None
+    return None
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--exports", type=Path, default=DEFAULT_EXPORTS)
@@ -136,6 +162,8 @@ def main() -> None:
     if not found:
         raise SystemExit(f"Aucun MP3/MIDI trouvé dans {args.exports}")
 
+    node_base = item_node_base(item) if args.verify else None
+
     files: dict[str, dict] = {}
     checked = 0
     verified = 0
@@ -148,20 +176,33 @@ def main() -> None:
             path = found[number].get(kind)
             if not path:
                 continue
-            url = f"{base_url}/{quote(path.name, safe='')}"
+            canonical_url = f"{base_url}/{quote(path.name, safe='')}"
             info: dict[str, object] = {
                 "file": path.name,
-                "url": url,
+                "url": canonical_url,
+                "canonicalUrl": canonical_url,
                 "bytes": path.stat().st_size,
                 "verified": False,
                 "contentType": None,
                 "http": None,
+                "via": "canonical",
             }
             total_bytes += path.stat().st_size
             upload_paths.append(path)
             if args.verify:
                 checked += 1
-                probed = probe(url)
+                probed = probe(canonical_url)
+                if not probed["verified"] and node_base:
+                    node_url = f"{node_base}/{quote(path.name, safe='')}"
+                    node_probe = probe(node_url)
+                    if node_probe["verified"]:
+                        info["url"] = node_url
+                        info["via"] = "storage-node"
+                        probed = node_probe
+                        print(
+                            f"  ↪ {number:02d} {kind} : archive.org/download en attente, "
+                            f"URL du nœud utilisée."
+                        )
                 info.update(probed)
                 if probed["verified"]:
                     verified += 1
