@@ -933,6 +933,11 @@ p {
   color: var(--blue);
 }
 
+.badge-media {
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--line));
+  color: var(--accent-ink);
+}
+
 .badge-long {
   border-style: dashed;
 }
@@ -1185,9 +1190,38 @@ p {
   background: var(--paper-2);
 }
 
+.audio-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 12px;
+}
+
+.audio-head strong {
+  font-family: var(--serif);
+  font-size: 1.12rem;
+  font-weight: 600;
+}
+
+.audio-label {
+  padding: 2px 7px;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  color: var(--accent-ink);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.audio-source {
+  color: var(--ink-3);
+  font-size: 0.7rem;
+}
+
 .audio-card audio {
   width: 100%;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .download-grid {

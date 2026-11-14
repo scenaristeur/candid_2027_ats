@@ -1,6 +1,6 @@
-# 30 — Anasse Kazib — La Révolution Permanente
+# 30 - Anasse Kazib - La Révolution Permanente
 
-**Statut** : préparation documentaire — aucune session Ableton ouverte pour ce morceau.
+**Statut** : maquette spartiate posée — session à sauvegarder, validation par extraits.
 **Tempo** : 176 BPM *(proposition, à valider)*
 **Tonalité** : Fa dièse mineur (F#m) *(proposition, à valider à l'oreille)*
 **Signature** : 4/4
@@ -122,4 +122,5 @@ Le morceau le plus rapide de l'album. Il doit durer moins de deux minutes : c'es
 
 ## Paroles
 
-Voir `PAROLES.md` dans ce dossier (squelette à écrire).
+Voir `PAROLES.md` : version multi-sections (différence, discours, partisans, refrain), avec
+structure, base factuelle et garde-fous — notamment sur les parrainages et l'absence de programme détaillé.

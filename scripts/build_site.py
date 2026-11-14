@@ -261,6 +261,40 @@ def find_audio(num: str) -> Path | None:
     return None
 
 
+def load_media() -> dict[int, dict[str, dict]]:
+    """Charge site/media.json (exports hébergés hors du dépôt).
+
+    Par défaut, seuls les fichiers vérifiés (HTTP 200 sur Internet Archive)
+    sont publiés : pas de lecteur cassé si l'upload n'a pas encore été fait.
+    """
+    path = SITE / "media.json"
+    if not path.is_file():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        print(f"⚠ site/media.json illisible ({error}) : médias ignorés.")
+        return {}
+
+    require_verified = bool(data.get("requireVerified", True))
+    media: dict[int, dict[str, dict]] = {}
+    for number, entry in (data.get("files") or {}).items():
+        try:
+            track_number = int(number)
+        except (TypeError, ValueError):
+            continue
+        for kind in ("mp3", "midi"):
+            item = entry.get(kind)
+            if not item:
+                continue
+            if require_verified and not item.get("verified"):
+                continue
+            if not item.get("url"):
+                continue
+            media.setdefault(track_number, {})[kind] = item
+    return media
+
+
 # --------------------------------------------------------------------------
 # Fragments HTML
 # --------------------------------------------------------------------------
@@ -387,6 +421,10 @@ def badges(track: dict) -> str:
     items = []
     if track["als"]:
         items.append('<span class="badge badge-als">Session .als</span>')
+    if track.get("has_audio"):
+        items.append('<span class="badge badge-media">MP3</span>')
+    if track.get("has_midi"):
+        items.append('<span class="badge badge-media">MIDI</span>')
     if track["full_lyrics"]:
         items.append('<span class="badge badge-full">Paroles complètes</span>')
     else:
@@ -401,8 +439,10 @@ def track_card(track: dict, depth: int = 0) -> str:
     href = f"{prefix}titres/{track['slug']}.html"
     search = normalize(
         f"{track['num']:02d} {track['candidate']} {track['title']} {track['style']} {track['atmosphere']}"
+        + (" mp3 audio" if track.get("has_audio") else "")
+        + (" midi" if track.get("has_midi") else "")
     )
-    return f"""<article class="track-card" data-track data-als="{1 if track['als'] else 0}" data-lyrics="{'full' if track['full_lyrics'] else 'refrain'}" data-search="{e(search)}">
+    return f"""<article class="track-card" data-track data-als="{1 if track['als'] else 0}" data-audio="{1 if track.get('has_audio') else 0}" data-midi="{1 if track.get('has_midi') else 0}" data-lyrics="{'full' if track['full_lyrics'] else 'refrain'}" data-search="{e(search)}">
   <a class="track-link" href="{href}">
     {cover(track)}
     <div class="track-body">
@@ -424,15 +464,19 @@ def download_card(
     meta: str,
     unavailable: str = "",
     extra_link: str = "",
+    external: bool = False,
 ) -> str:
     icon = {
         "als": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18V6h3l2 4 2-4h3v12h-2.6V9.8L9 14 6.6 9.8V18H4Zm13 0V6h2.8v9.7H23V18h-6Z"/></svg>',
         "md": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6V2Zm8 1.5V8h4.5L14 3.5ZM8 12v6h1.7v-3.4L11 17l1.3-2.4V18H14v-6h-1.7l-1.3 2.5L9.7 12H8Zm7 0v6h2.4a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2H15Zm1.7 1.5h.7c.2 0 .3.1.3.3v2.4c0 .2-.1.3-.3.3h-.7v-3Z"/></svg>',
         "zip": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h12v20H6V2Zm6 1.5h-1.5V5H12V3.5Zm0 3h-1.5V8H12V6.5Zm0 3h-1.5V11H12V9.5Zm0 3h-1.5v2.5h3V12h-1.5Zm-1.5 6h3v1.5h-3V18Z"/></svg>',
         "long": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v2H4V5Zm0 4h16v2H4V9Zm0 4h10v2H4v-2Zm0 4h7v2H4v-2Z"/></svg>',
+        "audio": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18.5A2.5 2.5 0 1 1 6.5 16c.4 0 .8.1 1.1.2V5l9-1.5v3L9.7 7.9v10.6ZM18 15.5a2.5 2.5 0 1 1-2.5-2.5c.4 0 .8.1 1.1.2V7l-3.9.7v2l2.9-.5v6.3Z"/></svg>',
+        "midi": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3V5Zm2 2v10h14V7H5Zm2 2h2v6H7V9Zm4 0h2v3h-2V9Zm0 4h2v2h-2v-2Zm4-4h2v6h-2V9Z"/></svg>',
     }[kind]
     if href:
-        return f"""<a class="download-card" href="{href}" download>
+        external_attrs = ' target="_blank" rel="noopener"' if external else " download"
+        return f"""<a class="download-card" href="{href}"{external_attrs}>
   <span class="dl-icon">{icon}</span>
   <span class="dl-text">
     <span class="dl-title">{e(title)}</span>
@@ -488,6 +532,13 @@ def build_index(tracks: list[dict]) -> str:
     als_count = sum(1 for t in tracks if t["als"])
     full_count = sum(1 for t in tracks if t["full_lyrics"])
     refrain_count = total - full_count
+    audio_count = sum(1 for t in tracks if t.get("has_audio"))
+    midi_count = sum(1 for t in tracks if t.get("has_midi"))
+    media_filters = ""
+    if audio_count:
+        media_filters += f'<button type="button" class="filter" data-filter="audio" aria-pressed="false">MP3 <span>{audio_count}</span></button>'
+    if midi_count:
+        media_filters += f'<button type="button" class="filter" data-filter="midi" aria-pressed="false">MIDI <span>{midi_count}</span></button>'
 
     cards = "\n".join(track_card(track) for track in tracks)
     body = f"""
@@ -547,6 +598,7 @@ def build_index(tracks: list[dict]) -> str:
         <button type="button" class="filter" data-filter="als" aria-pressed="false">Session .als <span>{als_count}</span></button>
         <button type="button" class="filter" data-filter="full" aria-pressed="false">Paroles complètes <span>{full_count}</span></button>
         <button type="button" class="filter" data-filter="refrain" aria-pressed="false">Refrain seul <span>{refrain_count}</span></button>
+        {media_filters}
       </div>
     </div>
 
@@ -626,12 +678,52 @@ def build_song(track: dict, tracks: list[dict]) -> str:
             meta=f"Markdown · {format_size(track['long'].stat().st_size)}",
         )
 
+    media = track.get("media") or {}
+    mp3 = media.get("mp3")
+    midi = media.get("midi")
+    audio_src = None
+    audio_source = ""
+    if mp3:
+        audio_src = mp3["url"]
+        audio_source = "Internet Archive"
+    elif track["audio"]:
+        audio_src = f"{prefix}audio/{track['audio'].name}"
+        audio_source = "fichier local"
+
     audio_card = ""
-    if track["audio"]:
-        audio_card = f"""<div class="audio-card">
-  <p class="dl-title">Écouter la maquette</p>
-  <audio controls preload="metadata" src="{prefix}audio/{e(track['audio'].name)}"></audio>
-</div>"""
+    if audio_src:
+        audio_card = f"""<figure class="audio-card">
+  <figcaption class="audio-head">
+    <span class="audio-label">Écouter</span>
+    <strong>Export audio</strong>
+    <span class="audio-source">{e(audio_source)}</span>
+  </figcaption>
+  <audio controls preload="metadata" src="{e(audio_src)}"></audio>
+</figure>"""
+
+    media_cards = ""
+    if mp3:
+        media_cards += download_card(
+            kind="audio",
+            title="Export MP3",
+            description="Écoute et téléchargement. Fichier hébergé hors du dépôt Git.",
+            href=mp3["url"],
+            meta=f"MP3 · {format_size(int(mp3.get('bytes') or 0))} · Internet Archive"
+            if mp3.get("bytes")
+            else "MP3 · Internet Archive",
+            external=True,
+        )
+    if midi:
+        media_cards += download_card(
+            kind="midi",
+            title="Export MIDI",
+            description="Partitions et pistes MIDI, à réouvrir dans ton DAW.",
+            href=midi["url"],
+            meta=f"MIDI · {format_size(int(midi.get('bytes') or 0))} · Internet Archive"
+            if midi.get("bytes")
+            else "MIDI · Internet Archive",
+            external=True,
+        )
 
     brief = track["brief"]
     for_label = brief.get("Pour", "")
@@ -784,12 +876,13 @@ def build_song(track: dict, tracks: list[dict]) -> str:
     </div>
     {audio_card}
     <div class="download-grid">
+      {media_cards}
       {als_card}
       {download_card(kind="md", title="Paroles (Markdown)", description="Le texte complet, sections et notes de prudence.", href=f"{prefix}telechargements/paroles/{track['slug']}.paroles.md", meta=f"Markdown · {format_size(len(track['paroles'].encode('utf-8')))}")}
       {download_card(kind="md", title="Fiche technique (Markdown)", description="Brief, structure, palette, mix et steps de production.", href=f"{prefix}telechargements/fiches/{track['slug']}.fiche-technique.md", meta=f"Markdown · {format_size(len(track['fiche'].encode('utf-8')))}")}
       {long_card}
     </div>
-    <p class="download-note">Les fichiers sont copiés à l’identique depuis les sources du projet, sans modification. Les sessions Ableton s’ouvrent avec Live 12 ; certaines références d’instruments peuvent nécessiter les mêmes packs que le projet d’origine.</p>
+    <p class="download-note">Les sessions Ableton, paroles et fiches sont copiées à l’identique depuis les sources du projet, sans modification. Les exports MP3 et MIDI sont hébergés sur Internet Archive pour ne pas alourdir le dépôt Git ; ils restent téléchargeables depuis cette page.</p>
   </div>
 </section>
 
@@ -1072,6 +1165,10 @@ def write_downloads(tracks: list[dict], sources: Path, album_text: str) -> None:
                     if track["long"]
                     else None,
                 },
+                "media": {
+                    "mp3": (track.get("media", {}).get("mp3") or {}).get("url"),
+                    "midi": (track.get("media", {}).get("midi") or {}).get("url"),
+                },
             }
             for track in tracks
         ],
@@ -1094,6 +1191,12 @@ Contenu
 - versions-longues/  les versions d'écriture développées (archives)
 - album/Album.MD     la note de projet
 - manifest.json      l'index des fichiers
+
+Médias
+------
+Les exports MP3 et MIDI ne sont pas inclus dans ce ZIP : ils sont hébergés
+sur Internet Archive pour ne pas alourdir le dépôt Git. Les URLs publiées
+figurent dans manifest.json et sur la page de chaque titre.
 
 Chaque titre suit la forme : différence -> discours -> partisans -> refrain.
 Les tempos, tonalités et durées sont des propositions de travail.
@@ -1175,6 +1278,12 @@ def main() -> None:
     tracks = load_tracks(sources, als_dir)
     if not tracks:
         raise SystemExit("Aucun titre trouvé dans les sources.")
+
+    media = load_media()
+    for track in tracks:
+        track["media"] = media.get(track["num"], {})
+        track["has_audio"] = bool(track["media"].get("mp3") or track["audio"])
+        track["has_midi"] = bool(track["media"].get("midi"))
 
     album_text = (sources / "Album.MD").read_text(encoding="utf-8")
 

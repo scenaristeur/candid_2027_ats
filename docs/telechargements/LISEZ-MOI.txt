@@ -13,6 +13,12 @@ Contenu
 - album/Album.MD     la note de projet
 - manifest.json      l'index des fichiers
 
+Médias
+------
+Les exports MP3 et MIDI ne sont pas inclus dans ce ZIP : ils sont hébergés
+sur Internet Archive pour ne pas alourdir le dépôt Git. Les URLs publiées
+figurent dans manifest.json et sur la page de chaque titre.
+
 Chaque titre suit la forme : différence -> discours -> partisans -> refrain.
 Les tempos, tonalités et durées sont des propositions de travail.
 

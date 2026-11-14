@@ -58,6 +58,8 @@
   function matchesFilter(card) {
     if (activeFilter === "all") return true;
     if (activeFilter === "als") return card.dataset.als === "1";
+    if (activeFilter === "audio") return card.dataset.audio === "1";
+    if (activeFilter === "midi") return card.dataset.midi === "1";
     return card.dataset.lyrics === activeFilter;
   }
 

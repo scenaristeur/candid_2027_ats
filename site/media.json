@@ -1,0 +1,20 @@
+{
+  "_comment": "Exports MP3/MIDI hébergés sur Internet Archive. Généré par scripts/prepare_media.py. requireVerified=true : le site ne publie que les fichiers dont l'URL a été vérifiée en HTTP 200.",
+  "provider": "internet-archive",
+  "item": "candidats-2027-exports",
+  "baseUrl": "https://archive.org/download/candidats-2027-exports",
+  "requireVerified": true,
+  "checkedAt": "2026-11-14T11:30:47+00:00",
+  "files": {
+    "22": {
+      "mp3": {
+        "file": "22 - Marine Tondelier - La Danse de la Première République écologique.mp3",
+        "url": "https://archive.org/download/candidats-2027-exports/22%20-%20Marine%20Tondelier%20-%20La%20Danse%20de%20la%20Premi%C3%A8re%20R%C3%A9publique%20%C3%A9cologique.mp3",
+        "bytes": null,
+        "verified": false,
+        "contentType": null,
+        "http": 503
+      }
+    }
+  }
+}
