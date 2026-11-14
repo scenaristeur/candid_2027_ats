@@ -399,7 +399,7 @@
         "versionLongue": null
       },
       "media": {
-        "mp3": null,
+        "mp3": "https://archive.org/download/candidats-2027-exports/20%20-%20Fabien%20Roussel%20-%20Vivre%20%28Le%20Temps%20des%20Cerises%20%C3%A9lectrique%29..mp3",
         "midi": null
       }
     },
@@ -519,7 +519,7 @@
         "versionLongue": null
       },
       "media": {
-        "mp3": null,
+        "mp3": "https://archive.org/download/candidats-2027-exports/26%20-%20S%C3%A9gol%C3%A8ne%20Royal%20-%20La%20Primaire%20de%20la%20Rose.mp3",
         "midi": null
       }
     },
@@ -531,9 +531,9 @@
       "tempo": "84 BPM",
       "key": "La mineur (Am) — bourdon",
       "duration": "≈ 1 min 55",
-      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "status": "maquette spartiate posée — session à sauvegarder, validation par extraits.",
       "files": {
-        "als": null,
+        "als": "als/27-clara-egger-la-democratie-directe.als",
         "paroles": "paroles/27-clara-egger-la-democratie-directe.paroles.md",
         "ficheTechnique": "fiches/27-clara-egger-la-democratie-directe.fiche-technique.md",
         "versionLongue": null
@@ -573,7 +573,7 @@
       "duration": "≈ 2 min 30",
       "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
       "files": {
-        "als": null,
+        "als": "als/29-bruno-retailleau-l-hiver-demographique.als",
         "paroles": "paroles/29-bruno-retailleau-l-hiver-demographique.paroles.md",
         "ficheTechnique": "fiches/29-bruno-retailleau-l-hiver-demographique.fiche-technique.md",
         "versionLongue": null

@@ -4,17 +4,29 @@
   "item": "candidats-2027-exports",
   "baseUrl": "https://archive.org/download/candidats-2027-exports",
   "requireVerified": true,
-  "checkedAt": "2026-11-14T12:31:52+00:00",
+  "checkedAt": "2026-11-14T13:13:47+00:00",
   "files": {
+    "17": {
+      "mp3": {
+        "file": "17 - Teddy Riner - Le Judo de la Nation.mp3",
+        "url": "https://archive.org/download/candidats-2027-exports/17%20-%20Teddy%20Riner%20-%20Le%20Judo%20de%20la%20Nation.mp3",
+        "canonicalUrl": "https://archive.org/download/candidats-2027-exports/17%20-%20Teddy%20Riner%20-%20Le%20Judo%20de%20la%20Nation.mp3",
+        "bytes": null,
+        "verified": false,
+        "contentType": null,
+        "http": 404,
+        "via": "canonical"
+      }
+    },
     "20": {
       "mp3": {
         "file": "20 - Fabien Roussel - Vivre (Le Temps des Cerises électrique)..mp3",
         "url": "https://archive.org/download/candidats-2027-exports/20%20-%20Fabien%20Roussel%20-%20Vivre%20%28Le%20Temps%20des%20Cerises%20%C3%A9lectrique%29..mp3",
         "canonicalUrl": "https://archive.org/download/candidats-2027-exports/20%20-%20Fabien%20Roussel%20-%20Vivre%20%28Le%20Temps%20des%20Cerises%20%C3%A9lectrique%29..mp3",
-        "bytes": null,
-        "verified": false,
-        "contentType": null,
-        "http": 404,
+        "bytes": 5296586,
+        "verified": true,
+        "contentType": "audio/mpeg",
+        "http": 200,
         "via": "canonical"
       }
     },
@@ -47,10 +59,10 @@
         "file": "26 - Ségolène Royal - La Primaire de la Rose.mp3",
         "url": "https://archive.org/download/candidats-2027-exports/26%20-%20S%C3%A9gol%C3%A8ne%20Royal%20-%20La%20Primaire%20de%20la%20Rose.mp3",
         "canonicalUrl": "https://archive.org/download/candidats-2027-exports/26%20-%20S%C3%A9gol%C3%A8ne%20Royal%20-%20La%20Primaire%20de%20la%20Rose.mp3",
-        "bytes": null,
-        "verified": false,
-        "contentType": null,
-        "http": 404,
+        "bytes": 5844113,
+        "verified": true,
+        "contentType": "audio/mpeg",
+        "http": 200,
         "via": "canonical"
       }
     }
