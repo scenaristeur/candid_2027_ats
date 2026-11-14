@@ -1,0 +1,4 @@
+# Outils optionnels : upload Internet Archive et images Open Graph.
+# Le build du site lui-même n'a besoin d'aucune dépendance externe.
+internetarchive>=5.12
+Pillow>=10

@@ -6,6 +6,7 @@ Usage : python scripts/check_site.py
 
 from __future__ import annotations
 
+import json
 import re
 import sys
 from html.parser import HTMLParser
@@ -14,6 +15,7 @@ from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs"
+SITE_URL = "https://scenaristeur.github.io/candid_2027_ats"
 
 
 class StructureChecker(HTMLParser):
@@ -86,11 +88,52 @@ def check_structure() -> list[str]:
     return errors
 
 
+def check_seo() -> list[str]:
+    errors: list[str] = []
+    required = (
+        '<meta name="description"',
+        '<meta name="robots"',
+        '<meta property="og:title"',
+        '<meta property="og:description"',
+        '<meta property="og:image"',
+        '<meta name="twitter:card"',
+        '<link rel="canonical"',
+    )
+    for page in sorted(DOCS.rglob("*.html")):
+        text = page.read_text(encoding="utf-8")
+        label = str(page.relative_to(DOCS))
+        if page.name != "404.html":
+            for needle in required:
+                if needle not in text:
+                    errors.append(f"{label} : métadonnée absente {needle}")
+        else:
+            if 'name="robots" content="noindex' not in text:
+                errors.append(f"{label} : la page 404 devrait être en noindex")
+
+        for block in re.findall(
+            r'<script type="application/ld\+json">(.*?)</script>', text, re.S
+        ):
+            try:
+                json.loads(block)
+            except json.JSONDecodeError as error:
+                errors.append(f"{label} : JSON-LD invalide ({error})")
+                break
+
+        image = re.search(r'<meta property="og:image" content="([^"]+)"', text)
+        if image:
+            url = image.group(1)
+            if url.startswith(SITE_URL + "/"):
+                relative = unquote(url[len(SITE_URL) + 1 :])
+                if not (DOCS / relative).is_file():
+                    errors.append(f"{label} : image Open Graph absente {relative}")
+    return errors
+
+
 def main() -> None:
     if not (DOCS / "index.html").is_file():
         raise SystemExit("docs/index.html absent : lance d'abord scripts/build_site.py")
 
-    errors = check_links() + check_structure()
+    errors = check_links() + check_structure() + check_seo()
 
     pages = list((DOCS / "titres").glob("*.html"))
     if len(pages) != 31:
@@ -109,7 +152,7 @@ def main() -> None:
         print("\n".join(errors))
         raise SystemExit(1)
 
-    print(f"✓ {len(pages)} pages de titres, liens et structure HTML valides")
+    print(f"✓ {len(pages)} pages de titres, liens, structure HTML et SEO valides")
 
 
 if __name__ == "__main__":

@@ -2,10 +2,11 @@
 
 Site de présentation, d’écoute et de contribution pour l’album **Candidats 2027** :
 31 chansons, une par candidat à la présidentielle, avec les paroles, les fiches
-techniques et les sessions Ableton à télécharger.
+techniques, les sessions Ableton et les exports MP3/MIDI.
 
 - Site publié : <https://scenaristeur.github.io/candid_2027_ats/>
 - Dépôt : <https://github.com/scenaristeur/candid_2027_ats>
+- Médias : <https://archive.org/details/candidats-2027-exports>
 
 > **Avertissement** — Les titres, paroles et musiques de cet album ont été
 > générés par IA. Ce sont des **brouillons de vulgarisation** : ils peuvent
@@ -18,7 +19,21 @@ techniques et les sessions Ableton à télécharger.
 > démarche souhaite respecter la **neutralité** et l’**égalité** de traitement
 > entre les candidats.
 
-## Ce qui est publié
+## Sommaire
+
+1. [Ce qui est publié](#1-ce-qui-est-publié)
+2. [Démarrage rapide](#2-démarrage-rapide)
+3. [Sources et lecture seule](#3-sources-et-lecture-seule)
+4. [Générer le site](#4-générer-le-site)
+5. [Exports MP3 et MIDI (Internet Archive)](#5-exports-mp3-et-midi-internet-archive)
+6. [SEO et Open Graph](#6-seo-et-open-graph)
+7. [Procédures de mise à jour](#7-procédures-de-mise-à-jour)
+8. [Publier sur GitHub Pages](#8-publier-sur-github-pages)
+9. [Structure du dépôt](#9-structure-du-dépôt)
+10. [Dépannage](#10-dépannage)
+11. [Contribuer](#11-contribuer)
+
+## 1. Ce qui est publié
 
 Pour chaque titre :
 
@@ -27,16 +42,130 @@ Pour chaque titre :
 - la **fiche technique** en lecture et en téléchargement (`FICHE_TECHNIQUE.md`) ;
 - la **session Ableton** (`.als`) lorsqu’elle existe ;
 - le cas échéant, la **version longue** d’écriture ;
+- les **exports MP3 et MIDI** lorsqu’ils sont publiés sur Internet Archive ;
 - un lien de contribution pré-rempli (correction factuelle, paroles, session).
 
 Le site contient aussi une page **Le projet** (note d’intention et règles
 éditoriales) et une page **Participer** (méthode, modèles d’issues GitHub).
 
-## MP3 et MIDI : hébergement sur Internet Archive
+L’accueil affiche des statistiques calculées à chaque build :
 
-Les exports audio et MIDI ne sont **pas versionnés dans Git** : ils sont hébergés
-sur Internet Archive, et le site pointe vers leurs URLs. Le dossier local de
-départ est :
+- nombre de titres ;
+- nombre d’**exports MP3** (total détecté) et, si certains ne sont pas encore
+  en ligne, le nombre réellement disponible en écoute ;
+- nombre d’exports MIDI, le cas échéant ;
+- nombre de sessions Ableton publiées ;
+- nombre de paroles complètes ;
+- nombre de fiches techniques.
+
+## 2. Démarrage rapide
+
+Prérequis : **Python 3.10+**. Le build du site n’a besoin d’aucune dépendance
+externe.
+
+```powershell
+python scripts/build_site.py
+python scripts/check_site.py
+```
+
+Prévisualiser localement :
+
+```powershell
+python -m http.server 8000 --directory docs
+```
+
+Puis ouvrir <http://localhost:8000/>.
+
+Les outils optionnels (upload Internet Archive et images Open Graph) :
+
+```powershell
+pip install -r requirements-media.txt
+```
+
+## 3. Sources et lecture seule
+
+Les contenus sont lus depuis :
+
+- sources éditoriales : `C:\Users\admin\dev\ableton-holland-mcp\sources\Candid_2027_ats`
+- sessions Ableton : `C:\Users\admin\Music\Ableton Live\Candid_2027_ats`
+- exports MP3/MIDI : `C:\Users\admin\Music\exports ableton\Candid_2027_ats`
+
+**Règle importante** : ces dossiers sont ouverts en **lecture seule**. Les
+scripts n’y écrivent jamais. Toutes les écritures vont dans `docs/`,
+`site/media.json` ou `site/assets/og/`.
+
+### Pourquoi pas de lien symbolique vers les sources ?
+
+Un lien symbolique ne fonctionne pas pour GitHub Pages :
+
+1. Git enregistre un lien comme un chemin, pas comme le contenu ;
+2. au déploiement, GitHub checkout le dépôt sans accès aux chemins locaux
+   Windows ;
+3. le lien serait cassé et les fichiers ne seraient pas publiés.
+
+La solution retenue est un **script de synchronisation en lecture seule** :
+`scripts/build_site.py` lit les sources, copie les fichiers utiles dans `docs/`
+et génère les pages. Le site publié est autonome et ne dépend d’aucun chemin
+local au moment du déploiement.
+
+## 4. Générer le site
+
+```powershell
+python scripts/build_site.py
+```
+
+Chemins surchargables :
+
+```powershell
+python scripts/build_site.py `
+  --sources "D:\chemin\vers\Candid_2027_ats" `
+  --als "D:\chemin\vers\les\projets\Ableton"
+```
+
+Variables d’environnement équivalentes : `CANDIDAT_SOURCES`, `CANDIDAT_ALS_DIR`.
+L’URL canonique du site peut être changée avec `CANDIDAT_SITE_URL`.
+
+Le build :
+
+1. lit `Album.MD`, les 31 dossiers `NN - Candidat - Titre`, chaque
+   `PAROLES.md` et `FICHE_TECHNIQUE.md` ;
+2. détecte les sessions `.als` par leur préfixe numérique (dossier `Backup`
+   ignoré) ;
+3. lit `site/media.json` pour les exports MP3/MIDI et calcule les statistiques ;
+4. copie paroles, fiches, sessions et versions longues dans
+   `docs/telechargements/` ;
+5. génère l’accueil, les 31 pages de titres, les pages projet/participer/404,
+   le `sitemap.xml`, `robots.txt`, le manifeste et l’archive ZIP ;
+6. copie `site/assets/` (CSS, JS, favicon, images Open Graph) dans
+   `docs/assets/` ;
+7. injecte les métadonnées SEO et les données structurées JSON-LD.
+
+### Vérifier le résultat
+
+```powershell
+python scripts/check_site.py
+```
+
+Le contrôle vérifie :
+
+- les liens locaux et les fichiers de téléchargement ;
+- l’équilibre de la structure HTML ;
+- la présence des métadonnées SEO obligatoires (description, robots, Open
+  Graph, Twitter, canonique) ;
+- la validité des blocs JSON-LD ;
+- la présence des images Open Graph ;
+- les 31 pages de titres, le manifeste, l’archive ZIP et `.nojekyll`.
+
+## 5. Exports MP3 et MIDI (Internet Archive)
+
+### Pourquoi Internet Archive ?
+
+Les MP3 ne sont **pas versionnés dans Git** : GitHub Pages a un plafond de 1 Go,
+les gros fichiers alourdissent l’historique et **Git LFS n’est pas résolu par
+GitHub Pages**. Les exports sont donc hébergés sur Internet Archive, et le site
+pointe vers leurs URLs.
+
+### Convention de nommage
 
 ```text
 C:\Users\admin\Music\exports ableton\Candid_2027_ats
@@ -44,22 +173,25 @@ C:\Users\admin\Music\exports ableton\Candid_2027_ats
 └── midi\   NN - Candidat - Titre.mid
 ```
 
-Le fichier `site/media.json` fait le lien entre les titres et les fichiers
-hébergés. Par sécurité, `requireVerified` vaut `true` : **le site ne publie que
-les fichiers dont l’URL a été vérifiée en HTTP 200**, pour éviter les lecteurs
-cassés.
+Le préfixe `NN -` est obligatoire : il associe le fichier au bon titre. Les
+extensions reconnues sont `.mp3`, `.mid` et `.midi`. Les doublons pour un même
+numéro sont signalés, le plus récent est retenu.
 
-### 1. Générer la correspondance locale
+### Fichiers de travail
 
-```powershell
-python scripts/prepare_media.py --item candidats-2027-exports
-```
+- `site/media.json` : correspondance entre les titres et les URLs hébergées.
+- `scripts/prepare_media.py` : scanne les exports, construit les URLs et vérifie
+  leur disponibilité.
+- `scripts/upload_media.py` : envoie uniquement les nouveaux fichiers ou ceux
+  dont le MD5 a changé, puis vérifie.
 
-Le script lit le dossier d’exports en lecture seule, associe chaque fichier à son
-numéro de titre et écrit `site/media.json` avec les URLs
-`https://archive.org/download/candidats-2027-exports/…`.
+Par sécurité, `requireVerified` vaut `true` : **le site ne publie que les
+fichiers dont l’URL a été vérifiée en HTTP 200**, pour éviter les lecteurs
+cassés. Un fichier présent localement mais pas encore catalogué sur Internet
+Archive est quand même compté dans les statistiques comme « export », avec la
+mention « en ligne » pour ceux qui sont réellement disponibles.
 
-### 2. Renseigner les clés IA-S3
+### 5.1 Renseigner les clés IA-S3
 
 Créer un compte sur <https://archive.org>, puis générer les clés sur
 <https://archive.org/account/s3.php>. Les placer dans `.env` (ignoré par Git) :
@@ -69,34 +201,41 @@ INTERNET_ARCHIVE_S3_ACCESS_key=…
 INTERNET_ARCHIVE_S3_SECRET_KEY=…
 ```
 
-Le fichier `.env.example` sert de modèle. Les scripts acceptent aussi les
-variables standard `IA_ACCESS_KEY_ID` et `IA_SECRET_ACCESS_KEY`.
+`.env.example` sert de modèle. Les scripts acceptent aussi les variables
+standard `IA_ACCESS_KEY_ID` et `IA_SECRET_ACCESS_KEY`.
 
-### 3. Envoyer les exports
+Ne jamais committer `.env` : il contient les clés secrètes.
+
+### 5.2 Envoyer les exports
 
 ```powershell
-pip install internetarchive
+pip install -r requirements-media.txt
 python scripts/upload_media.py --item candidats-2027-exports
 ```
 
-Le script :
+Ce que fait `upload_media.py` :
 
 - charge les clés depuis `.env` ;
-- compare les empreintes MD5 avec les fichiers déjà présents sur Internet
-  Archive ;
+- scanne les dossiers `mp3/` et `midi/` ;
+- compare les empreintes MD5 avec les fichiers déjà présents sur l’item ;
 - n’envoie que les nouveaux fichiers ou ceux qui ont changé ;
+- utilise un User-Agent explicite conforme aux recommandations d’Internet
+  Archive ;
+- envoie les métadonnées de l’item (`mediatype:audio`,
+  `collection:opensource_audio`, titre, créateur, date, langue, description) ;
+- réessaie en cas d’erreur réseau ;
 - relance automatiquement `prepare_media.py --verify`.
 
-Pour voir ce qui serait envoyé sans rien téléverser :
+Voir ce qui serait envoyé sans rien téléverser :
 
 ```powershell
 python scripts/upload_media.py --item candidats-2027-exports --dry-run
 ```
 
-L’identifiant `candidats-2027-exports` est un exemple : il doit être unique sur
-Internet Archive. On peut le changer avec `--item`.
+L’identifiant `candidats-2027-exports` doit être unique sur Internet Archive.
+On peut le changer avec `--item`.
 
-### 4. Vérifier puis régénérer le site
+### 5.3 Vérifier et publier
 
 ```powershell
 python scripts/prepare_media.py --item candidats-2027-exports --verify
@@ -107,85 +246,145 @@ python scripts/check_site.py
 Les fichiers vérifiés apparaissent alors sur la page du titre : lecteur audio,
 téléchargement MP3, téléchargement MIDI, badge sur l’accueil et filtre « MP3 ».
 
-Si `archive.org/download/…` renvoie encore une erreur pendant que la
-dérivation de l’item est en cours, `prepare_media.py` utilise automatiquement
-l’URL du nœud de stockage (`ia601009.us.archive.org/…`) qui sert déjà le
-fichier. L’URL canonique est conservée dans `canonicalUrl` et reprendra la main
-lorsqu’elle répondra.
+### 5.4 Ajouter un nouvel export
 
-Pour remplacer un export, on réuploade le fichier sous le même nom, puis on
-relance `upload_media.py` (le MD5 détecte le changement) et le build.
+1. Déposer le fichier dans `mp3/` ou `midi/` avec le préfixe `NN -`.
+2. Lancer `python scripts/upload_media.py --item candidats-2027-exports`.
+3. Attendre la fin du catalogage Internet Archive.
+4. Lancer `python scripts/prepare_media.py --item candidats-2027-exports --verify`.
+5. Régénérer et vérifier le site.
 
-### Alternative : lecteur local
+### 5.5 Remplacer un export
+
+Réexporter le fichier sous le **même nom**, puis relancer
+`upload_media.py` : la comparaison MD5 détecte le changement et réenvoie le
+fichier. Internet Archive conserve une version de sauvegarde dans l’item.
+
+### 5.6 Comprendre les URLs Internet Archive
+
+Deux URLs peuvent exister pour un même fichier :
+
+- **URL canonique** :
+  `https://archive.org/download/candidats-2027-exports/fichier.mp3`
+- **URL du nœud de stockage** :
+  `https://ia601009.us.archive.org/11/items/candidats-2027-exports/fichier.mp3`
+
+Pendant la dérivation d’un item, l’URL canonique peut renvoyer une erreur
+temporaire alors que le nœud sert déjà le fichier. `prepare_media.py` teste les
+deux : il utilise le nœud si nécessaire, conserve `canonicalUrl` dans
+`site/media.json`, et repasse automatiquement à l’URL canonique dès qu’elle
+répond.
+
+### 5.7 Alternative : lecteur local
 
 Pour tester sans Internet Archive, déposer `site/audio/09.mp3` puis régénérer :
-un lecteur local apparaît sur le titre 09. Ces fichiers-là seraient versionnés
-dans Git, donc à réserver aux tests ou aux petits extraits.
+un lecteur local apparaît sur le titre 09. Ces fichiers seraient versionnés
+dans Git : à réserver aux tests ou aux petits extraits.
 
-## Pourquoi pas de lien symbolique vers les sources ?
+## 6. SEO et Open Graph
 
-Un lien symbolique ne fonctionne pas pour GitHub Pages :
+Chaque page générée contient :
 
-1. Git enregistre un lien comme un simple fichier texte contenant un chemin
-   (`.gitconfig` a même `symlinks = false` ici, donc Windows peut le stocker
-   comme un fichier ordinaire) ;
-2. au déploiement, GitHub checkout le dépôt sans accès à
-   `C:\Users\admin\dev\ableton-holland-mcp\...` ni au dossier Ableton Live ;
-3. le lien serait donc cassé, et les fichiers ne seraient pas publiés.
+- un `<title>` unique et une `meta description` ;
+- une URL canonique et une alternative `hreflang="fr"` ;
+- des directives `robots` (`index, follow`, previews larges) ;
+- des mots-clés ;
+- les balises **Open Graph** (`og:type`, `og:title`, `og:description`,
+  `og:url`, `og:image`, dimensions et texte alternatif) ;
+- les balises **Twitter/X** (`summary_large_image`) ;
+- un bloc **JSON-LD** :
+  - accueil : `MusicAlbum` avec les 31 `MusicRecording`, `WebSite` et
+    `Organization` ;
+  - page de titre : `MusicRecording`, `BreadcrumbList` et `WebPage`, avec
+    durée ISO 8601 et `AudioObject` si un MP3 est publié ;
+  - pages projet/participer : `AboutPage` / `WebPage` ;
+- un `sitemap.xml` avec `lastmod`, priorités et images ;
+- un `robots.txt` pointant vers le sitemap.
 
-La solution retenue est un **script de synchronisation en lecture seule** :
-`scripts/build_site.py` lit les sources, copie les fichiers utiles dans `docs/`
-et génère les pages. Le site publié est autonome, reproductible et ne dépend
-d’aucun chemin local au moment du déploiement.
+La page 404 est en `noindex, nofollow`.
 
-**Règle importante** : les sources sont ouvertes en lecture seule. Le script
-n’écrit jamais dans `ableton-holland-mcp/sources` ni dans le dossier Ableton
-Live. Toutes les écritures vont dans `docs/`.
+### Images Open Graph
 
-## Régénérer le site
+Les images sont dans `site/assets/og/` :
 
-Prérequis : Python 3.10+ (aucune dépendance externe).
+- `album.png` pour l’accueil et les pages projet/participer ;
+- `NN.png` pour chaque titre.
 
-```powershell
-python scripts/build_site.py
-```
-
-Chemins par défaut :
-
-- sources : `C:\Users\admin\dev\ableton-holland-mcp\sources\Candid_2027_ats`
-- sessions Ableton : `C:\Users\admin\Music\Ableton Live\Candid_2027_ats`
-
-On peut les surcharger :
+Pour les régénérer après un changement de titre, de candidat ou de style :
 
 ```powershell
-python scripts/build_site.py `
-  --sources "D:\chemin\vers\Candid_2027_ats" `
-  --als "D:\chemin\vers\les\projets\Ableton"
+python scripts/make_og.py
 ```
 
-ou avec les variables `CANDIDAT_SOURCES` et `CANDIDAT_ALS_DIR`.
+Le build copie ensuite ces images dans `docs/assets/og/`. Format : 1200 × 630,
+fond papier, accent propre à chaque titre.
 
-Le script :
-
-1. lit `Album.MD`, les 31 dossiers `NN - Candidat - Titre`, chaque
-   `PAROLES.md` et `FICHE_TECHNIQUE.md` ;
-2. détecte les sessions `.als` par leur préfixe numérique (sans toucher au
-   dossier `Backup`) ;
-3. copie les fichiers dans `docs/telechargements/` ;
-4. génère l’accueil, les 31 pages de titres, les pages projet/participer/404,
-   le plan du site et l’archive ZIP ;
-5. copie `site/assets/` (CSS, JS, favicon) dans `docs/assets/`.
-
-Vérifier le résultat :
+### Vérifier le SEO
 
 ```powershell
 python scripts/check_site.py
 ```
 
-Le contrôle vérifie les liens locaux, la structure HTML, les 31 pages de titres
-et la présence de l’archive et du manifeste.
+Pour aller plus loin :
 
-## Publier sur GitHub Pages
+- <https://search.google.com/test/rich-results>
+- <https://validator.schema.org/>
+- les débogueurs d’aperçu social de Facebook, LinkedIn et X.
+
+## 7. Procédures de mise à jour
+
+### 7.1 Après une modification des sources éditoriales
+
+```powershell
+python scripts/build_site.py
+python scripts/check_site.py
+git add -A
+git commit -m "Met à jour le site"
+git push
+```
+
+### 7.2 Après l’ajout d’exports MP3/MIDI
+
+```powershell
+python scripts/upload_media.py --item candidats-2027-exports --dry-run
+python scripts/upload_media.py --item candidats-2027-exports
+python scripts/prepare_media.py --item candidats-2027-exports --verify
+python scripts/build_site.py
+python scripts/check_site.py
+git add -A
+git commit -m "Publie les exports audio et MIDI"
+git push
+```
+
+Si Internet Archive est encore en train de dériver les fichiers, le site
+fonctionne avec l’URL du nœud de stockage. Relancer simplement
+`prepare_media.py --verify` plus tard pour repasser aux URLs canoniques.
+
+### 7.3 Après un changement de titre ou de style
+
+```powershell
+python scripts/make_og.py
+python scripts/build_site.py
+python scripts/check_site.py
+git add -A
+git commit -m "Met à jour les visuels et le SEO"
+git push
+```
+
+### 7.4 Contrôle avant publication
+
+```powershell
+python scripts/build_site.py
+python scripts/check_site.py
+```
+
+Le contrôle doit afficher :
+
+```text
+✓ 31 pages de titres, liens, structure HTML et SEO valides
+```
+
+## 8. Publier sur GitHub Pages
 
 Le site publié vit dans `docs/`. Deux options :
 
@@ -201,30 +400,35 @@ Le site publié vit dans `docs/`. Deux options :
 
 Le fichier `docs/.nojekyll` évite le traitement Jekyll.
 
-## Structure
+## 9. Structure du dépôt
 
 ```text
 .
-├── .env.example            # modèle de clés IA-S3 (le vrai .env est ignoré)
+├── .env.example              # modèle de clés IA-S3 (le vrai .env est ignoré)
+├── requirements-media.txt    # internetarchive + Pillow (outils optionnels)
 ├── scripts/
-│   ├── build_site.py       # génère docs/ depuis les sources (lecture seule)
-│   ├── prepare_media.py    # associe les exports MP3/MIDI à Internet Archive
-│   ├── upload_media.py     # envoie les nouveaux exports (MD5) puis vérifie
-│   ├── check_site.py       # vérifie liens, structure et fichiers attendus
-│   └── markdown.py         # rendu Markdown minimal, sans dépendance
+│   ├── build_site.py         # génère docs/ depuis les sources (lecture seule)
+│   ├── markdown.py           # rendu Markdown minimal, sans dépendance
+│   ├── make_og.py            # génère les images Open Graph 1200 × 630
+│   ├── prepare_media.py      # URLs et vérification des exports MP3/MIDI
+│   ├── upload_media.py       # upload MD5 vers Internet Archive
+│   └── check_site.py         # liens, HTML, SEO, JSON-LD, images OG
 ├── site/
-│   ├── assets/style.css    # feuille de style source
-│   ├── assets/app.js       # recherche, filtres, thème
+│   ├── assets/style.css      # feuille de style source
+│   ├── assets/app.js         # recherche, filtres, thème
 │   ├── assets/favicon.svg
-│   ├── media.json          # URLs des exports hébergés sur Internet Archive
-│   └── audio/              # optionnel : 01.mp3, 02.mp3… pour un lecteur local
-├── docs/                   # site généré, publié par GitHub Pages
+│   ├── assets/og/            # images Open Graph générées
+│   ├── media.json            # URLs des exports hébergés
+│   └── audio/                # optionnel : 01.mp3… pour un lecteur local
+├── docs/                     # site généré, publié par GitHub Pages
 │   ├── index.html
 │   ├── titres/NN-….html
 │   ├── projet.html
 │   ├── participer.html
 │   ├── 404.html
-│   ├── assets/
+│   ├── sitemap.xml
+│   ├── robots.txt
+│   ├── assets/               # CSS, JS, favicon, og/
 │   └── telechargements/
 │       ├── als/
 │       ├── paroles/
@@ -236,19 +440,71 @@ Le fichier `docs/.nojekyll` évite le traitement Jekyll.
 │       └── LISEZ-MOI.txt
 └── .github/
     ├── workflows/pages.yml
-    └── ISSUE_TEMPLATE/     # corrections et contributions
+    └── ISSUE_TEMPLATE/       # corrections et contributions
 ```
 
-## Contribuer
+## 10. Dépannage
+
+### Un MP3 n’apparaît pas sur le site
+
+1. Vérifier qu’il est dans `site/media.json` :
+   `python scripts/prepare_media.py --item candidats-2027-exports --verify`
+2. Vérifier que `verified` vaut `true`.
+3. Régénérer : `python scripts/build_site.py`.
+
+### « The item you have requested has a problem… »
+
+L’item est encore dans la file de dérivation d’Internet Archive. Le fichier
+peut déjà être servi par le nœud de stockage. `prepare_media.py` bascule
+automatiquement dessus. Pour suivre la tâche :
+
+```powershell
+pip install internetarchive
+ia tasks candidats-2027-exports
+ia tasks --get-task-log <task_id>
+```
+
+La dérivation peut prendre plusieurs minutes. Ne pas recréer l’item : attendre
+la fin, puis relancer `prepare_media.py --verify`.
+
+### L’URL canonique renvoie 404 mais le nœud fonctionne
+
+C’est normal pendant la dérivation. Le site utilise l’URL du nœud. Relancer
+`prepare_media.py --verify` plus tard pour repasser au canonique.
+
+### L’upload échoue
+
+- Vérifier `.env` et régénérer les clés sur
+  <https://archive.org/account/s3.php>.
+- Vérifier que les deux clés sont présentes.
+- L’identifiant d’item doit être unique : changer `--item` si nécessaire.
+- Respecter les limites : `upload_media.py` ne renvoie que les fichiers dont le
+  MD5 a changé.
+
+### Les images Open Graph manquent
+
+```powershell
+python scripts/make_og.py
+python scripts/build_site.py
+```
+
+### Le contrôle SEO échoue
+
+Lire le message : il indique la page, la métadonnée absente, le JSON-LD invalide
+ou l’image manquante. Corriger puis relancer `build_site.py` et
+`check_site.py`.
+
+## 11. Contribuer
 
 Les corrections et contributions passent par les issues GitHub :
 
 - **Correction factuelle** : source datée obligatoire.
 - **Contribution** : paroles, session Ableton, mix, voix, visuel ou site.
 
-Les règles éditoriales du projet sont publiées sur `/projet.html` et rappelées
-sur `/participer.html` : on critique le programme, pas la personne ; un chiffre
-= une source + une date ; aucun fait judiciaire dans un refrain.
+Les règles éditoriales sont publiées sur `/projet.html` et rappelées sur
+`/participer.html` : on critique le programme, pas la personne ; un chiffre =
+une source + une date ; aucun fait judiciaire dans un refrain ; les partisans
+parlent en leur nom ; neutralité et égalité de traitement.
 
 ## Crédits
 

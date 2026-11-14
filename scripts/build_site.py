@@ -46,9 +46,16 @@ DEFAULT_ALS = Path(
 )
 
 REPO_URL = "https://github.com/scenaristeur/candid_2027_ats"
+ARCHIVE_ITEM_URL = "https://archive.org/details/candidats-2027-exports"
 SITE_URL = os.environ.get("CANDIDAT_SITE_URL", "https://scenaristeur.github.io/candid_2027_ats").rstrip("/")
 TRUTH_DATE = "14 novembre 2026"
 ALBUM_DATE_ISO = "2026-11-14"
+ALBUM_NAME = "Candidats 2027 — l’album"
+ALBUM_DESCRIPTION = (
+    "Un album d’information civique : une chanson par candidat à la présidentielle "
+    "de 2027. Titres, paroles et musiques générés par IA — brouillons de "
+    "vulgarisation à corriger. Paroles, fiches techniques et sessions Ableton à télécharger."
+)
 
 # Palette éditoriale : une couleur par titre, cyclique.
 PALETTE = [
@@ -285,12 +292,11 @@ def load_media() -> dict[int, dict[str, dict]]:
             continue
         for kind in ("mp3", "midi"):
             item = entry.get(kind)
-            if not item:
+            if not item or not item.get("url"):
                 continue
-            if require_verified and not item.get("verified"):
-                continue
-            if not item.get("url"):
-                continue
+            item = dict(item)
+            item["_verified"] = bool(item.get("verified"))
+            item["_required_verified"] = require_verified
             media.setdefault(track_number, {})[kind] = item
     return media
 
@@ -300,9 +306,202 @@ def load_media() -> dict[int, dict[str, dict]]:
 # --------------------------------------------------------------------------
 
 
-def head(title: str, description: str, depth: int, *, page_path: str, accent: str = "#a63a2c") -> str:
+def jsonld_tag(data: object) -> str:
+    raw = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
+    raw = raw.replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026")
+    return f'<script type="application/ld+json">{raw}</script>'
+
+
+def duration_iso(value: str) -> str | None:
+    match = re.search(r"(\d+)\s*min(?:\s*(\d+))?", value or "")
+    if not match:
+        return None
+    minutes = int(match.group(1))
+    seconds = int(match.group(2) or 0)
+    parts = "PT"
+    if minutes:
+        parts += f"{minutes}M"
+    if seconds or not minutes:
+        parts += f"{seconds}S"
+    return parts
+
+
+def album_jsonld(tracks: list[dict]) -> dict:
+    track_nodes = []
+    for track in tracks:
+        node = {
+            "@type": "MusicRecording",
+            "@id": f"{SITE_URL}/titres/{track['slug']}.html#recording",
+            "name": track["title"],
+            "url": f"{SITE_URL}/titres/{track['slug']}.html",
+            "trackNumber": track["num"],
+            "inLanguage": "fr-FR",
+            "byArtist": {"@id": f"{SITE_URL}/#organization"},
+            "album": {"@id": f"{SITE_URL}/#album"},
+        }
+        iso = duration_iso(track["duration"])
+        if iso:
+            node["duration"] = iso
+        if track.get("media", {}).get("mp3"):
+            node["audio"] = {
+                "@type": "AudioObject",
+                "contentUrl": track["media"]["mp3"]["url"],
+                "encodingFormat": "audio/mpeg",
+            }
+        track_nodes.append(node)
+
+    return {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebSite",
+                "@id": f"{SITE_URL}/#website",
+                "url": f"{SITE_URL}/",
+                "name": "Candidats 2027",
+                "description": ALBUM_DESCRIPTION,
+                "inLanguage": "fr-FR",
+                "publisher": {"@id": f"{SITE_URL}/#organization"},
+            },
+            {
+                "@type": "Organization",
+                "@id": f"{SITE_URL}/#organization",
+                "name": "Candidats 2027",
+                "url": f"{SITE_URL}/",
+                "sameAs": [REPO_URL, ARCHIVE_ITEM_URL],
+            },
+            {
+                "@type": "MusicAlbum",
+                "@id": f"{SITE_URL}/#album",
+                "name": ALBUM_NAME,
+                "alternateName": "Candidats 2027",
+                "description": ALBUM_DESCRIPTION,
+                "url": f"{SITE_URL}/",
+                "image": f"{SITE_URL}/assets/og/album.png",
+                "datePublished": ALBUM_DATE_ISO,
+                "inLanguage": "fr-FR",
+                "numTracks": len(tracks),
+                "isAccessibleForFree": True,
+                "byArtist": {"@id": f"{SITE_URL}/#organization"},
+                "track": track_nodes,
+            },
+        ],
+    }
+
+
+def song_jsonld(track: dict, description: str, image_url: str) -> dict:
+    page_url = f"{SITE_URL}/titres/{track['slug']}.html"
+    recording = {
+        "@type": "MusicRecording",
+        "@id": f"{page_url}#recording",
+        "name": track["title"],
+        "url": page_url,
+        "trackNumber": track["num"],
+        "inLanguage": "fr-FR",
+        "isAccessibleForFree": True,
+        "image": image_url,
+        "byArtist": {"@id": f"{SITE_URL}/#organization"},
+        "album": {"@id": f"{SITE_URL}/#album"},
+        "about": {
+            "@type": "Person",
+            "name": track["candidate"],
+            "description": track["brief"].get("Profil", "")[:600],
+        },
+    }
+    iso = duration_iso(track["duration"])
+    if iso:
+        recording["duration"] = iso
+    mp3 = track.get("media", {}).get("mp3")
+    if mp3:
+        recording["audio"] = {
+            "@type": "AudioObject",
+            "name": f"{track['candidate']} — {track['title']} (MP3)",
+            "contentUrl": mp3["url"],
+            "encodingFormat": "audio/mpeg",
+            "uploadDate": ALBUM_DATE_ISO,
+        }
+    return {
+        "@context": "https://schema.org",
+        "@graph": [
+            recording,
+            {
+                "@type": "BreadcrumbList",
+                "@id": f"{page_url}#breadcrumb",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "L’album",
+                        "item": f"{SITE_URL}/",
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": track["title"],
+                        "item": page_url,
+                    },
+                ],
+            },
+            {
+                "@type": "WebPage",
+                "@id": page_url,
+                "url": page_url,
+                "name": f"{track['num']:02d} — {track['candidate']} — {track['title']}",
+                "description": description,
+                "inLanguage": "fr-FR",
+                "isPartOf": {"@id": f"{SITE_URL}/#album"},
+                "primaryImageOfPage": {"@type": "ImageObject", "url": image_url},
+            },
+        ],
+    }
+
+
+def webpage_jsonld(name: str, description: str, page_path: str, image_url: str, page_type: str = "WebPage") -> dict:
+    page_url = f"{SITE_URL}/{page_path}"
+    return {
+        "@context": "https://schema.org",
+        "@type": page_type,
+        "@id": page_url,
+        "url": page_url,
+        "name": name,
+        "description": description,
+        "inLanguage": "fr-FR",
+        "isPartOf": {"@id": f"{SITE_URL}/#website"},
+        "primaryImageOfPage": {"@type": "ImageObject", "url": image_url},
+        "about": {"@id": f"{SITE_URL}/#album"},
+    }
+
+
+def head(
+    title: str,
+    description: str,
+    depth: int,
+    *,
+    page_path: str,
+    accent: str = "#a63a2c",
+    og_type: str = "website",
+    og_image: str = "assets/og/album.png",
+    keywords: str = "",
+    jsonld: object | None = None,
+    noindex: bool = False,
+) -> str:
     prefix = "../" * depth
     canonical = f"{SITE_URL}/{page_path}" if page_path else f"{SITE_URL}/"
+    image_url = f"{SITE_URL}/{og_image.lstrip('/')}"
+    robots = (
+        "noindex, nofollow"
+        if noindex
+        else "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    )
+    ld = jsonld_tag(jsonld) if jsonld else ""
+    extra = '<meta name="color-scheme" content="light dark">'
+    if og_type == "article":
+        extra += f'<meta property="article:published_time" content="{ALBUM_DATE_ISO}">'
+    if og_type == "music.song":
+        extra += (
+            f'<meta property="music:release_date" content="{ALBUM_DATE_ISO}">'
+            f'<meta property="music:album" content="{SITE_URL}/">'
+            f'<meta property="music:musician" content="{SITE_URL}/">'
+        )
     return f"""<!doctype html>
 <html lang="fr">
 <head>
@@ -311,17 +510,32 @@ def head(title: str, description: str, depth: int, *, page_path: str, accent: st
 <title>{e(title)}</title>
 <meta name="description" content="{e(description)}">
 <meta name="author" content="Candidats 2027">
+<meta name="robots" content="{robots}">
+<meta name="keywords" content="{e(keywords)}">
 <meta name="theme-color" content="{e(accent)}">
+{extra}
+<meta name="generator" content="scripts/build_site.py">
 <link rel="canonical" href="{e(canonical)}">
-<meta property="og:type" content="website">
+<link rel="alternate" hreflang="fr" href="{e(canonical)}">
+<meta property="og:type" content="{e(og_type)}">
 <meta property="og:locale" content="fr_FR">
-<meta property="og:site_name" content="Candidats 2027 — l'album">
+<meta property="og:site_name" content="Candidats 2027 — l’album">
 <meta property="og:title" content="{e(title)}">
 <meta property="og:description" content="{e(description)}">
 <meta property="og:url" content="{e(canonical)}">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="{e(image_url)}">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{e(title)}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{e(title)}">
+<meta name="twitter:description" content="{e(description)}">
+<meta name="twitter:image" content="{e(image_url)}">
+<meta name="twitter:image:alt" content="{e(title)}">
 <link rel="icon" href="{prefix}assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="{prefix}assets/style.css">
+{ld}
 <script>try{{var t=localStorage.getItem('theme');if(!t&&matchMedia('(prefers-color-scheme: dark)').matches)t='dark';if(t)document.documentElement.dataset.theme=t;}}catch(e){{}}</script>
 </head>"""
 
@@ -392,8 +606,22 @@ def ai_banner(depth: int) -> str:
 </div>"""
 
 
-def page(title: str, description: str, depth: int, body: str, *, page_path: str, accent: str = "#a63a2c", active: str = "") -> str:
-    return f"""{head(title, description, depth, page_path=page_path, accent=accent)}
+def page(
+    title: str,
+    description: str,
+    depth: int,
+    body: str,
+    *,
+    page_path: str,
+    accent: str = "#a63a2c",
+    active: str = "",
+    og_type: str = "website",
+    og_image: str = "assets/og/album.png",
+    keywords: str = "",
+    jsonld: object | None = None,
+    noindex: bool = False,
+) -> str:
+    return f"""{head(title, description, depth, page_path=page_path, accent=accent, og_type=og_type, og_image=og_image, keywords=keywords, jsonld=jsonld, noindex=noindex)}
 <body>
 {ai_banner(depth)}
 {header(depth, active)}
@@ -534,6 +762,17 @@ def build_index(tracks: list[dict]) -> str:
     refrain_count = total - full_count
     audio_count = sum(1 for t in tracks if t.get("has_audio"))
     midi_count = sum(1 for t in tracks if t.get("has_midi"))
+    mp3_total = sum(1 for t in tracks if t.get("has_mp3_export"))
+    midi_total = sum(1 for t in tracks if t.get("has_midi_export"))
+    mp3_label = "exports MP3" + (
+        f" · {audio_count} en ligne" if audio_count != mp3_total else ""
+    )
+    midi_label = "exports MIDI" + (
+        f" · {midi_count} en ligne" if midi_count != midi_total else ""
+    )
+    media_stats = f'<div><strong>{mp3_total}</strong><span>{mp3_label}</span></div>'
+    if midi_total:
+        media_stats += f'<div><strong>{midi_total}</strong><span>{midi_label}</span></div>'
     media_filters = ""
     if audio_count:
         media_filters += f'<button type="button" class="filter" data-filter="audio" aria-pressed="false">MP3 <span>{audio_count}</span></button>'
@@ -570,6 +809,7 @@ def build_index(tracks: list[dict]) -> str:
 <section class="stats" aria-label="Le projet en chiffres">
   <div class="wrap stats-grid">
     <div><strong>{total}</strong><span>titres</span></div>
+    {media_stats}
     <div><strong>{als_count}</strong><span>sessions Ableton publiées</span></div>
     <div><strong>{full_count}</strong><span>paroles complètes</span></div>
     <div><strong>31</strong><span>fiches techniques</span></div>
@@ -627,12 +867,19 @@ def build_index(tracks: list[dict]) -> str:
 """
     return page(
         "Candidats 2027 — l’album · 31 chansons, 31 candidats",
-        "Un album d’information civique : une chanson par candidat à la présidentielle de 2027. Titres, paroles et musiques générés par IA — brouillons de vulgarisation à corriger. Paroles, fiches techniques et sessions Ableton à télécharger.",
+        ALBUM_DESCRIPTION,
         0,
         body,
         page_path="",
         accent="#a63a2c",
         active="titres",
+        og_type="music.album",
+        og_image="assets/og/album.png",
+        keywords=(
+            "Candidats 2027, album, chansons, présidentielle 2027, paroles, "
+            "fiches techniques, Ableton, IA, vulgarisation, neutralité"
+        ),
+        jsonld=album_jsonld(tracks),
     )
 
 
@@ -931,14 +1178,28 @@ def build_song(track: dict, tracks: list[dict]) -> str:
   {next_link}
 </nav>
 """
+    description = (
+        f"Paroles, fiche technique et session Ableton de « {track['title']} » "
+        f"({track['candidate']}), titre {track['num']:02d} de l’album Candidats 2027. "
+        f"{track['style_short'] or 'Chanson'} — brouillon généré par IA, corrections bienvenues."
+    )
+    image_rel = f"assets/og/{track['num']:02d}.png"
+    image_url = f"{SITE_URL}/{image_rel}"
     return page(
         f"{track['num']:02d} — {track['candidate']} — {track['title']} · Candidats 2027",
-        f"Paroles, fiche technique et session Ableton de « {track['title']} » ({track['candidate']}), titre {track['num']:02d} de l’album Candidats 2027.",
+        description,
         1,
         body,
         page_path=f"titres/{track['slug']}.html",
         accent=track["accent"],
         active="titres",
+        og_type="music.song",
+        og_image=image_rel,
+        keywords=(
+            f"{track['candidate']}, {track['title']}, {track['style_short']}, "
+            "chanson, présidentielle 2027, paroles, fiche technique, Candidats 2027"
+        ),
+        jsonld=song_jsonld(track, description, image_url),
     )
 
 
@@ -972,13 +1233,30 @@ def build_project(album_text: str) -> str:
 </section>
 {contribute_block()}
 """
+    description = (
+        "Note d’intention, méthode de production et règles éditoriales de l’album "
+        "Candidats 2027 : une chanson par candidat à la présidentielle, générée par IA."
+    )
     return page(
         "Le projet · Candidats 2027",
-        "Note d’intention, méthode de production et règles éditoriales de l’album Candidats 2027 : une chanson par candidat à la présidentielle.",
+        description,
         0,
         body,
         page_path="projet.html",
         active="projet",
+        og_type="article",
+        og_image="assets/og/album.png",
+        keywords=(
+            "Candidats 2027, projet, note d’intention, règles éditoriales, "
+            "chansons, présidentielle 2027, IA, neutralité"
+        ),
+        jsonld=webpage_jsonld(
+            "Le projet · Candidats 2027",
+            description,
+            "projet.html",
+            f"{SITE_URL}/assets/og/album.png",
+            "AboutPage",
+        ),
     )
 
 
@@ -1061,13 +1339,29 @@ def build_contribute() -> str:
 
 {contribute_block()}
 """
+    description = (
+        "Contribuer à l’album Candidats 2027 : vérifier un fait, écrire des paroles, "
+        "reprendre une session Ableton ou améliorer le site."
+    )
     return page(
         "Participer · Candidats 2027",
-        "Contribuer à l’album Candidats 2027 : vérifier un fait, écrire des paroles, reprendre une session Ableton ou améliorer le site.",
+        description,
         0,
         body,
         page_path="participer.html",
         active="participer",
+        og_type="article",
+        og_image="assets/og/album.png",
+        keywords=(
+            "Candidats 2027, participer, contribution, corrections, paroles, "
+            "Ableton, chansons, présidentielle 2027"
+        ),
+        jsonld=webpage_jsonld(
+            "Participer · Candidats 2027",
+            description,
+            "participer.html",
+            f"{SITE_URL}/assets/og/album.png",
+        ),
     )
 
 
@@ -1085,7 +1379,15 @@ def build_404() -> str:
   </div>
 </header>
 """
-    return page("Page introuvable · Candidats 2027", "Page introuvable.", 0, body, page_path="404.html")
+    return page(
+        "Page introuvable · Candidats 2027",
+        "La page demandée n’existe pas ou a changé d’adresse.",
+        0,
+        body,
+        page_path="404.html",
+        og_image="assets/og/album.png",
+        noindex=True,
+    )
 
 
 # --------------------------------------------------------------------------
@@ -1113,6 +1415,9 @@ def copy_assets() -> None:
     shutil.copy2(SITE / "assets" / "style.css", assets_out / "style.css")
     shutil.copy2(SITE / "assets" / "app.js", assets_out / "app.js")
     shutil.copy2(SITE / "assets" / "favicon.svg", assets_out / "favicon.svg")
+    og_src = SITE / "assets" / "og"
+    if og_src.is_dir():
+        shutil.copytree(og_src, assets_out / "og", dirs_exist_ok=True)
 
 
 def write_downloads(tracks: list[dict], sources: Path, album_text: str) -> None:
@@ -1250,11 +1555,38 @@ def write_pages(tracks: list[dict], sources: Path, album_text: str) -> None:
 
 
 def write_extras(tracks: list[dict]) -> None:
-    urls = [f"{SITE_URL}/", f"{SITE_URL}/projet.html", f"{SITE_URL}/participer.html"]
-    urls += [f"{SITE_URL}/titres/{track['slug']}.html" for track in tracks]
-    sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-    for url in urls:
-        sitemap += f"  <url><loc>{e(url)}</loc><lastmod>{ALBUM_DATE_ISO}</lastmod></url>\n"
+    entries = [
+        (f"{SITE_URL}/", "1.0", f"{SITE_URL}/assets/og/album.png", "Candidats 2027 — l’album"),
+        (f"{SITE_URL}/projet.html", "0.7", f"{SITE_URL}/assets/og/album.png", "Le projet"),
+        (f"{SITE_URL}/participer.html", "0.7", f"{SITE_URL}/assets/og/album.png", "Participer"),
+    ]
+    entries += [
+        (
+            f"{SITE_URL}/titres/{track['slug']}.html",
+            "0.8",
+            f"{SITE_URL}/assets/og/{track['num']:02d}.png",
+            f"{track['num']:02d} — {track['candidate']} — {track['title']}",
+        )
+        for track in tracks
+    ]
+    sitemap = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+        'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n'
+    )
+    for url, priority, image, title in entries:
+        sitemap += (
+            "  <url>"
+            f"<loc>{e(url)}</loc>"
+            f"<lastmod>{ALBUM_DATE_ISO}</lastmod>"
+            "<changefreq>monthly</changefreq>"
+            f"<priority>{priority}</priority>"
+            "<image:image>"
+            f"<image:loc>{e(image)}</image:loc>"
+            f"<image:title>{e(title)}</image:title>"
+            "</image:image>"
+            "</url>\n"
+        )
     sitemap += "</urlset>\n"
     (DOCS / "sitemap.xml").write_text(sitemap, encoding="utf-8")
     (DOCS / "robots.txt").write_text(
@@ -1281,9 +1613,17 @@ def main() -> None:
 
     media = load_media()
     for track in tracks:
-        track["media"] = media.get(track["num"], {})
+        entries = media.get(track["num"], {})
+        track["media_all"] = entries
+        track["media"] = {
+            kind: item
+            for kind, item in entries.items()
+            if item.get("_verified") or not item.get("_required_verified")
+        }
         track["has_audio"] = bool(track["media"].get("mp3") or track["audio"])
         track["has_midi"] = bool(track["media"].get("midi"))
+        track["has_mp3_export"] = bool(entries.get("mp3") or track["audio"])
+        track["has_midi_export"] = bool(entries.get("midi"))
 
     album_text = (sources / "Album.MD").read_text(encoding="utf-8")
 
