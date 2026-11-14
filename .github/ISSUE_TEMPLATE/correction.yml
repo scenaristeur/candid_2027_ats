@@ -1,0 +1,54 @@
+name: Correction factuelle ou textuelle
+description: Signaler un chiffre, une date, une citation ou une formulation à corriger.
+title: "[Correction] "
+labels: ["correction"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci de contribuer. Une correction utile cite **le passage exact**, **la source** et **sa date**. Le projet applique la règle : un chiffre = une source + une date.
+  - type: input
+    id: titre
+    attributes:
+      label: Titre concerné
+      description: Numéro, candidat et titre de la chanson.
+      placeholder: "09 — Nathalie Arthaud — La Révolution en 2 200 euros"
+    validations:
+      required: true
+  - type: textarea
+    id: passage
+    attributes:
+      label: Passage concerné
+      description: Copie la phrase ou le paragraphe exact (paroles, fiche technique, page du site).
+      placeholder: "Extrait à corriger…"
+    validations:
+      required: true
+  - type: textarea
+    id: probleme
+    attributes:
+      label: Ce qui pose problème
+      description: Explique factuellement l'erreur ou l'ambiguïté.
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Source datée
+      description: Lien vers le programme officiel, le fait institutionnel ou l'article de presse, avec sa date.
+      placeholder: "https://… (consulté le …)"
+    validations:
+      required: true
+  - type: textarea
+    id: proposition
+    attributes:
+      label: Proposition de reformulation
+      description: Optionnel — une formulation qui respecte les règles éditoriales.
+  - type: checkboxes
+    id: regles
+    attributes:
+      label: Règles éditoriales
+      options:
+        - label: Je critique le programme, le coût, la faisabilité ou la stratégie, pas la personne.
+          required: true
+        - label: Je n'inclus aucun fait judiciaire non daté ou non qualifié exactement.
+          required: true

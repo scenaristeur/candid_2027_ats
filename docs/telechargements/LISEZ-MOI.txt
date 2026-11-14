@@ -1,0 +1,30 @@
+CANDIDATS 2027 — L'ALBUM
+=======================
+
+Pack de téléchargement généré depuis les sources du projet.
+Date de vérité : 14 novembre 2026
+
+Contenu
+-------
+- paroles/           les paroles de chaque titre (Markdown)
+- fiches/            les fiches techniques (Markdown)
+- als/               les sessions Ableton disponibles
+- versions-longues/  les versions d'écriture développées (archives)
+- album/Album.MD     la note de projet
+- manifest.json      l'index des fichiers
+
+Chaque titre suit la forme : différence -> discours -> partisans -> refrain.
+Les tempos, tonalités et durées sont des propositions de travail.
+
+Règles
+------
+- Critiquer le programme, pas la personne.
+- Un chiffre = une source + une date.
+- Aucun fait judiciaire dans un refrain.
+- Les paroles des partisans sont leur point de vue, pas une vérité objective.
+
+Textes, musiques et sessions : © leurs auteurs.
+Diffusion pour l'écoute, l'étude et la reprise ; nous contacter pour tout autre usage.
+
+Dépôt : https://github.com/scenaristeur/candid_2027_ats
+Site  : https://scenaristeur.github.io/candid_2027_ats/

@@ -1,0 +1,503 @@
+{
+  "album": "Candidats 2027",
+  "truthDate": "2026-11-14",
+  "generatedFrom": "ableton-holland-mcp/sources/Candid_2027_ats (lecture seule)",
+  "tracks": [
+    {
+      "number": 1,
+      "candidate": "Gabriel Attal",
+      "title": "Le Choc des savoirs (et des affaires)",
+      "style": "Pop électro moderne, beat entraînant, hook de synthé",
+      "tempo": "120 BPM",
+      "key": "La mineur (Am)",
+      "duration": "≈ 2 min 15",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": null,
+        "paroles": "paroles/01-gabriel-attal-le-choc-des-savoirs-et-des-affaires.paroles.md",
+        "ficheTechnique": "fiches/01-gabriel-attal-le-choc-des-savoirs-et-des-affaires.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 2,
+      "candidate": "Jordan Bardella",
+      "title": "Le Delfín",
+      "style": "Pop-électro identitaire, beat calibré, couplets rapides",
+      "tempo": "124 BPM",
+      "key": "Fa dièse mineur (Fm)",
+      "duration": "≈ 2 min 20",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": null,
+        "paroles": "paroles/02-jordan-bardella-le-delfin.paroles.md",
+        "ficheTechnique": "fiches/02-jordan-bardella-le-delfin.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 3,
+      "candidate": "Philippe Poutou",
+      "title": "Le Fordiste Anticapitaliste",
+      "style": "Punk rock rapide, criard",
+      "tempo": "160 BPM",
+      "key": "Mi mineur (Em)",
+      "duration": "≈ 2 min",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": null,
+        "paroles": "paroles/03-philippe-poutou-le-fordiste-anticapitaliste.paroles.md",
+        "ficheTechnique": "fiches/03-philippe-poutou-le-fordiste-anticapitaliste.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 4,
+      "candidate": "Jean Lassalle",
+      "title": "La Chasse aux Parrainages",
+      "style": "Chant béarnais traditionnel, voix seule, paysages",
+      "tempo": "68 BPM",
+      "key": "Sol mineur (Gm)",
+      "duration": "≈ 2 min 30",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": null,
+        "paroles": "paroles/04-jean-lassalle-la-chasse-aux-parrainages.paroles.md",
+        "ficheTechnique": "fiches/04-jean-lassalle-la-chasse-aux-parrainages.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 5,
+      "candidate": "Delphine Batho",
+      "title": "La Politique de la Beauté",
+      "style": "Folk acoustique, cordes, sons de nature",
+      "tempo": "82 BPM",
+      "key": "Ré majeur (D)",
+      "duration": "≈ 2 min 35",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": null,
+        "paroles": "paroles/05-delphine-batho-la-politique-de-la-beaute.paroles.md",
+        "ficheTechnique": "fiches/05-delphine-batho-la-politique-de-la-beaute.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 6,
+      "candidate": "Nicolas Dupont-Aignan",
+      "title": "Debout la France",
+      "style": "Chant militaire, tambours et fifres, ton solennel",
+      "tempo": "108 BPM",
+      "key": "Do mineur (Cm)",
+      "duration": "≈ 2 min 05",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": null,
+        "paroles": "paroles/06-nicolas-dupont-aignan-debout-la-france.paroles.md",
+        "ficheTechnique": "fiches/06-nicolas-dupont-aignan-debout-la-france.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 7,
+      "candidate": "Raphaël Glucksmann",
+      "title": "La Révolution écologique (en 100 jours)",
+      "style": "Folk-rock européen, accents de musique du monde",
+      "tempo": "112 BPM",
+      "key": "Sol majeur (G)",
+      "duration": "≈ 2 min 40",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": null,
+        "paroles": "paroles/07-raphael-glucksmann-la-revolution-ecologique-en-100-jours.paroles.md",
+        "ficheTechnique": "fiches/07-raphael-glucksmann-la-revolution-ecologique-en-100-jours.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 8,
+      "candidate": "Selma Labib",
+      "title": "Le Bus de la Révolution",
+      "style": "Punk ouvrier, paroles scandées, bruit de moteur",
+      "tempo": "168 BPM",
+      "key": "Mi mineur (Em)",
+      "duration": "≈ 2 min",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": null,
+        "paroles": "paroles/08-selma-labib-le-bus-de-la-revolution.paroles.md",
+        "ficheTechnique": "fiches/08-selma-labib-le-bus-de-la-revolution.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 9,
+      "candidate": "Nathalie Arthaud",
+      "title": "La Révolution en 2 200 euros",
+      "style": "Chant de lutte, presque a cappella, percussions militaires",
+      "tempo": "76 BPM",
+      "key": "La mineur (Am)",
+      "duration": "≈ 2 min 15",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": "als/09-nathalie-arthaud-la-revolution-en-2-200-euros.als",
+        "paroles": "paroles/09-nathalie-arthaud-la-revolution-en-2-200-euros.paroles.md",
+        "ficheTechnique": "fiches/09-nathalie-arthaud-la-revolution-en-2-200-euros.fiche-technique.md",
+        "versionLongue": "versions-longues/09-nathalie-arthaud-la-revolution-en-2-200-euros.version-longue.md"
+      }
+    },
+    {
+      "number": 10,
+      "candidate": "Florian Philippot",
+      "title": "Le Frexit Rock",
+      "style": "Rock indépendant, guitares anglaises, refrain-slogan",
+      "tempo": "136 BPM",
+      "key": "Mi mineur (Em)",
+      "duration": "≈ 2 min 10",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": "als/10-florian-philippot-le-frexit-rock.als",
+        "paroles": "paroles/10-florian-philippot-le-frexit-rock.paroles.md",
+        "ficheTechnique": "fiches/10-florian-philippot-le-frexit-rock.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 11,
+      "candidate": "Jean-Luc Mélenchon",
+      "title": "L'Avenir en commun",
+      "style": "Rap engagé, cuivres, sample classique (Mozart)",
+      "tempo": "94 BPM",
+      "key": "Do dièse mineur (Cm)",
+      "duration": "≈ 3 min",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": "als/11-jean-luc-melenchon-l-avenir-en-commun.als",
+        "paroles": "paroles/11-jean-luc-melenchon-l-avenir-en-commun.paroles.md",
+        "ficheTechnique": "fiches/11-jean-luc-melenchon-l-avenir-en-commun.fiche-technique.md",
+        "versionLongue": "versions-longues/11-jean-luc-melenchon-l-avenir-en-commun.version-longue.md"
+      }
+    },
+    {
+      "number": 12,
+      "candidate": "Dominique de Villepin",
+      "title": "Le Rap de la France Humaniste",
+      "style": "Rap conscient, sample de MC Solaar, cordes",
+      "tempo": "90 BPM",
+      "key": "Do dièse mineur (Cm)",
+      "duration": "≈ 2 min 30",
+      "status": "maquette spartiate posée — session à sauvegarder, validation par extraits.",
+      "files": {
+        "als": "als/12-dominique-de-villepin-le-rap-de-la-france-humaniste.als",
+        "paroles": "paroles/12-dominique-de-villepin-le-rap-de-la-france-humaniste.paroles.md",
+        "ficheTechnique": "fiches/12-dominique-de-villepin-le-rap-de-la-france-humaniste.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 13,
+      "candidate": "Édouard Philippe",
+      "title": "Le Havre, la dette et les familles",
+      "style": "Jazz et classique contemporain, piano, cordes",
+      "tempo": "84 BPM",
+      "key": "Do dièse mineur (Cm)",
+      "duration": "≈ 2 min 45",
+      "status": "maquette spartiate posée — session à sauvegarder, validation par extraits.",
+      "files": {
+        "als": "als/13-edouard-philippe-le-havre-la-dette-et-les-familles.als",
+        "paroles": "paroles/13-edouard-philippe-le-havre-la-dette-et-les-familles.paroles.md",
+        "ficheTechnique": "fiches/13-edouard-philippe-le-havre-la-dette-et-les-familles.fiche-technique.md",
+        "versionLongue": "versions-longues/13-edouard-philippe-le-havre-la-dette-et-les-familles.version-longue.md"
+      }
+    },
+    {
+      "number": 14,
+      "candidate": "Olivier Faure",
+      "title": "La Loi du Plus Juste (en 1700)",
+      "style": "Variété social-démocrate, piano et cordes",
+      "tempo": "88 BPM",
+      "key": "Do dièse mineur (Cm)",
+      "duration": "≈ 2 min 30",
+      "status": "maquette spartiate posée — session à sauvegarder, validation par extraits.",
+      "files": {
+        "als": "als/14-olivier-faure-la-loi-du-plus-juste-en-1700.als",
+        "paroles": "paroles/14-olivier-faure-la-loi-du-plus-juste-en-1700.paroles.md",
+        "ficheTechnique": "fiches/14-olivier-faure-la-loi-du-plus-juste-en-1700.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 15,
+      "candidate": "François Asselineau",
+      "title": "Le Frexit intégral",
+      "style": "Marche militaire solennelle, cuivres, refrain scandé",
+      "tempo": "100 BPM",
+      "key": "Ré mineur (Dm)",
+      "duration": "≈ 2 min 20",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": null,
+        "paroles": "paroles/15-francois-asselineau-le-frexit-integral.paroles.md",
+        "ficheTechnique": "fiches/15-francois-asselineau-le-frexit-integral.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 16,
+      "candidate": "David Lisnard",
+      "title": "Le Rock du Gouvernement Commando",
+      "style": "Rock garage, guitares saturées, batterie sèche",
+      "tempo": "148 BPM",
+      "key": "Mi mineur (Em)",
+      "duration": "≈ 2 min 10",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": null,
+        "paroles": "paroles/16-david-lisnard-le-rock-du-gouvernement-commando.paroles.md",
+        "ficheTechnique": "fiches/16-david-lisnard-le-rock-du-gouvernement-commando.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 17,
+      "candidate": "Teddy Riner",
+      "title": "Le Judo de la Nation",
+      "style": "Hip-hop orchestral, cuivres solennels, beat de stade",
+      "tempo": "92 BPM",
+      "key": "Do dièse mineur (Cm)",
+      "duration": "≈ 2 min 25",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": null,
+        "paroles": "paroles/17-teddy-riner-le-judo-de-la-nation.paroles.md",
+        "ficheTechnique": "fiches/17-teddy-riner-le-judo-de-la-nation.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 18,
+      "candidate": "Laurent Wauquiez",
+      "title": "I Will Survive (la droite)",
+      "style": "Disco-rock assumé, guitares et cordes disco",
+      "tempo": "118 BPM",
+      "key": "La mineur (Am)",
+      "duration": "≈ 2 min 20",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": null,
+        "paroles": "paroles/18-laurent-wauquiez-i-will-survive-la-droite.paroles.md",
+        "ficheTechnique": "fiches/18-laurent-wauquiez-i-will-survive-la-droite.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 19,
+      "candidate": "François Bayrou",
+      "title": "Le Grand Fleuve Central (en tango)",
+      "style": "Tango et musique classique, bandonéon, piano",
+      "tempo": "96 BPM",
+      "key": "Ré mineur (Dm)",
+      "duration": "≈ 2 min 30",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": null,
+        "paroles": "paroles/19-francois-bayrou-le-grand-fleuve-central-en-tango.paroles.md",
+        "ficheTechnique": "fiches/19-francois-bayrou-le-grand-fleuve-central-en-tango.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 20,
+      "candidate": "Fabien Roussel",
+      "title": "Vivre (Le Temps des Cerises électrique)",
+      "style": "Chanson française populaire, accordéon et guitare électrique",
+      "tempo": "116 BPM",
+      "key": "Do majeur (C)",
+      "duration": "≈ 2 min 20",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": null,
+        "paroles": "paroles/20-fabien-roussel-vivre-le-temps-des-cerises-electrique.paroles.md",
+        "ficheTechnique": "fiches/20-fabien-roussel-vivre-le-temps-des-cerises-electrique.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 21,
+      "candidate": "Karim Bouamrane",
+      "title": "Le Fédérateur",
+      "style": "Pop urbaine, touche de raï, refrain fédérateur",
+      "tempo": "104 BPM",
+      "key": "Do dièse mineur (Cm)",
+      "duration": "≈ 2 min 20",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": null,
+        "paroles": "paroles/21-karim-bouamrane-le-federateur.paroles.md",
+        "ficheTechnique": "fiches/21-karim-bouamrane-le-federateur.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 22,
+      "candidate": "Marine Tondelier",
+      "title": "La Danse de la Première République Écologique",
+      "style": "Pop dansante et engagée, beat léger",
+      "tempo": "122 BPM",
+      "key": "La majeur (A)",
+      "duration": "≈ 2 min 25",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": null,
+        "paroles": "paroles/22-marine-tondelier-la-danse-de-la-premiere-republique-ecologique.paroles.md",
+        "ficheTechnique": "fiches/22-marine-tondelier-la-danse-de-la-premiere-republique-ecologique.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 23,
+      "candidate": "Natacha Polony",
+      "title": "L'État d'urgence de la Production",
+      "style": "Chanson réaliste, piano, voix grave, récitatif",
+      "tempo": "76 BPM",
+      "key": "La mineur (Am)",
+      "duration": "≈ 2 min 35",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": null,
+        "paroles": "paroles/23-natacha-polony-l-etat-d-urgence-de-la-production.paroles.md",
+        "ficheTechnique": "fiches/23-natacha-polony-l-etat-d-urgence-de-la-production.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 24,
+      "candidate": "François Hollande",
+      "title": "Le Revenant Social-démocrate",
+      "style": "Variété rétro années 80–90, piano désabusé",
+      "tempo": "100 BPM",
+      "key": "Do dièse mineur (Cm)",
+      "duration": "≈ 2 min 35",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": "als/24-francois-hollande-le-revenant-social-democrate.als",
+        "paroles": "paroles/24-francois-hollande-le-revenant-social-democrate.paroles.md",
+        "ficheTechnique": "fiches/24-francois-hollande-le-revenant-social-democrate.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 25,
+      "candidate": "Bernard Cazeneuve",
+      "title": "Le Contrat",
+      "style": "Musique de chambre, piano et violoncelle",
+      "tempo": "70 BPM",
+      "key": "La mineur (Am)",
+      "duration": "≈ 2 min 45",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": null,
+        "paroles": "paroles/25-bernard-cazeneuve-le-contrat.paroles.md",
+        "ficheTechnique": "fiches/25-bernard-cazeneuve-le-contrat.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 26,
+      "candidate": "Ségolène Royal",
+      "title": "La Primaire de la Rose",
+      "style": "Chanson réaliste, accordéon, voix qui assume le vécu",
+      "tempo": "92 BPM",
+      "key": "Sol mineur (Gm)",
+      "duration": "≈ 2 min 25",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": null,
+        "paroles": "paroles/26-segolene-royal-la-primaire-de-la-rose.paroles.md",
+        "ficheTechnique": "fiches/26-segolene-royal-la-primaire-de-la-rose.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 27,
+      "candidate": "Clara Egger",
+      "title": "La Démocratie Directe",
+      "style": "Spoken word minimaliste, boucle rythmique",
+      "tempo": "84 BPM",
+      "key": "La mineur (Am) — bourdon",
+      "duration": "≈ 1 min 55",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": null,
+        "paroles": "paroles/27-clara-egger-la-democratie-directe.paroles.md",
+        "ficheTechnique": "fiches/27-clara-egger-la-democratie-directe.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 28,
+      "candidate": "Éric Zemmour",
+      "title": "La France Française",
+      "style": "Classique sombre, cordes graves, piano, sample de Beethoven",
+      "tempo": "72 BPM",
+      "key": "Ré mineur (Dm)",
+      "duration": "≈ 2 min 40",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": null,
+        "paroles": "paroles/28-eric-zemmour-la-france-francaise.paroles.md",
+        "ficheTechnique": "fiches/28-eric-zemmour-la-france-francaise.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 29,
+      "candidate": "Bruno Retailleau",
+      "title": "L'Hiver démographique",
+      "style": "Chant traditionnel vendéen, tambour et fifre, ton grave",
+      "tempo": "88 BPM",
+      "key": "Sol mineur (Gm)",
+      "duration": "≈ 2 min 30",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": null,
+        "paroles": "paroles/29-bruno-retailleau-l-hiver-demographique.paroles.md",
+        "ficheTechnique": "fiches/29-bruno-retailleau-l-hiver-demographique.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 30,
+      "candidate": "Anasse Kazib",
+      "title": "La Révolution Permanente",
+      "style": "Punk hardcore, paroles scandées, tempo rapide",
+      "tempo": "176 BPM",
+      "key": "Fa dièse mineur (Fm)",
+      "duration": "≈ 1 min 55",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": null,
+        "paroles": "paroles/30-anasse-kazib-la-revolution-permanente.paroles.md",
+        "ficheTechnique": "fiches/30-anasse-kazib-la-revolution-permanente.fiche-technique.md",
+        "versionLongue": null
+      }
+    },
+    {
+      "number": 31,
+      "candidate": "Marine Le Pen",
+      "title": "La Patrie en héritage",
+      "style": "Variété française populaire, cordes sobres, accordéon discret",
+      "tempo": "96 BPM",
+      "key": "Do dièse mineur (Cm)",
+      "duration": "≈ 2 min 30",
+      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "files": {
+        "als": null,
+        "paroles": "paroles/31-marine-le-pen-la-patrie-en-heritage.paroles.md",
+        "ficheTechnique": "fiches/31-marine-le-pen-la-patrie-en-heritage.fiche-technique.md",
+        "versionLongue": "versions-longues/31-marine-le-pen-la-patrie-en-heritage.version-longue.md"
+      }
+    }
+  ]
+}

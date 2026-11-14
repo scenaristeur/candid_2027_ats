@@ -1,0 +1,1160 @@
+#!/usr/bin/env python3
+"""Génère le site de présentation de l'album « Candidats 2027 ».
+
+Les sources sont ouvertes en LECTURE SEULE. Aucun fichier n'est écrit dans
+`ableton-holland-mcp/sources` ni dans le dossier Ableton Live. Toutes les
+sorties vont dans `docs/`, prêt pour GitHub Pages.
+
+Usage :
+    python scripts/build_site.py
+    python scripts/build_site.py --sources "D:/chemin/sources" --als "D:/chemin/als"
+
+Variables d'environnement équivalentes : CANDIDAT_SOURCES, CANDIDAT_ALS_DIR.
+"""
+
+from __future__ import annotations
+
+import argparse
+import html
+import json
+import os
+import re
+import shutil
+import unicodedata
+import zipfile
+from datetime import date
+from pathlib import Path
+from urllib.parse import quote
+
+import markdown as md
+
+ROOT = Path(__file__).resolve().parent.parent
+DOCS = ROOT / "docs"
+SITE = ROOT / "site"
+
+DEFAULT_SOURCES = Path(
+    os.environ.get(
+        "CANDIDAT_SOURCES",
+        r"C:\Users\admin\dev\ableton-holland-mcp\sources\Candid_2027_ats",
+    )
+)
+DEFAULT_ALS = Path(
+    os.environ.get(
+        "CANDIDAT_ALS_DIR",
+        r"C:\Users\admin\Music\Ableton Live\Candid_2027_ats",
+    )
+)
+
+REPO_URL = "https://github.com/scenaristeur/candid_2027_ats"
+SITE_URL = os.environ.get("CANDIDAT_SITE_URL", "https://scenaristeur.github.io/candid_2027_ats").rstrip("/")
+TRUTH_DATE = "14 novembre 2026"
+ALBUM_DATE_ISO = "2026-11-14"
+
+# Palette éditoriale : une couleur par titre, cyclique.
+PALETTE = [
+    ("#a63a2c", "#f3ddd6"),
+    ("#1f5a49", "#d7e8df"),
+    ("#284b7a", "#dbe4f2"),
+    ("#783a62", "#efdce8"),
+    ("#8a5a1c", "#f2e3cc"),
+    ("#3e5b2c", "#e0ead5"),
+    ("#8a2f48", "#f3d9e2"),
+    ("#2f596a", "#d8e9ee"),
+]
+
+PARTICLES = {"de", "du", "des", "le", "la", "les", "van", "von", "di", "d'", "l'"}
+
+
+def e(value: object) -> str:
+    return html.escape(str(value), quote=True)
+
+
+def format_size(num: int) -> str:
+    if num >= 1024 * 1024:
+        return f"{num / (1024 * 1024):.1f} Mo"
+    if num >= 1024:
+        return f"{num / 1024:.0f} Ko"
+    return f"{num} o"
+
+
+def slugify(text: str) -> str:
+    return md.slugify(text)
+
+
+def normalize(text: str) -> str:
+    text = unicodedata.normalize("NFKD", text)
+    text = "".join(ch for ch in text if not unicodedata.combining(ch))
+    return re.sub(r"[^a-z0-9]+", " ", text.lower()).strip()
+
+
+def initials(name: str) -> str:
+    words = [
+        word
+        for word in re.split(r"[\s\-]+", name)
+        if word and word.lower() not in PARTICLES
+    ]
+    return "".join(word[0] for word in words[:2]).upper() or "27"
+
+
+def clean_meta(value: str) -> tuple[str, bool]:
+    proposal = "proposition" in value.lower()
+    value = re.sub(r"\s*\*\([^*]*\)\*", "", value)
+    value = re.sub(r"\s*\(proposition[^)]*\)", "", value, flags=re.IGNORECASE)
+    value = md.strip_markdown(value)
+    return value.strip(), proposal
+
+
+def parse_meta(text: str) -> dict[str, tuple[str, bool]]:
+    head = text.split("\n---", 1)[0]
+    meta: dict[str, tuple[str, bool]] = {}
+    for line in head.splitlines():
+        match = re.match(r"\*\*(.+?)\*\*\s*:\s*(.+)$", line)
+        if match:
+            meta[md.strip_markdown(match.group(1))] = clean_meta(match.group(2))
+    return meta
+
+
+def section(text: str, prefix: str) -> list[str]:
+    lines = text.splitlines()
+    start = None
+    for index, line in enumerate(lines):
+        if line.startswith("## ") and md.strip_markdown(line[3:]).startswith(prefix):
+            start = index + 1
+            break
+    if start is None:
+        return []
+    result = []
+    for line in lines[start:]:
+        if line.startswith("## "):
+            break
+        result.append(line)
+    return result
+
+
+def parse_brief(text: str) -> dict[str, str]:
+    brief: dict[str, str] = {}
+    for line in section(text, "1."):
+        if not line.strip().startswith("|"):
+            continue
+        cells = md._split_row(line)
+        if len(cells) < 2 or set(cells[0]) <= set("-: "):
+            continue
+        key = md.strip_markdown(cells[0])
+        value = md.strip_markdown("|".join(cells[1:]))
+        if key and value:
+            brief[key] = value
+    return brief
+
+
+def parse_goals(text: str) -> list[str]:
+    goals = []
+    for line in section(text, "2."):
+        match = re.match(r"\s*[-*+]\s+(.*)$", line)
+        if match:
+            goals.append(md.strip_markdown(match.group(1)))
+    return goals
+
+
+def parse_checks(text: str) -> list[str]:
+    checks = []
+    for line in section(text, "7."):
+        match = re.match(r"\s*[-*+]\s+(.*)$", line)
+        if match:
+            checks.append(md.strip_markdown(match.group(1)))
+    return checks
+
+
+def load_tracks(sources: Path, als_dir: Path) -> list[dict]:
+    als_files: dict[int, Path] = {}
+    if als_dir.is_dir():
+        for path in als_dir.rglob("*.als"):
+            if not path.is_file() or "Backup" in path.parts:
+                continue
+            match = re.match(r"^(\d{2})\s*-", path.name)
+            if match:
+                als_files[int(match.group(1))] = path
+
+    long_files: dict[int, Path] = {}
+    long_dir = sources / "_versions_longues"
+    if long_dir.is_dir():
+        for path in long_dir.iterdir():
+            match = re.match(r"^(\d{2})\s*-", path.name)
+            if match and path.suffix.lower() == ".md":
+                long_files[int(match.group(1))] = path
+
+    tracks = []
+    for folder in sorted(p for p in sources.iterdir() if p.is_dir()):
+        if not re.match(r"^\d{2}\s*-\s*", folder.name):
+            continue
+        num = int(folder.name[:2])
+        fiche_path = folder / "FICHE_TECHNIQUE.md"
+        paroles_path = folder / "PAROLES.md"
+        if not fiche_path.is_file() or not paroles_path.is_file():
+            continue
+
+        fiche = fiche_path.read_text(encoding="utf-8")
+        paroles = paroles_path.read_text(encoding="utf-8")
+        meta = parse_meta(fiche)
+
+        heading = next((line[2:].strip() for line in fiche.splitlines() if line.startswith("# ")), "")
+        parts = re.split(r"\s+—\s+", heading, maxsplit=2)
+        if len(parts) == 3:
+            _, candidate, title = parts
+        else:
+            fallback = folder.name.split(" - ", 2)
+            candidate = fallback[1]
+            title = fallback[2]
+
+        brief = parse_brief(fiche)
+        style_full = meta.get("Style", ("", False))[0]
+        style_short = style_full.split(",")[0].strip() if style_full else ""
+        accent, accent_soft = PALETTE[(num - 1) % len(PALETTE)]
+        full_lyrics = any(
+            line.startswith("## ") and "Couplet" in line for line in paroles.splitlines()
+        )
+
+        als_path = als_files.get(num)
+        long_path = long_files.get(num)
+
+        tracks.append(
+            {
+                "num": num,
+                "candidate": candidate.strip(),
+                "title": title.strip(),
+                "slug": f"{num:02d}-{slugify(candidate)}-{slugify(title)}",
+                "folder": folder,
+                "meta": meta,
+                "tempo": meta.get("Tempo", ("", False))[0],
+                "key": meta.get("Tonalité", ("", False))[0],
+                "signature": meta.get("Signature", ("", False))[0],
+                "duration": meta.get("Durée cible", ("", False))[0],
+                "atmosphere": meta.get("Atmosphère", ("", False))[0],
+                "style": style_full,
+                "style_short": style_short,
+                "status": meta.get("Statut", ("", False))[0],
+                "proposal": any(proposal for _, proposal in meta.values()),
+                "brief": brief,
+                "goals": parse_goals(fiche),
+                "checks": parse_checks(fiche),
+                "fiche": fiche,
+                "paroles": paroles,
+                "full_lyrics": full_lyrics,
+                "accent": accent,
+                "accent_soft": accent_soft,
+                "initials": initials(candidate),
+                "als": als_path,
+                "long": long_path,
+                "audio": find_audio(folder.name[:2]),
+            }
+        )
+    return tracks
+
+
+def find_audio(num: str) -> Path | None:
+    audio_dir = SITE / "audio"
+    if not audio_dir.is_dir():
+        return None
+    for suffix in (".mp3", ".ogg", ".m4a", ".wav"):
+        candidate = audio_dir / f"{num}{suffix}"
+        if candidate.is_file():
+            return candidate
+    return None
+
+
+# --------------------------------------------------------------------------
+# Fragments HTML
+# --------------------------------------------------------------------------
+
+
+def head(title: str, description: str, depth: int, *, page_path: str, accent: str = "#a63a2c") -> str:
+    prefix = "../" * depth
+    canonical = f"{SITE_URL}/{page_path}" if page_path else f"{SITE_URL}/"
+    return f"""<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{e(title)}</title>
+<meta name="description" content="{e(description)}">
+<meta name="author" content="Candidats 2027">
+<meta name="theme-color" content="{e(accent)}">
+<link rel="canonical" href="{e(canonical)}">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Candidats 2027 — l'album">
+<meta property="og:title" content="{e(title)}">
+<meta property="og:description" content="{e(description)}">
+<meta property="og:url" content="{e(canonical)}">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="{prefix}assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="{prefix}assets/style.css">
+<script>try{{var t=localStorage.getItem('theme');if(!t&&matchMedia('(prefers-color-scheme: dark)').matches)t='dark';if(t)document.documentElement.dataset.theme=t;}}catch(e){{}}</script>
+</head>"""
+
+
+def header(depth: int, active: str = "") -> str:
+    prefix = "../" * depth
+    home = f"{prefix}index.html"
+    links = [
+        ("titres", f"{home}#titres", "Les 31 titres"),
+        ("projet", f"{prefix}projet.html", "Le projet"),
+        ("participer", f"{prefix}participer.html", "Participer"),
+    ]
+    nav = "".join(
+        f'<a href="{href}"' + (' aria-current="page"' if key == active else "") + f">{label}</a>"
+        for key, href, label in links
+    )
+    return f"""<a class="skip-link" href="#contenu">Aller au contenu</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="{home}" aria-label="Candidats 2027, accueil">
+      <span class="brand-mark" aria-hidden="true">31</span>
+      <span class="brand-text"><strong>Candidats 2027</strong><small>l’album</small></span>
+    </a>
+    <nav class="main-nav" aria-label="Navigation principale">{nav}</nav>
+    <div class="header-tools">
+      <a class="github-link" href="{REPO_URL}" rel="noopener" aria-label="Dépôt GitHub">GitHub<span aria-hidden="true">↗</span></a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Changer de thème">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</header>"""
+
+
+def footer(depth: int) -> str:
+    prefix = "../" * depth
+    return f"""<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <p class="footer-brand">Candidats 2027 — l’album</p>
+      <p class="footer-note">Un album d’information civique : une chanson par candidat à la présidentielle de 2027. Maquettes, paroles et fiches techniques en libre consultation.</p>
+    </div>
+    <nav aria-label="Liens de pied de page">
+      <a href="{prefix}index.html#titres">Les titres</a>
+      <a href="{prefix}projet.html">Le projet</a>
+      <a href="{prefix}participer.html">Participer</a>
+      <a href="{prefix}telechargements/candidats-2027-pack.zip">Tout télécharger</a>
+      <a href="{REPO_URL}" rel="noopener">GitHub</a>
+    </nav>
+    <div>
+      <p class="footer-meta">Date de vérité : {TRUTH_DATE}</p>
+      <p class="footer-meta">Textes, musiques et sessions : © leurs auteurs. Diffusion pour l’écoute, l’étude et la reprise ; nous contacter pour tout autre usage.</p>
+      <p class="footer-meta">Site statique généré depuis les sources du projet. Aucun traceur.</p>
+    </div>
+  </div>
+</footer>
+<script src="{prefix}assets/app.js" defer></script>"""
+
+
+def page(title: str, description: str, depth: int, body: str, *, page_path: str, accent: str = "#a63a2c", active: str = "") -> str:
+    return f"""{head(title, description, depth, page_path=page_path, accent=accent)}
+<body>
+{header(depth, active)}
+<main id="contenu">
+{body}
+</main>
+{footer(depth)}
+</body>
+</html>
+"""
+
+
+def cover(track: dict, *, large: bool = False) -> str:
+    cls = "cover cover-large" if large else "cover"
+    return f"""<div class="{cls}" style="--accent:{e(track['accent'])};--accent-soft:{e(track['accent_soft'])}" aria-hidden="true">
+  <span class="cover-rule"></span>
+  <span class="cover-num">{track['num']:02d}</span>
+  <span class="cover-initials">{e(track['initials'])}</span>
+  <span class="cover-style">{e(track['style_short'] or 'Chanson')}</span>
+  <span class="cover-ring"></span>
+</div>"""
+
+
+def badges(track: dict) -> str:
+    items = []
+    if track["als"]:
+        items.append('<span class="badge badge-als">Session .als</span>')
+    if track["full_lyrics"]:
+        items.append('<span class="badge badge-full">Paroles complètes</span>')
+    else:
+        items.append('<span class="badge">Refrain seul</span>')
+    if track["long"]:
+        items.append('<span class="badge badge-long">Version longue</span>')
+    return "".join(items)
+
+
+def track_card(track: dict, depth: int = 0) -> str:
+    prefix = "../" * depth
+    href = f"{prefix}titres/{track['slug']}.html"
+    search = normalize(
+        f"{track['num']:02d} {track['candidate']} {track['title']} {track['style']} {track['atmosphere']}"
+    )
+    return f"""<article class="track-card" data-track data-als="{1 if track['als'] else 0}" data-lyrics="{'full' if track['full_lyrics'] else 'refrain'}" data-search="{e(search)}">
+  <a class="track-link" href="{href}">
+    {cover(track)}
+    <div class="track-body">
+      <p class="track-candidate">{e(track['candidate'])}</p>
+      <h3 class="track-title">{e(track['title'])}</h3>
+      <p class="track-meta">{e(track['tempo'] or '—')} · {e(track['key'] or '—')} · {e(track['duration'] or '—')}</p>
+      <div class="badges">{badges(track)}</div>
+    </div>
+  </a>
+</article>"""
+
+
+def download_card(
+    *,
+    kind: str,
+    title: str,
+    description: str,
+    href: str | None,
+    meta: str,
+    unavailable: str = "",
+    extra_link: str = "",
+) -> str:
+    icon = {
+        "als": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18V6h3l2 4 2-4h3v12h-2.6V9.8L9 14 6.6 9.8V18H4Zm13 0V6h2.8v9.7H23V18h-6Z"/></svg>',
+        "md": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6V2Zm8 1.5V8h4.5L14 3.5ZM8 12v6h1.7v-3.4L11 17l1.3-2.4V18H14v-6h-1.7l-1.3 2.5L9.7 12H8Zm7 0v6h2.4a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2H15Zm1.7 1.5h.7c.2 0 .3.1.3.3v2.4c0 .2-.1.3-.3.3h-.7v-3Z"/></svg>',
+        "zip": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h12v20H6V2Zm6 1.5h-1.5V5H12V3.5Zm0 3h-1.5V8H12V6.5Zm0 3h-1.5V11H12V9.5Zm0 3h-1.5v2.5h3V12h-1.5Zm-1.5 6h3v1.5h-3V18Z"/></svg>',
+        "long": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v2H4V5Zm0 4h16v2H4V9Zm0 4h10v2H4v-2Zm0 4h7v2H4v-2Z"/></svg>',
+    }[kind]
+    if href:
+        return f"""<a class="download-card" href="{href}" download>
+  <span class="dl-icon">{icon}</span>
+  <span class="dl-text">
+    <span class="dl-title">{e(title)}</span>
+    <span class="dl-desc">{e(description)}</span>
+    <span class="dl-meta">{e(meta)}</span>
+  </span>
+  <span class="dl-arrow" aria-hidden="true">↓</span>
+</a>"""
+    return f"""<div class="download-card is-unavailable">
+  <span class="dl-icon">{icon}</span>
+  <span class="dl-text">
+    <span class="dl-title">{e(title)}</span>
+    <span class="dl-desc">{e(unavailable)}</span>
+    <span class="dl-meta">{e(meta)}</span>
+  </span>
+  {extra_link}
+</div>"""
+
+
+def contribute_block(track: dict | None = None) -> str:
+    if track:
+        title = quote(f"[Correction] {track['num']:02d} — {track['candidate']} — {track['title']}")
+        correction = f"{REPO_URL}/issues/new?template=correction.yml&title={title}"
+        contribution_title = quote(f"[Contribution] {track['num']:02d} — {track['candidate']}")
+        contribution = f"{REPO_URL}/issues/new?template=contribution.yml&title={contribution_title}"
+        intro = f"Une source datée, une nuance, une meilleure formulation pour «&nbsp;{e(track['title'])}&nbsp;» ?"
+    else:
+        correction = f"{REPO_URL}/issues/new?template=correction.yml"
+        contribution = f"{REPO_URL}/issues/new?template=contribution.yml"
+        intro = "Une source datée, une nuance, une meilleure formulation ?"
+    return f"""<section class="contribute" aria-labelledby="contribuer-titre">
+  <div class="contribute-inner">
+    <p class="eyebrow">Participer</p>
+    <h2 id="contribuer-titre">Le projet est ouvert.</h2>
+    <p>{intro} Le site, les paroles et les fiches sont versionnés : chaque proposition peut être discutée et tracée.</p>
+    <div class="contribute-actions">
+      <a class="btn btn-primary" href="{correction}">Proposer une correction factuelle<span aria-hidden="true">↗</span></a>
+      <a class="btn btn-ghost" href="{contribution}">Contribuer à une chanson<span aria-hidden="true">↗</span></a>
+      <a class="btn btn-ghost" href="{REPO_URL}" rel="noopener">Voir le dépôt<span aria-hidden="true">↗</span></a>
+    </div>
+    <p class="contribute-note">Règle du projet : on critique le programme, le coût, la faisabilité ou la stratégie — jamais la personne. Tout chiffre doit venir avec sa source et sa date.</p>
+  </div>
+</section>"""
+
+
+# --------------------------------------------------------------------------
+# Pages
+# --------------------------------------------------------------------------
+
+
+def build_index(tracks: list[dict]) -> str:
+    total = len(tracks)
+    als_count = sum(1 for t in tracks if t["als"])
+    full_count = sum(1 for t in tracks if t["full_lyrics"])
+    refrain_count = total - full_count
+
+    cards = "\n".join(track_card(track) for track in tracks)
+    body = f"""
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="kicker"><span class="kicker-dot" aria-hidden="true"></span>Album d’information civique · présidentielle 2027</p>
+      <h1>Candidats<br><em>2027</em></h1>
+      <p class="lede">Trente et une chansons, un candidat par titre. Comprendre en quelques minutes ce qui distingue chaque programme, ce qu’il promet, ce qu’il coûte — et ce qu’on peut lui opposer.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#titres">Explorer les 31 titres</a>
+        <a class="btn btn-ghost" href="participer.html">Participer au projet</a>
+      </div>
+      <p class="hero-note">Paroles, fiches techniques et sessions Ableton à télécharger. Sources datées du {TRUTH_DATE}.</p>
+    </div>
+    <div class="hero-poster" aria-hidden="true">
+      <div class="poster">
+        <span class="poster-ring"></span>
+        <span class="poster-ring poster-ring-2"></span>
+        <span class="poster-kicker">une chanson<br>par candidat</span>
+        <span class="poster-num">31</span>
+        <span class="poster-caption">titres · maquettes · paroles</span>
+        <span class="poster-stamp">2027</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats" aria-label="Le projet en chiffres">
+  <div class="wrap stats-grid">
+    <div><strong>{total}</strong><span>titres</span></div>
+    <div><strong>{als_count}</strong><span>sessions Ableton publiées</span></div>
+    <div><strong>{full_count}</strong><span>paroles complètes</span></div>
+    <div><strong>31</strong><span>fiches techniques</span></div>
+  </div>
+</section>
+
+<section class="tracks-section" id="titres">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">L’album</p>
+        <h2>Les 31 titres</h2>
+        <p class="section-lede">Un ordre de passage tiré au sort, un style par candidat. Clique pour ouvrir la page du morceau, lire les paroles et télécharger les fichiers.</p>
+      </div>
+      <div class="section-count" aria-live="polite"><strong data-count>{total}</strong><span>titres affichés</span></div>
+    </div>
+
+    <div class="toolbar">
+      <div class="search-field">
+        <label for="track-search">Rechercher</label>
+        <input id="track-search" type="search" placeholder="Candidat, titre, style…" autocomplete="off" data-search-input>
+        <kbd aria-hidden="true">/</kbd>
+      </div>
+      <div class="filters" role="group" aria-label="Filtrer les titres">
+        <button type="button" class="filter is-active" data-filter="all" aria-pressed="true">Tout <span>{total}</span></button>
+        <button type="button" class="filter" data-filter="als" aria-pressed="false">Session .als <span>{als_count}</span></button>
+        <button type="button" class="filter" data-filter="full" aria-pressed="false">Paroles complètes <span>{full_count}</span></button>
+        <button type="button" class="filter" data-filter="refrain" aria-pressed="false">Refrain seul <span>{refrain_count}</span></button>
+      </div>
+    </div>
+
+    <div class="track-grid" data-track-grid>
+      {cards}
+    </div>
+    <p class="empty-state" data-empty hidden>Aucun titre ne correspond à cette recherche.</p>
+  </div>
+</section>
+
+<section class="manifesto">
+  <div class="wrap manifesto-grid">
+    <div>
+      <p class="eyebrow">Le principe</p>
+      <h2>Une chanson, pas un tract.</h2>
+    </div>
+    <div class="manifesto-text">
+      <p>Chaque titre suit la même forme : ce qui distingue le candidat, son discours, le point de vue de ses partisans, puis un refrain. Le refrain porte l’identité ; les autres sections nourrissent le sens.</p>
+      <p>Le projet ne soutient aucun candidat. Il cherche à rendre les programmes comparables, à rappeler leur coût et leurs conditions de faisabilité, et à distinguer la critique du programme de l’attaque personnelle.</p>
+      <a class="text-link" href="projet.html">Lire la note d’intention et les règles éditoriales<span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+{contribute_block()}
+"""
+    return page(
+        "Candidats 2027 — l’album · 31 chansons, 31 candidats",
+        "Un album d’information civique : une chanson par candidat à la présidentielle de 2027. Paroles, fiches techniques et sessions Ableton à télécharger.",
+        0,
+        body,
+        page_path="",
+        accent="#a63a2c",
+        active="titres",
+    )
+
+
+def build_song(track: dict, tracks: list[dict]) -> str:
+    index = tracks.index(track)
+    previous = tracks[index - 1] if index > 0 else None
+    following = tracks[index + 1] if index + 1 < len(tracks) else None
+
+    fiche_body = track["fiche"]
+    # Retire le titre et le bloc de métadonnées déjà affichés dans l'en-tête.
+    if "\n---" in fiche_body:
+        fiche_body = fiche_body.split("\n---", 1)[1]
+    fiche_html = md.render(fiche_body, demote=0)
+
+    paroles_html = track["paroles"]
+    paroles_html = re.sub(r"^# .*\n", "", paroles_html, count=1)
+    paroles_html = md.render(paroles_html, breaks=True)
+
+    prefix = "../"
+    als_issue_title = quote(
+        f"[Contribution] {track['num']:02d} — {track['candidate']} — session Ableton"
+    )
+    als_card = download_card(
+        kind="als",
+        title="Session Ableton (.als)",
+        description="Ouvrir, écouter, remixer, proposer une version.",
+        href=f"{prefix}telechargements/als/{track['slug']}.als" if track["als"] else None,
+        meta=f"Live 12 · {format_size(track['als'].stat().st_size)}" if track["als"] else "Fichier non publié",
+        unavailable="La session de ce morceau n’est pas encore publiée. Les paroles et la fiche sont disponibles.",
+        extra_link=f'<a class="dl-inline-link" href="{REPO_URL}/issues/new?template=contribution.yml&title={als_issue_title}">Proposer une session ↗</a>',
+    )
+    long_card = ""
+    if track["long"]:
+        long_card = download_card(
+            kind="long",
+            title="Version longue (archive)",
+            description="Version d’écriture développée, conservée comme référence.",
+            href=f"{prefix}telechargements/versions-longues/{track['slug']}.version-longue.md",
+            meta=f"Markdown · {format_size(track['long'].stat().st_size)}",
+        )
+
+    audio_card = ""
+    if track["audio"]:
+        audio_card = f"""<div class="audio-card">
+  <p class="dl-title">Écouter la maquette</p>
+  <audio controls preload="metadata" src="{prefix}audio/{e(track['audio'].name)}"></audio>
+</div>"""
+
+    brief = track["brief"]
+    for_label = brief.get("Pour", "")
+    against_label = brief.get("Contre", "")
+    profile = brief.get("Profil", "")
+    program = brief.get("Programme 2027", "")
+    actuality = brief.get("Actualité", "")
+    transition = brief.get("Transition Marseillaise", "")
+    actions = brief.get("Actions déjà menées", "")
+    color = brief.get("Couleur politique", "")
+
+    goals = "".join(f"<li>{e(goal)}</li>" for goal in track["goals"])
+    checks = "".join(f"<li>{e(check)}</li>" for check in track["checks"])
+
+    brief_block = ""
+    if profile or program:
+        for_block = (
+            f'<div class="argument argument-for"><h4>Ce que le brief met en avant</h4><p>{e(for_label)}</p></div>'
+            if for_label
+            else ""
+        )
+        against_block = (
+            f'<div class="argument argument-against"><h4>Ce que le brief oppose</h4><p>{e(against_label)}</p></div>'
+            if against_label
+            else ""
+        )
+        details = []
+        if color:
+            details.append(f"<div><dt>Couleur politique</dt><dd>{e(color)}</dd></div>")
+        if actions:
+            details.append(f"<div><dt>Actions déjà menées</dt><dd>{e(actions)}</dd></div>")
+        if actuality:
+            details.append(f"<div><dt>Actualité</dt><dd>{e(actuality)}</dd></div>")
+        if transition:
+            details.append(f"<div><dt>Transition « Marseillaise »</dt><dd>{e(transition)}</dd></div>")
+        brief_block = f"""<section class="brief-section" id="en-bref" aria-labelledby="en-bref-titre">
+  <div class="wrap">
+    <div class="section-head compact">
+      <div>
+        <p class="eyebrow">Carte d’identité</p>
+        <h2 id="en-bref-titre">En bref</h2>
+      </div>
+      <p class="section-source">Synthèse issue du brief interne du {TRUTH_DATE}. À vérifier avant enregistrement.</p>
+    </div>
+    <div class="brief-grid">
+      <div class="brief-main">
+        <h3>Profil</h3>
+        <p>{e(profile)}</p>
+        <h3>Programme 2027</h3>
+        <p>{e(program)}</p>
+        <dl class="brief-details">{''.join(details)}</dl>
+      </div>
+      <div class="brief-arguments">
+        {for_block}
+        {against_block}
+      </div>
+    </div>
+  </div>
+</section>"""
+
+    goals_block = ""
+    if goals:
+        goals_block = f"""<section class="goals" aria-labelledby="objectifs-titre">
+  <div class="wrap">
+    <h2 id="objectifs-titre">Ce que la chanson doit faire</h2>
+    <ul>{goals}</ul>
+  </div>
+</section>"""
+
+    checks_block = ""
+    if checks:
+        checks_block = f"""<section class="checks" aria-labelledby="verifier-titre">
+  <div class="wrap">
+    <h2 id="verifier-titre">À vérifier avant d’enregistrer</h2>
+    <ul>{checks}</ul>
+    <p class="checks-note">Ces points sont des vigilances, pas des affirmations validées. Chaque chiffre doit pouvoir être daté et sourcé.</p>
+  </div>
+</section>"""
+
+    status_text = track["status"]
+    if track["als"] and "aucune session" in status_text.lower():
+        status_text = "Session Ableton publiée — les métadonnées de la fiche restent à confirmer."
+
+    lyrics_note = ""
+    if not track["full_lyrics"]:
+        lyrics_issue_title = quote(
+            f"[Contribution] {track['num']:02d} — {track['candidate']} — paroles"
+        )
+        lyrics_note = f"""<aside class="lyrics-note">
+  <p><strong>Refrain seul pour l’instant.</strong> Les couplets, le pont et les sections « point de vue des partisans » restent à écrire. C’est le format cible de l’album ; la porte est ouverte.</p>
+  <a class="text-link" href="{REPO_URL}/issues/new?template=contribution.yml&title={lyrics_issue_title}">Proposer des couplets<span aria-hidden="true">→</span></a>
+</aside>"""
+
+    prev_link = (
+        f'<a class="pager-link pager-prev" href="../titres/{previous["slug"]}.html"><span>← Titre {previous["num"]:02d}</span><strong>{e(previous["title"])}</strong><small>{e(previous["candidate"])}</small></a>'
+        if previous
+        else "<span></span>"
+    )
+    next_link = (
+        f'<a class="pager-link pager-next" href="../titres/{following["slug"]}.html"><span>Titre {following["num"]:02d} →</span><strong>{e(following["title"])}</strong><small>{e(following["candidate"])}</small></a>'
+        if following
+        else "<span></span>"
+    )
+
+    proposal_note = (
+        "<p class=\"proposal-note\">Tempo, tonalité et durée sont des propositions de travail, à valider à l’oreille.</p>"
+        if track["proposal"]
+        else ""
+    )
+
+    body = f"""
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Fil d’Ariane">
+    <a href="../index.html">L’album</a><span aria-hidden="true">/</span><a href="../index.html#titres">Titres</a><span aria-hidden="true">/</span><span aria-current="page">{track['num']:02d}</span>
+  </nav>
+</div>
+
+<header class="song-hero">
+  <div class="wrap song-hero-grid">
+    {cover(track, large=True)}
+    <div class="song-intro">
+      <p class="eyebrow">Titre {track['num']:02d} sur 31 · {e(track['style_short'] or 'Chanson')}</p>
+      <h1>{e(track['candidate'])}</h1>
+      <p class="song-title">{e(track['title'])}</p>
+      <p class="song-lede">{e(track['atmosphere'])}{(' — ' + e(track['style'])) if track['style'] and track['style'] != track['atmosphere'] else ''}</p>
+      <dl class="meta-chips">
+        <div><dt>Tempo</dt><dd>{e(track['tempo'] or '—')}</dd></div>
+        <div><dt>Tonalité</dt><dd>{e(track['key'] or '—')}</dd></div>
+        <div><dt>Signature</dt><dd>{e(track['signature'] or '—')}</dd></div>
+        <div><dt>Durée cible</dt><dd>{e(track['duration'] or '—')}</dd></div>
+      </dl>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#telecharger">Télécharger les fichiers</a>
+        <a class="btn btn-ghost" href="#paroles">Lire les paroles</a>
+      </div>
+      {proposal_note}
+      <p class="status-line"><span class="status-dot" aria-hidden="true"></span>{e(status_text)}</p>
+    </div>
+  </div>
+</header>
+
+<section class="downloads-section" id="telecharger" aria-labelledby="telecharger-titre">
+  <div class="wrap">
+    <div class="section-head compact">
+      <div>
+        <p class="eyebrow">Fichiers sources</p>
+        <h2 id="telecharger-titre">Télécharger</h2>
+      </div>
+      <p class="section-source">{'Session Ableton disponible' if track['als'] else 'Session Ableton à venir'} · paroles et fiche toujours disponibles.</p>
+    </div>
+    {audio_card}
+    <div class="download-grid">
+      {als_card}
+      {download_card(kind="md", title="Paroles (Markdown)", description="Le texte complet, sections et notes de prudence.", href=f"{prefix}telechargements/paroles/{track['slug']}.paroles.md", meta=f"Markdown · {format_size(len(track['paroles'].encode('utf-8')))}")}
+      {download_card(kind="md", title="Fiche technique (Markdown)", description="Brief, structure, palette, mix et steps de production.", href=f"{prefix}telechargements/fiches/{track['slug']}.fiche-technique.md", meta=f"Markdown · {format_size(len(track['fiche'].encode('utf-8')))}")}
+      {long_card}
+    </div>
+    <p class="download-note">Les fichiers sont copiés à l’identique depuis les sources du projet, sans modification. Les sessions Ableton s’ouvrent avec Live 12 ; certaines références d’instruments peuvent nécessiter les mêmes packs que le projet d’origine.</p>
+  </div>
+</section>
+
+{brief_block}
+
+<section class="lyrics-section" id="paroles" aria-labelledby="paroles-titre">
+  <div class="wrap lyrics-layout">
+    <div class="lyrics-head">
+      <p class="eyebrow">Paroles</p>
+      <h2 id="paroles-titre">Le texte</h2>
+      <p class="section-source">Version de travail — le texte évolue à l’écoute et à la vérification des faits.</p>
+    </div>
+    {lyrics_note}
+    <article class="prose lyrics">
+      {paroles_html}
+    </article>
+  </div>
+</section>
+
+{goals_block}
+
+<section class="fiche-section" id="fiche" aria-labelledby="fiche-titre">
+  <div class="wrap">
+    <div class="section-head compact">
+      <div>
+        <p class="eyebrow">Production</p>
+        <h2 id="fiche-titre">Fiche technique</h2>
+      </div>
+      <a class="text-link" href="{prefix}telechargements/fiches/{track['slug']}.fiche-technique.md">Télécharger le Markdown<span aria-hidden="true">↓</span></a>
+    </div>
+    <article class="prose fiche">
+      {fiche_html}
+    </article>
+  </div>
+</section>
+
+{checks_block}
+
+{contribute_block(track)}
+
+<nav class="wrap pager" aria-label="Titres précédent et suivant">
+  {prev_link}
+  {next_link}
+</nav>
+"""
+    return page(
+        f"{track['num']:02d} — {track['candidate']} — {track['title']} · Candidats 2027",
+        f"Paroles, fiche technique et session Ableton de « {track['title']} » ({track['candidate']}), titre {track['num']:02d} de l’album Candidats 2027.",
+        1,
+        body,
+        page_path=f"titres/{track['slug']}.html",
+        accent=track["accent"],
+        active="titres",
+    )
+
+
+def build_project(album_text: str) -> str:
+    # Sépare les lignes de métadonnées du préambule (Dossier / Date / État),
+    # que Markdown fusionnerait sinon en un seul paragraphe.
+    album_text = re.sub(
+        r"(?m)^(\*\*[^\n]+\*\*\s*:.*)\n(?=\*\*)",
+        r"\1\n\n",
+        album_text,
+    )
+    body_html = md.render(album_text)
+    body = f"""
+<header class="page-hero">
+  <div class="wrap narrow">
+    <p class="eyebrow">Le projet</p>
+    <h1>Une chanson par candidat.<br><em>Rien de plus, rien de moins.</em></h1>
+    <p class="lede">Note d’intention, méthode de production et règles éditoriales de l’album Candidats 2027. Ce document est la référence du projet ; il est daté du {TRUTH_DATE}.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="telechargements/album/Album.MD" download>Télécharger la note (Markdown)</a>
+      <a class="btn btn-ghost" href="index.html#titres">Voir les titres</a>
+    </div>
+  </div>
+</header>
+<section class="prose-page">
+  <div class="wrap narrow">
+    <article class="prose project">
+      {body_html}
+    </article>
+  </div>
+</section>
+{contribute_block()}
+"""
+    return page(
+        "Le projet · Candidats 2027",
+        "Note d’intention, méthode de production et règles éditoriales de l’album Candidats 2027 : une chanson par candidat à la présidentielle.",
+        0,
+        body,
+        page_path="projet.html",
+        active="projet",
+    )
+
+
+def build_contribute() -> str:
+    correction = f"{REPO_URL}/issues/new?template=correction.yml"
+    contribution = f"{REPO_URL}/issues/new?template=contribution.yml"
+    body = f"""
+<header class="page-hero">
+  <div class="wrap narrow">
+    <p class="eyebrow">Participer</p>
+    <h1>Le projet est un<br><em>chantier ouvert.</em></h1>
+    <p class="lede">Les paroles, les fiches et les sessions sont publiées pour être lues, jouées, corrigées et améliorées. Voici comment contribuer sans casser la méthode.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="{correction}">Signaler une erreur factuelle<span aria-hidden="true">↗</span></a>
+      <a class="btn btn-ghost" href="{contribution}">Proposer une contribution<span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</header>
+
+<section class="participate">
+  <div class="wrap">
+    <div class="participate-grid">
+      <article class="participate-card">
+        <span class="participate-num">01</span>
+        <h2>Vérifier un fait</h2>
+        <p>Un chiffre, une date, un score, une procédure : signale le passage exact, la source et sa date. La hiérarchie du projet est simple : programme officiel, fait institutionnel daté, presse datée, brief interne.</p>
+        <a class="text-link" href="{correction}">Ouvrir une correction<span aria-hidden="true">↗</span></a>
+      </article>
+      <article class="participate-card">
+        <span class="participate-num">02</span>
+        <h2>Écrire ou réécrire</h2>
+        <p>Les titres 01 à 08 et 14 à 31 n’ont encore qu’un refrain. Couplets, ponts, sections « point de vue des partisans » : propose un texte qui tient la forme et les règles de prudence.</p>
+        <a class="text-link" href="{contribution}">Proposer des paroles<span aria-hidden="true">↗</span></a>
+      </article>
+      <article class="participate-card">
+        <span class="participate-num">03</span>
+        <h2>Faire de la musique</h2>
+        <p>Une session Ableton est publiée pour chaque maquette disponible. Tu peux la reprendre, la mixer, changer un instrument — à condition de documenter ce que tu changes dans la fiche technique.</p>
+        <a class="text-link" href="index.html#titres">Voir les sessions<span aria-hidden="true">↗</span></a>
+      </article>
+      <article class="participate-card">
+        <span class="participate-num">04</span>
+        <h2>Améliorer le site</h2>
+        <p>Le site est statique, généré depuis les sources du projet. Accessibilité, mise en page, liens, téléchargements : les propositions techniques sont bienvenues sur le dépôt.</p>
+        <a class="text-link" href="{REPO_URL}" rel="noopener">Voir le dépôt<span aria-hidden="true">↗</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="rules">
+  <div class="wrap narrow">
+    <p class="eyebrow">Règles éditoriales</p>
+    <h2>Ce qui tient le projet.</h2>
+    <ol class="rules-list">
+      <li><strong>Critiquer le programme, pas la personne.</strong> Coût, financement, faisabilité, majorité nécessaire, compatibilité constitutionnelle ou européenne, stratégie électorale, contradiction interne.</li>
+      <li><strong>Aucun fait judiciaire dans un refrain.</strong> Une procédure n’est nommée que si elle est indispensable au sens : juridiction, date, statut exact — jamais résumée par un mot qui accuse.</li>
+      <li><strong>Un chiffre = une source + une date.</strong> La chanson doit pouvoir dire « au {TRUTH_DATE} ».</li>
+      <li><strong>Pas d’insinuation.</strong> Une formule qui laisse entendre sans documenter est retirée.</li>
+      <li><strong>Nom officiel dans chaque refrain.</strong> Et pas de présentation comme candidat de quelqu’un qui ne l’est pas.</li>
+      <li><strong>Les partisans parlent en leur nom.</strong> Leurs paroles sont présentées comme un point de vue, pas comme une vérité objective.</li>
+    </ol>
+    <p class="rules-note">Ces règles sont issues de la note de projet. Elles s’appliquent à chaque refrain, à chaque fiche et à chaque contribution.</p>
+  </div>
+</section>
+
+<section class="workflow">
+  <div class="wrap narrow">
+    <p class="eyebrow">Méthode</p>
+    <h2>Comment une contribution devient un titre.</h2>
+    <div class="workflow-steps">
+      <div><span>1</span><h3>Issue</h3><p>La proposition est ouverte sur GitHub avec le titre concerné, le passage visé et une source datée.</p></div>
+      <div><span>2</span><h3>Discussion</h3><p>On vérifie le fait, on écoute la version existante, on discute de la formulation et du style.</p></div>
+      <div><span>3</span><h3>Intégration</h3><p>Le texte ou la session est intégré, la fiche technique est mise à jour, le site est régénéré.</p></div>
+      <div><span>4</span><h3>Écoute</h3><p>La maquette est validée à l’oreille par extraits avant d’être figée. On ne rouvre pas une maquette validée sans raison.</p></div>
+    </div>
+  </div>
+</section>
+
+{contribute_block()}
+"""
+    return page(
+        "Participer · Candidats 2027",
+        "Contribuer à l’album Candidats 2027 : vérifier un fait, écrire des paroles, reprendre une session Ableton ou améliorer le site.",
+        0,
+        body,
+        page_path="participer.html",
+        active="participer",
+    )
+
+
+def build_404() -> str:
+    body = """
+<header class="page-hero error-page">
+  <div class="wrap narrow">
+    <p class="eyebrow">Erreur 404</p>
+    <h1>Ce titre n’est pas<br><em>au programme.</em></h1>
+    <p class="lede">La page demandée n’existe pas ou a changé d’adresse. L’album, lui, est toujours là.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="index.html">Retour à l’album</a>
+      <a class="btn btn-ghost" href="index.html#titres">Voir les 31 titres</a>
+    </div>
+  </div>
+</header>
+"""
+    return page("Page introuvable · Candidats 2027", "Page introuvable.", 0, body, page_path="404.html")
+
+
+# --------------------------------------------------------------------------
+# Écriture
+# --------------------------------------------------------------------------
+
+
+def prepare_docs() -> None:
+    DOCS.mkdir(parents=True, exist_ok=True)
+    for name in ("assets", "titres", "telechargements", "audio"):
+        target = DOCS / name
+        if target.exists():
+            shutil.rmtree(target)
+    for name in ("index.html", "projet.html", "participer.html", "404.html"):
+        target = DOCS / name
+        if target.exists():
+            target.unlink()
+    (DOCS / "titres").mkdir(parents=True, exist_ok=True)
+    DOCS.mkdir(parents=True, exist_ok=True)
+
+
+def copy_assets() -> None:
+    assets_out = DOCS / "assets"
+    assets_out.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(SITE / "assets" / "style.css", assets_out / "style.css")
+    shutil.copy2(SITE / "assets" / "app.js", assets_out / "app.js")
+    shutil.copy2(SITE / "assets" / "favicon.svg", assets_out / "favicon.svg")
+
+
+def write_downloads(tracks: list[dict], sources: Path, album_text: str) -> None:
+    base = DOCS / "telechargements"
+    for sub in ("als", "paroles", "fiches", "versions-longues", "album"):
+        (base / sub).mkdir(parents=True, exist_ok=True)
+
+    for track in tracks:
+        shutil.copyfile(
+            track["folder"] / "PAROLES.md",
+            base / "paroles" / f"{track['slug']}.paroles.md",
+        )
+        shutil.copyfile(
+            track["folder"] / "FICHE_TECHNIQUE.md",
+            base / "fiches" / f"{track['slug']}.fiche-technique.md",
+        )
+        if track["als"]:
+            shutil.copy2(track["als"], base / "als" / f"{track['slug']}.als")
+        if track["long"]:
+            shutil.copyfile(
+                track["long"],
+                base / "versions-longues" / f"{track['slug']}.version-longue.md",
+            )
+        if track["audio"]:
+            audio_out = DOCS / "audio"
+            audio_out.mkdir(exist_ok=True)
+            shutil.copy2(track["audio"], audio_out / track["audio"].name)
+
+    shutil.copyfile(sources / "Album.MD", base / "album" / "Album.MD")
+
+    manifest = {
+        "album": "Candidats 2027",
+        "truthDate": ALBUM_DATE_ISO,
+        "generatedFrom": "ableton-holland-mcp/sources/Candid_2027_ats (lecture seule)",
+        "tracks": [
+            {
+                "number": track["num"],
+                "candidate": track["candidate"],
+                "title": track["title"],
+                "style": track["style"],
+                "tempo": track["tempo"],
+                "key": track["key"],
+                "duration": track["duration"],
+                "status": track["status"],
+                "files": {
+                    "als": f"als/{track['slug']}.als" if track["als"] else None,
+                    "paroles": f"paroles/{track['slug']}.paroles.md",
+                    "ficheTechnique": f"fiches/{track['slug']}.fiche-technique.md",
+                    "versionLongue": f"versions-longues/{track['slug']}.version-longue.md"
+                    if track["long"]
+                    else None,
+                },
+            }
+            for track in tracks
+        ],
+    }
+    (base / "manifest.json").write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+
+    readme = f"""CANDIDATS 2027 — L'ALBUM
+=======================
+
+Pack de téléchargement généré depuis les sources du projet.
+Date de vérité : {TRUTH_DATE}
+
+Contenu
+-------
+- paroles/           les paroles de chaque titre (Markdown)
+- fiches/            les fiches techniques (Markdown)
+- als/               les sessions Ableton disponibles
+- versions-longues/  les versions d'écriture développées (archives)
+- album/Album.MD     la note de projet
+- manifest.json      l'index des fichiers
+
+Chaque titre suit la forme : différence -> discours -> partisans -> refrain.
+Les tempos, tonalités et durées sont des propositions de travail.
+
+Règles
+------
+- Critiquer le programme, pas la personne.
+- Un chiffre = une source + une date.
+- Aucun fait judiciaire dans un refrain.
+- Les paroles des partisans sont leur point de vue, pas une vérité objective.
+
+Textes, musiques et sessions : © leurs auteurs.
+Diffusion pour l'écoute, l'étude et la reprise ; nous contacter pour tout autre usage.
+
+Dépôt : {REPO_URL}
+Site  : {SITE_URL}/
+"""
+    (base / "LISEZ-MOI.txt").write_text(readme, encoding="utf-8")
+
+    # Archive complète (hors elle-même).
+    pack = base / "candidats-2027-pack.zip"
+    with zipfile.ZipFile(pack, "w", zipfile.ZIP_DEFLATED) as archive:
+        for path in sorted(base.rglob("*")):
+            if path.is_file() and path != pack:
+                archive.write(path, path.relative_to(base).as_posix())
+
+
+def write_pages(tracks: list[dict], sources: Path, album_text: str) -> None:
+    (DOCS / "index.html").write_text(build_index(tracks), encoding="utf-8")
+    (DOCS / "projet.html").write_text(build_project(album_text), encoding="utf-8")
+    (DOCS / "participer.html").write_text(build_contribute(), encoding="utf-8")
+    (DOCS / "404.html").write_text(build_404(), encoding="utf-8")
+    (DOCS / ".nojekyll").write_text("", encoding="utf-8")
+
+    for track in tracks:
+        (DOCS / "titres" / f"{track['slug']}.html").write_text(
+            build_song(track, tracks), encoding="utf-8"
+        )
+
+
+def write_extras(tracks: list[dict]) -> None:
+    urls = [f"{SITE_URL}/", f"{SITE_URL}/projet.html", f"{SITE_URL}/participer.html"]
+    urls += [f"{SITE_URL}/titres/{track['slug']}.html" for track in tracks]
+    sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    for url in urls:
+        sitemap += f"  <url><loc>{e(url)}</loc><lastmod>{ALBUM_DATE_ISO}</lastmod></url>\n"
+    sitemap += "</urlset>\n"
+    (DOCS / "sitemap.xml").write_text(sitemap, encoding="utf-8")
+    (DOCS / "robots.txt").write_text(
+        f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n", encoding="utf-8"
+    )
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--sources", type=Path, default=DEFAULT_SOURCES)
+    parser.add_argument("--als", type=Path, default=DEFAULT_ALS)
+    args = parser.parse_args()
+
+    sources: Path = args.sources
+    als_dir: Path = args.als
+    if not (sources / "Album.MD").is_file():
+        raise SystemExit(f"Sources introuvables : {sources}")
+    if not als_dir.is_dir():
+        print(f"⚠ Dossier Ableton introuvable ({als_dir}) : aucune session ne sera publiée.")
+
+    tracks = load_tracks(sources, als_dir)
+    if not tracks:
+        raise SystemExit("Aucun titre trouvé dans les sources.")
+
+    album_text = (sources / "Album.MD").read_text(encoding="utf-8")
+
+    prepare_docs()
+    copy_assets()
+    write_downloads(tracks, sources, album_text)
+    write_pages(tracks, sources, album_text)
+    write_extras(tracks)
+
+    als_count = sum(1 for track in tracks if track["als"])
+    print(f"✓ {len(tracks)} titres · {als_count} sessions Ableton · site généré dans {DOCS}")
+
+
+if __name__ == "__main__":
+    main()

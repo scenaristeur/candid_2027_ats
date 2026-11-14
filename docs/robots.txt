@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://scenaristeur.github.io/candid_2027_ats/sitemap.xml

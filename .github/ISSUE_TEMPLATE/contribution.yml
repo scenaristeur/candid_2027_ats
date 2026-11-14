@@ -1,0 +1,56 @@
+name: Contribution musicale ou artistique
+description: Proposer des paroles, une session Ableton, un mix, un visuel ou une amélioration du site.
+title: "[Contribution] "
+labels: ["contribution"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci de contribuer à l'album. Décris précisément ce que tu proposes et, si tu joins un fichier, indique son format et ses conditions de réutilisation.
+  - type: input
+    id: titre
+    attributes:
+      label: Titre concerné
+      description: Numéro, candidat et titre de la chanson (ou « site » pour une contribution technique).
+      placeholder: "09 — Nathalie Arthaud — La Révolution en 2 200 euros"
+    validations:
+      required: true
+  - type: checkboxes
+    id: type
+    attributes:
+      label: Type de contribution
+      options:
+        - label: Paroles (couplets, pont, sections « partisans »)
+        - label: Session Ableton / arrangement / instrumentation
+        - label: Mix ou mastering
+        - label: Voix ou interprétation
+        - label: Visuel, pochette, typographie
+        - label: Site, accessibilité, technique
+  - type: textarea
+    id: proposition
+    attributes:
+      label: Proposition
+      description: Décris le contenu, l'intention et ce que cela change par rapport à la version actuelle.
+    validations:
+      required: true
+  - type: textarea
+    id: fichiers
+    attributes:
+      label: Fichiers et liens
+      description: Liens de téléchargement (WeTransfer, Drive, dépôt Git…) ou description des fichiers. Évite les pièces jointes lourdes dans l'issue.
+  - type: textarea
+    id: credits
+    attributes:
+      label: Crédits et droits
+      description: Qui a écrit/joué/produit ? Sous quelles conditions cette contribution peut-elle être diffusée et reprise ?
+    validations:
+      required: true
+  - type: checkboxes
+    id: regles
+    attributes:
+      label: Règles éditoriales
+      options:
+        - label: Je critique le programme, le coût, la faisabilité ou la stratégie, pas la personne.
+          required: true
+        - label: Les paroles que je propose présentent les partisans en leur nom, comme un point de vue.
+          required: true
