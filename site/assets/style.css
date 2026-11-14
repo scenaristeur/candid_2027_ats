@@ -135,6 +135,46 @@ p {
 
 /* ---------------------------------------------------------------- Header */
 
+.ai-banner {
+  background: color-mix(in srgb, var(--accent) 11%, var(--paper));
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-2);
+  font-size: 0.78rem;
+}
+
+.ai-banner .wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 8px 0;
+}
+
+.ai-banner p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.ai-banner strong {
+  color: var(--ink);
+}
+
+.ai-banner a {
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+
+.ai-tag {
+  flex: none;
+  padding: 1px 6px;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  color: var(--accent-ink);
+  font-family: var(--sans);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
 .site-header {
   position: sticky;
   top: 0;
@@ -1388,6 +1428,28 @@ a.download-card:hover {
   background: color-mix(in srgb, var(--paper) 60%, var(--paper-3));
 }
 
+.ai-note {
+  max-width: 46rem;
+  margin: 0 0 18px;
+  padding: 14px 18px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--paper) 55%, var(--paper-3));
+  color: var(--ink-2);
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+.ai-note strong {
+  color: var(--ink);
+}
+
+.ai-note a {
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+
 .lyrics-note p {
   flex: 1 1 340px;
   margin: 0;
@@ -1986,6 +2048,15 @@ a.download-card:hover {
 
   .contribute-actions .btn {
     width: 100%;
+  }
+
+  .ai-banner .wrap {
+    display: block;
+  }
+
+  .ai-tag {
+    display: inline-block;
+    margin-bottom: 4px;
   }
 
   .workflow-steps {

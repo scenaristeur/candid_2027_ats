@@ -339,6 +339,7 @@ def footer(depth: int) -> str:
     </nav>
     <div>
       <p class="footer-meta">Date de vérité : {TRUTH_DATE}</p>
+      <p class="footer-meta">Titres, paroles et musiques générés par IA : brouillons de vulgarisation, potentiellement erronés. Exercice de collaboration musicale et culturelle, sans intention de favoriser ou défavoriser un candidat ; neutralité et égalité de traitement.</p>
       <p class="footer-meta">Textes, musiques et sessions : © leurs auteurs. Diffusion pour l’écoute, l’étude et la reprise ; nous contacter pour tout autre usage.</p>
       <p class="footer-meta">Site statique généré depuis les sources du projet. Aucun traceur.</p>
     </div>
@@ -347,9 +348,20 @@ def footer(depth: int) -> str:
 <script src="{prefix}assets/app.js" defer></script>"""
 
 
+def ai_banner(depth: int) -> str:
+    prefix = "../" * depth
+    return f"""<div class="ai-banner" role="note">
+  <div class="wrap">
+    <span class="ai-tag">IA</span>
+    <p><strong>Titres, paroles et musiques générés par IA.</strong> Exercice de collaboration musicale et culturelle, pas un outil politique : aucun candidat n’est soutenu ni défavorisé. Brouillons de vulgarisation, potentiellement erronés — <a href="{prefix}participer.html">corrections bienvenues</a>.</p>
+  </div>
+</div>"""
+
+
 def page(title: str, description: str, depth: int, body: str, *, page_path: str, accent: str = "#a63a2c", active: str = "") -> str:
     return f"""{head(title, description, depth, page_path=page_path, accent=accent)}
 <body>
+{ai_banner(depth)}
 {header(depth, active)}
 <main id="contenu">
 {body}
@@ -461,7 +473,7 @@ def contribute_block(track: dict | None = None) -> str:
       <a class="btn btn-ghost" href="{contribution}">Contribuer à une chanson<span aria-hidden="true">↗</span></a>
       <a class="btn btn-ghost" href="{REPO_URL}" rel="noopener">Voir le dépôt<span aria-hidden="true">↗</span></a>
     </div>
-    <p class="contribute-note">Règle du projet : on critique le programme, le coût, la faisabilité ou la stratégie — jamais la personne. Tout chiffre doit venir avec sa source et sa date.</p>
+    <p class="contribute-note">Règle du projet : on critique le programme, le coût, la faisabilité ou la stratégie — jamais la personne. Tout chiffre doit venir avec sa source et sa date. L’album ne soutient ni ne combat aucun candidat : neutralité et égalité de traitement.</p>
   </div>
 </section>"""
 
@@ -482,14 +494,14 @@ def build_index(tracks: list[dict]) -> str:
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <p class="kicker"><span class="kicker-dot" aria-hidden="true"></span>Album d’information civique · présidentielle 2027</p>
+      <p class="kicker"><span class="kicker-dot" aria-hidden="true"></span>Album d’information civique · brouillons générés par IA · présidentielle 2027</p>
       <h1>Candidats<br><em>2027</em></h1>
       <p class="lede">Trente et une chansons, un candidat par titre. Comprendre en quelques minutes ce qui distingue chaque programme, ce qu’il promet, ce qu’il coûte — et ce qu’on peut lui opposer.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#titres">Explorer les 31 titres</a>
         <a class="btn btn-ghost" href="participer.html">Participer au projet</a>
       </div>
-      <p class="hero-note">Paroles, fiches techniques et sessions Ableton à télécharger. Sources datées du {TRUTH_DATE}.</p>
+      <p class="hero-note">Brouillons de vulgarisation générés par IA — paroles, fiches techniques et sessions Ableton à télécharger. Sources datées du {TRUTH_DATE}.</p>
     </div>
     <div class="hero-poster" aria-hidden="true">
       <div class="poster">
@@ -553,7 +565,7 @@ def build_index(tracks: list[dict]) -> str:
     </div>
     <div class="manifesto-text">
       <p>Chaque titre suit la même forme : ce qui distingue le candidat, son discours, le point de vue de ses partisans, puis un refrain. Le refrain porte l’identité ; les autres sections nourrissent le sens.</p>
-      <p>Le projet ne soutient aucun candidat. Il cherche à rendre les programmes comparables, à rappeler leur coût et leurs conditions de faisabilité, et à distinguer la critique du programme de l’attaque personnelle.</p>
+      <p>Le projet ne soutient ni ne combat aucun candidat. C’est un exercice de collaboration musicale et culturelle partagé, pas un outil politique visant à favoriser ou défavoriser une candidature : la démarche souhaite respecter la neutralité et l’égalité de traitement entre les candidats. Il cherche à rendre les programmes comparables, à rappeler leur coût et leurs conditions de faisabilité, et à distinguer la critique du programme de l’attaque personnelle.</p>
       <a class="text-link" href="projet.html">Lire la note d’intention et les règles éditoriales<span aria-hidden="true">→</span></a>
     </div>
   </div>
@@ -563,7 +575,7 @@ def build_index(tracks: list[dict]) -> str:
 """
     return page(
         "Candidats 2027 — l’album · 31 chansons, 31 candidats",
-        "Un album d’information civique : une chanson par candidat à la présidentielle de 2027. Paroles, fiches techniques et sessions Ableton à télécharger.",
+        "Un album d’information civique : une chanson par candidat à la présidentielle de 2027. Titres, paroles et musiques générés par IA — brouillons de vulgarisation à corriger. Paroles, fiches techniques et sessions Ableton à télécharger.",
         0,
         body,
         page_path="",
@@ -588,6 +600,10 @@ def build_song(track: dict, tracks: list[dict]) -> str:
     paroles_html = md.render(paroles_html, breaks=True)
 
     prefix = "../"
+    correction_title = quote(
+        f"[Correction] {track['num']:02d} — {track['candidate']} — {track['title']}"
+    )
+    correction_url = f"{REPO_URL}/issues/new?template=correction.yml&title={correction_title}"
     als_issue_title = quote(
         f"[Contribution] {track['num']:02d} — {track['candidate']} — session Ableton"
     )
@@ -786,6 +802,9 @@ def build_song(track: dict, tracks: list[dict]) -> str:
       <h2 id="paroles-titre">Le texte</h2>
       <p class="section-source">Version de travail — le texte évolue à l’écoute et à la vérification des faits.</p>
     </div>
+    <aside class="ai-note">
+      <strong>Brouillon généré par IA.</strong> Les paroles et la fiche technique ci-dessous sont des ébauches de vulgarisation : elles peuvent contenir des erreurs, des approximations ou des maladresses. Cet album est un exercice de collaboration musicale et culturelle, pas un outil politique visant à favoriser ou défavoriser un candidat. <a href="{correction_url}">Signaler une erreur ou proposer une correction</a>.
+    </aside>
     {lyrics_note}
     <article class="prose lyrics">
       {paroles_html}
@@ -844,7 +863,7 @@ def build_project(album_text: str) -> str:
   <div class="wrap narrow">
     <p class="eyebrow">Le projet</p>
     <h1>Une chanson par candidat.<br><em>Rien de plus, rien de moins.</em></h1>
-    <p class="lede">Note d’intention, méthode de production et règles éditoriales de l’album Candidats 2027. Ce document est la référence du projet ; il est daté du {TRUTH_DATE}.</p>
+    <p class="lede">Note d’intention, méthode de production et règles éditoriales de l’album Candidats 2027. Les titres, paroles et musiques sont générés par IA : ce sont des brouillons de vulgarisation, potentiellement erronés. C’est un exercice de collaboration musicale et culturelle partagé, pas un outil politique visant à favoriser ou défavoriser un candidat ; la démarche vise la neutralité et l’égalité. Ce document est daté du {TRUTH_DATE}.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="telechargements/album/Album.MD" download>Télécharger la note (Markdown)</a>
       <a class="btn btn-ghost" href="index.html#titres">Voir les titres</a>
@@ -878,7 +897,7 @@ def build_contribute() -> str:
   <div class="wrap narrow">
     <p class="eyebrow">Participer</p>
     <h1>Le projet est un<br><em>chantier ouvert.</em></h1>
-    <p class="lede">Les paroles, les fiches et les sessions sont publiées pour être lues, jouées, corrigées et améliorées. Voici comment contribuer sans casser la méthode.</p>
+    <p class="lede">Les paroles, les fiches et les sessions sont des ébauches générées par IA, publiées pour être lues, jouées, corrigées et améliorées. L’album est un exercice de collaboration musicale et culturelle partagé, pas un outil politique : il ne vise ni à favoriser ni à défavoriser un candidat, et revendique la neutralité et l’égalité de traitement.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="{correction}">Signaler une erreur factuelle<span aria-hidden="true">↗</span></a>
       <a class="btn btn-ghost" href="{contribution}">Proposer une contribution<span aria-hidden="true">↗</span></a>
@@ -928,8 +947,9 @@ def build_contribute() -> str:
       <li><strong>Pas d’insinuation.</strong> Une formule qui laisse entendre sans documenter est retirée.</li>
       <li><strong>Nom officiel dans chaque refrain.</strong> Et pas de présentation comme candidat de quelqu’un qui ne l’est pas.</li>
       <li><strong>Les partisans parlent en leur nom.</strong> Leurs paroles sont présentées comme un point de vue, pas comme une vérité objective.</li>
+      <li><strong>Neutralité et égalité.</strong> L’album est un exercice de collaboration musicale et culturelle, pas un support de campagne : aucun candidat n’est soutenu ni défavorisé, et chaque titre reçoit le même traitement.</li>
     </ol>
-    <p class="rules-note">Ces règles sont issues de la note de projet. Elles s’appliquent à chaque refrain, à chaque fiche et à chaque contribution.</p>
+    <p class="rules-note">Ces règles sont issues de la note de projet. Elles s’appliquent à chaque refrain, à chaque fiche et à chaque contribution. L’album est une expérimentation éditoriale : les titres, paroles et musiques ont été générés par IA, sans valeur de validation factuelle. Chaque correction documentée est bienvenue.</p>
   </div>
 </section>
 
@@ -1077,6 +1097,18 @@ Contenu
 
 Chaque titre suit la forme : différence -> discours -> partisans -> refrain.
 Les tempos, tonalités et durées sont des propositions de travail.
+
+Avertissement
+-------------
+Les titres, paroles et musiques ont été générés par IA. Ce sont des brouillons
+de vulgarisation : ils peuvent contenir des erreurs factuelles, juridiques ou
+artistiques. Ils ne constituent ni une source de référence ni une validation
+des programmes présentés. Les corrections documentées sont bienvenues.
+
+Cet album est un exercice de collaboration musicale et culturelle partagé,
+pas un outil politique visant à favoriser ou défavoriser un candidat.
+La démarche souhaite respecter la neutralité et l'égalité de traitement
+entre les candidats.
 
 Règles
 ------

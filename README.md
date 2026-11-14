@@ -7,6 +7,17 @@ techniques et les sessions Ableton à télécharger.
 - Site publié : <https://scenaristeur.github.io/candid_2027_ats/>
 - Dépôt : <https://github.com/scenaristeur/candid_2027_ats>
 
+> **Avertissement** — Les titres, paroles et musiques de cet album ont été
+> générés par IA. Ce sont des **brouillons de vulgarisation** : ils peuvent
+> contenir des erreurs factuelles, juridiques ou artistiques. Ils ne constituent
+> ni une source de référence ni une validation des programmes présentés.
+> Les corrections documentées sont bienvenues via les issues du dépôt.
+>
+> Cet album est un **exercice de collaboration musicale et culturelle partagé**,
+> pas un outil politique visant à favoriser ou défavoriser un candidat. La
+> démarche souhaite respecter la **neutralité** et l’**égalité** de traitement
+> entre les candidats.
+
 ## Ce qui est publié
 
 Pour chaque titre :

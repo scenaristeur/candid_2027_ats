@@ -16,6 +16,18 @@ Contenu
 Chaque titre suit la forme : différence -> discours -> partisans -> refrain.
 Les tempos, tonalités et durées sont des propositions de travail.
 
+Avertissement
+-------------
+Les titres, paroles et musiques ont été générés par IA. Ce sont des brouillons
+de vulgarisation : ils peuvent contenir des erreurs factuelles, juridiques ou
+artistiques. Ils ne constituent ni une source de référence ni une validation
+des programmes présentés. Les corrections documentées sont bienvenues.
+
+Cet album est un exercice de collaboration musicale et culturelle partagé,
+pas un outil politique visant à favoriser ou défavoriser un candidat.
+La démarche souhaite respecter la neutralité et l'égalité de traitement
+entre les candidats.
+
 Règles
 ------
 - Critiquer le programme, pas la personne.

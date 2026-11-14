@@ -299,9 +299,9 @@
       "tempo": "96 BPM",
       "key": "Ré mineur (Dm)",
       "duration": "≈ 2 min 30",
-      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "status": "maquette spartiate posée — session à sauvegarder, validation par extraits.",
       "files": {
-        "als": null,
+        "als": "als/19-francois-bayrou-le-grand-fleuve-central-en-tango.als",
         "paroles": "paroles/19-francois-bayrou-le-grand-fleuve-central-en-tango.paroles.md",
         "ficheTechnique": "fiches/19-francois-bayrou-le-grand-fleuve-central-en-tango.fiche-technique.md",
         "versionLongue": null
@@ -379,7 +379,7 @@
       "tempo": "100 BPM",
       "key": "Do dièse mineur (Cm)",
       "duration": "≈ 2 min 35",
-      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "status": "maquette spartiate posée — session à sauvegarder, validation par extraits.",
       "files": {
         "als": "als/24-francois-hollande-le-revenant-social-democrate.als",
         "paroles": "paroles/24-francois-hollande-le-revenant-social-democrate.paroles.md",
@@ -477,7 +477,7 @@
       "duration": "≈ 1 min 55",
       "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
       "files": {
-        "als": null,
+        "als": "als/30-anasse-kazib-la-revolution-permanente.als",
         "paroles": "paroles/30-anasse-kazib-la-revolution-permanente.paroles.md",
         "ficheTechnique": "fiches/30-anasse-kazib-la-revolution-permanente.fiche-technique.md",
         "versionLongue": null
