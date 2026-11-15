@@ -61,7 +61,13 @@ def main() -> None:
     manifest = {}
     if OUTPUT.is_file():
         try:
-            manifest = json.loads(OUTPUT.read_text(encoding="utf-8"))
+            existing = json.loads(OUTPUT.read_text(encoding="utf-8"))
+            value = existing.get("files", {})
+            # Compatibilité avec une ancienne version qui imbriquait le manifeste.
+            if isinstance(value, dict) and isinstance(value.get("files"), dict):
+                value = value["files"]
+            if isinstance(value, dict):
+                manifest = value
         except (OSError, json.JSONDecodeError):
             manifest = {}
 

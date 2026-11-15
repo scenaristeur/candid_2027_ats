@@ -1664,8 +1664,9 @@ Site  : {SITE_URL}/
     pack = base / "candidats-2027-pack.zip"
     with zipfile.ZipFile(pack, "w", zipfile.ZIP_DEFLATED) as archive:
         for path in sorted(base.rglob("*")):
-            if path.is_file() and path != pack:
-                archive.write(path, path.relative_to(base).as_posix())
+            relative = path.relative_to(base)
+            if path.is_file() and path != pack and "productions" not in relative.parts:
+                archive.write(path, relative.as_posix())
 
 
 def write_pages(tracks: list[dict], sources: Path, album_text: str) -> None:

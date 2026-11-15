@@ -1,6 +1,6 @@
 {
   "_comment": "URLs Archive.org par identifiant de production. Généré par scripts/prepare_production_media.py.",
-  "checkedAt": "2026-11-15T20:57:47+00:00",
+  "checkedAt": "2026-11-15T21:13:04+00:00",
   "albums": {
     "Désir": {
       "item": "desir-maquettes",
@@ -37,11 +37,11 @@
         "file": "03-Fièvre40.mp3",
         "url": "https://archive.org/download/desir-maquettes/03-Fi%C3%A8vre40.mp3",
         "canonicalUrl": "https://archive.org/download/desir-maquettes/03-Fi%C3%A8vre40.mp3",
-        "verified": false,
-        "bytes": null,
-        "http": 404,
+        "verified": true,
+        "bytes": 12581191,
+        "http": 200,
         "via": "canonical",
-        "contentType": null
+        "contentType": "audio/mpeg"
       }
     },
     "desir--04-attente": {
@@ -49,11 +49,11 @@
         "file": "04-Attente.mp3",
         "url": "https://archive.org/download/desir-maquettes/04-Attente.mp3",
         "canonicalUrl": "https://archive.org/download/desir-maquettes/04-Attente.mp3",
-        "verified": false,
-        "bytes": null,
-        "http": 404,
+        "verified": true,
+        "bytes": 13011699,
+        "http": 200,
         "via": "canonical",
-        "contentType": null
+        "contentType": "audio/mpeg"
       }
     },
     "desir--05-possession": {
@@ -61,11 +61,11 @@
         "file": "05-Possesion.mp3",
         "url": "https://archive.org/download/desir-maquettes/05-Possesion.mp3",
         "canonicalUrl": "https://archive.org/download/desir-maquettes/05-Possesion.mp3",
-        "verified": false,
-        "bytes": null,
-        "http": 404,
+        "verified": true,
+        "bytes": 10610262,
+        "http": 200,
         "via": "canonical",
-        "contentType": null
+        "contentType": "audio/mpeg"
       }
     },
     "desir--07-souvenir": {
@@ -73,11 +73,11 @@
         "file": "07-Souvenir.mp3",
         "url": "https://archive.org/download/desir-maquettes/07-Souvenir.mp3",
         "canonicalUrl": "https://archive.org/download/desir-maquettes/07-Souvenir.mp3",
-        "verified": false,
-        "bytes": null,
-        "http": 404,
+        "verified": true,
+        "bytes": 14864431,
+        "http": 200,
         "via": "canonical",
-        "contentType": null
+        "contentType": "audio/mpeg"
       }
     },
     "desir--08-apaisement": {
@@ -85,11 +85,11 @@
         "file": "08-Apaisement.mp3",
         "url": "https://archive.org/download/desir-maquettes/08-Apaisement.mp3",
         "canonicalUrl": "https://archive.org/download/desir-maquettes/08-Apaisement.mp3",
-        "verified": false,
-        "bytes": null,
-        "http": 404,
+        "verified": true,
+        "bytes": 29364358,
+        "http": 200,
         "via": "canonical",
-        "contentType": null
+        "contentType": "audio/mpeg"
       }
     }
   }
