@@ -11,14 +11,14 @@
 
 | Indicateur | Nombre |
 | :--- | ---: |
-| Productions cataloguées | 458 |
+| Productions cataloguées | 459 |
 | Productions avec documentation | 165 |
-| Productions avec session Ableton | 392 |
+| Productions avec session Ableton | 393 |
 | Productions avec export audio | 38 |
 | Productions avec MIDI | 0 |
-| Sessions ALS inventoriées | 476 |
+| Sessions ALS inventoriées | 465 |
 | Productions issues des sources | 165 |
-| Lignes ALS sans fiche source | 292 |
+| Lignes ALS sans fiche source | 293 |
 | Exports sans production identifiée | 1 |
 
 ## Productions par album
@@ -81,7 +81,7 @@
 | Foundation | 8 | 0 | 8 | 0 | 0 | fiche (8), paroles (8), export audio (8) |
 | FredBoulon Project | 2 | 0 | 2 | 0 | 0 | fiche (2), paroles (2), export audio (2) |
 | Funky Punchy Project | 1 | 0 | 1 | 0 | 0 | fiche (1), paroles (1), export audio (1) |
-| Gangsta du 8eme Project | 3 | 0 | 3 | 0 | 0 | fiche (3), paroles (3), export audio (3) |
+| Gangsta du 8eme Project | 2 | 0 | 2 | 0 | 0 | fiche (2), paroles (2), export audio (2) |
 | Génération 3ème  Les voix de l'histoire | 8 | 0 | 8 | 0 | 0 | fiche (8), paroles (8), export audio (8) |
 | grit Project | 1 | 0 | 1 | 0 | 0 | fiche (1), paroles (1), export audio (1) |
 | Groomove Project | 2 | 0 | 2 | 0 | 0 | fiche (2), paroles (2), export audio (2) |
@@ -120,7 +120,7 @@
 | Lysa | 2 | 0 | 2 | 0 | 0 | fiche (2), paroles (2), export audio (2) |
 | MadMax2308 | 1 | 1 | 1 | 0 | 0 | export audio (1) |
 | Magic Farandoles | 1 | 1 | 0 | 0 | 0 | session ALS (1), export audio (1) |
-| Masculinisme | 12 | 1 | 12 | 1 | 0 | export audio (11), fiche (11), paroles (11) |
+| Masculinisme | 11 | 1 | 11 | 1 | 0 | export audio (10), fiche (10), paroles (10) |
 | MeloDrama Project | 2 | 0 | 2 | 0 | 0 | fiche (2), paroles (2), export audio (2) |
 | Melody, Where are you | 14 | 9 | 11 | 3 | 0 | export audio (11), fiche (5), paroles (5) |
 | Mes Saints | 1 | 0 | 1 | 0 | 0 | fiche (1), paroles (1), export audio (1) |
@@ -146,13 +146,14 @@
 | Play with San Pleu Project | 2 | 0 | 2 | 0 | 0 | fiche (2), paroles (2), export audio (2) |
 | plus_d'argent | 1 | 1 | 1 | 0 | 0 | export audio (1) |
 | Plus jamais pour eux | 1 | 1 | 1 | 0 | 0 | export audio (1) |
+| Plus Loin | 4 | 0 | 4 | 0 | 0 | fiche (4), paroles (4), export audio (4) |
 | podoum6jan Project | 1 | 0 | 1 | 0 | 0 | fiche (1), paroles (1), export audio (1) |
 | Pop_RnB | 2 | 0 | 2 | 0 | 0 | fiche (2), paroles (2), export audio (2) |
 | _racine | 1 | 0 | 0 | 1 | 0 | fiche (1), paroles (1), session ALS (1) |
 | reggae_masc | 1 | 1 | 1 | 0 | 0 | export audio (1) |
 | ReggaeDubLive | 4 | 4 | 0 | 0 | 0 | session ALS (4), export audio (4) |
 | REncontre sensuelle Project | 1 | 0 | 1 | 0 | 0 | fiche (1), paroles (1), export audio (1) |
-| Reprises | 28 | 10 | 25 | 3 | 0 | export audio (25), fiche (18), paroles (18) |
+| Reprises | 27 | 10 | 24 | 3 | 0 | export audio (24), fiche (17), paroles (17) |
 | Résonnances | 10 | 10 | 10 | 0 | 0 | export audio (10) |
 | Riddim & Machine | 1 | 0 | 1 | 0 | 0 | fiche (1), paroles (1), export audio (1) |
 | Ride - 21 pilotes Project | 1 | 0 | 1 | 0 | 0 | fiche (1), paroles (1), export audio (1) |
@@ -333,7 +334,7 @@
 
 | N° | Production | Statut | Confiance | ALS | Audio | Tempo | Tonalité | Intention / particularité | Manque |
 | ---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| — | Holidays | maquette Ableton | faible | 2 session(s) | — | 92 BPM | — | Donne moi toutes les étapes pour créer une chanson funky groovy sur les vqcances entre Pink Floyd gainsbourg,… | export audio |
+| — | Holidays | maquette Ableton | faible | 1 session | — | 121 BPM | — | Donne moi toutes les étapes pour créer une chanson funky groovy sur les vqcances entre Pink Floyd gainsbourg,… | export audio |
 
 ### InfernalLoop
 
@@ -351,8 +352,8 @@
 
 | N° | Production | Statut | Confiance | ALS | Audio | Tempo | Tonalité | Intention / particularité | Manque |
 | ---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| — | Brain Stew 2 | maquette Ableton | élevée | 6 session(s) | — | 80 BPM | — | Grille (2 mes.) : A – G – F# – F – E (la mineur avec chromas F#/F). Riff = power chords à trous, doubles atta… | export audio |
-| — | Brain Stew — Fiche Technique (Version Jazz PMJ) | maquette Ableton | élevée | 6 session(s) | — | 77.0001 BPM | — | It’s also notable for segueing directly to the next track, “Jaded,” to the point the single had both together. | export audio |
+| — | Brain Stew | maquette Ableton | élevée | 5 session(s) | — | 77.0001 BPM | — | It’s also notable for segueing directly to the next track, “Jaded,” to the point the single had both together. | export audio |
+| — | Brain Stew 2 | maquette Ableton | élevée | 1 session | — | 80 BPM | — | Grille (2 mes.) : A – G – F# – F – E (la mineur avec chromas F#/F). Riff = power chords à trous, doubles atta… | export audio |
 
 ### La femme du Honky Tonk
 
@@ -382,9 +383,9 @@
 
 | N° | Production | Statut | Confiance | ALS | Audio | Tempo | Tonalité | Intention / particularité | Manque |
 | ---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | Lumière sur la Colline | maquette Ableton | élevée | 5 session(s) | — | 72 BPM | — | 1. Piste Voix (Track 1) — Enregistrer la voix en dehors d'Ableton, puis : - Importer le fichier audio → creat… | export audio |
+| 1 | Lumière sur la Colline | maquette Ableton | élevée | 4 session(s) | — | 72 BPM | — | 1. Piste Voix (Track 1) — Enregistrer la voix en dehors d'Ableton, puis : - Importer le fichier audio → creat… | export audio |
 | 2 | Comptine des Traboules | maquette Ableton | élevée | 2 session(s) | — | 88 BPM | — | Détecté G minor car le Couplet A commence par Gm. | export audio |
-| 3 | La Colline qui Pense | maquette Ableton | élevée | 4 session(s) | — | 70 BPM | — | — | export audio |
+| 3 | La Colline qui Pense | maquette Ableton | élevée | 1 session | — | 70 BPM | — | — | export audio |
 | 4 | Élégie des Brotteaux | maquette Ableton | élevée | 1 session | — | 72 BPM | — | La mélancolie des jours heureux. Un homme seul sur un banc, les feuilles mortes, les amours qui s'effacent. L… | export audio |
 | 5 | Fresque des Mondes | documentation seule | sans objet | — | — | — | — | La mémoire des migrants, les fresques murales qui racontent des exils, des espoirs, des enfants qui jouent en… | session ALS, export audio |
 | 6 | Les Pentes Silencieuses | documentation seule | sans objet | — | — | — | — | Les nuits où les pentes descendent vers la ville, les graffs qui parlent, les amours clandestins, les révolte… | session ALS, export audio |
@@ -461,7 +462,7 @@
 
 | N° | Production | Statut | Confiance | ALS | Audio | Tempo | Tonalité | Intention / particularité | Manque |
 | ---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| — | plus_d'argent | maquette Ableton | faible | 4 session(s) | — | 116.5 BPM | — | Écrivons un reggae dub funky avec des pointes de Pink Floyd gainsbourg, morcheeba, prince, un humour à la Des… | export audio |
+| — | plus_d'argent | maquette Ableton | élevée | 1 session | — | 88 BPM | — | Écrivons un reggae dub funky avec des pointes de Pink Floyd gainsbourg, morcheeba, prince, un humour à la Des… | export audio |
 
 ### Plus jamais pour eux
 
@@ -473,7 +474,7 @@
 
 | N° | Production | Statut | Confiance | ALS | Audio | Tempo | Tonalité | Intention / particularité | Manque |
 | ---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| — | reggae_masc | maquette Ableton | moyenne | 1 session | — | 153 BPM | — | Hé mec Fais gaffe À ce qu'on te met dans le crâne. Les femmes Ne sont pas Tes esclaves. | export audio |
+| — | reggae_masc | maquette Ableton | élevée | 2 session(s) | — | 85 BPM | — | Hé mec Fais gaffe À ce qu'on te met dans le crâne. Les femmes Ne sont pas Tes esclaves. | export audio |
 
 ### ReggaeDubLive
 
@@ -530,7 +531,7 @@
 
 | N° | Production | Statut | Confiance | ALS | Audio | Tempo | Tonalité | Intention / particularité | Manque |
 | ---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| — | Si | maquette Ableton | élevée | 2 session(s) | — | 140 BPM | — | Accords : C#m7 \| Bmaj7 \| A6 \| G#7 \| C#m7 \| Bmaj7 \| F#m7 \| G#7 | export audio |
+| — | Si | maquette Ableton | élevée | 3 session(s) | — | 85 BPM | — | Accords : C#m7 \| Bmaj7 \| A6 \| G#7 \| C#m7 \| Bmaj7 \| F#m7 \| G#7 | export audio |
 
 ### Si le 6 devient 9
 
@@ -605,10 +606,9 @@
 | Album | Production | Session proposée | Export proposé |
 | :--- | :--- | :--- | :--- |
 | GTA6 | GTA6 | Ableton Live/GTA6/ViceCityInc Project/ViceCityInc.als | — |
-| Holidays | Holidays | Ableton Live/Holidays/Holydays Project/Calme.als | — |
+| Holidays | Holidays | Ableton Live/Holidays/Holydays Project/Holydays.als | — |
 | MadMax2308 | MadMax2308 | Ableton Live/MadMax2308/Intro Project/Intro.als | — |
 | opencode-music | opencode-music | Ableton Live/opencode/opencode mcp Project/opencode mcp.als | — |
-| plus_d'argent | plus_d'argent | Ableton Live/Plus Loin/01 - Morn Project/02 - Mandez.als | — |
 | Strates@Gemmes | « Faut des Parts » — Strates@Gemmes (2001)… | Ableton Live/Strates@Gemmes_FautDesParts/01 - Totale Emprise Project/… | — |
 | Systa System | Systa System | Ableton Live/Sista System/Funking Loop Project/Funking Loop.als | — |
 
@@ -664,7 +664,7 @@
 | Foundation | 8 | 8 | 0 | Aquatiqua · Delire Positronique · Inconnue · L'empire | fiche (8), paroles (8), export audio (8) |
 | FredBoulon Project | 2 | 2 | 0 | FredBoulon · FredBoulon2 | fiche (2), paroles (2), export audio (2) |
 | Funky Punchy Project | 1 | 1 | 0 | Funky Punchy | fiche (1), paroles (1), export audio (1) |
-| Gangsta du 8eme Project | 3 | 3 | 0 | Plus d'argent · Gangsta du 8eme · Plus d'argent | fiche (3), paroles (3), export audio (3) |
+| Gangsta du 8eme Project | 2 | 2 | 0 | Plus d'argent · Gangsta du 8eme | fiche (2), paroles (2), export audio (2) |
 | Génération 3ème  Les voix de l'histoi… | 8 | 8 | 0 | 01- Dans la Boue · 02- La P'tite Moustache · 03- Lettre à Simon · 04- Checkpoint Charlie | fiche (8), paroles (8), export audio (8) |
 | grit Project | 1 | 1 | 0 | grit | fiche (1), paroles (1), export audio (1) |
 | Groomove Project | 2 | 2 | 0 | Groomove · Groomove 2 | fiche (2), paroles (2), export audio (2) |
@@ -691,7 +691,7 @@
 | loove Project | 1 | 1 | 0 | loove | fiche (1), paroles (1), export audio (1) |
 | lullaby-cure Project | 1 | 1 | 0 | lullaby-cure | fiche (1), paroles (1), export audio (1) |
 | Lysa | 2 | 2 | 0 | La sorcière · La sorcière 80 | fiche (2), paroles (2), export audio (2) |
-| Masculinisme | 11 | 11 | 1 | 01- Masculiniste-Emotionnal-Indie… · 01- Masculiniste-Emotionnal-Indie… · 01- Masculiniste-Emotionn… | fiche (11), paroles (11), export audio (10) |
+| Masculinisme | 10 | 10 | 1 | 01- Masculiniste-Emotionnal-Indie… · 01- Masculiniste-Emotionnal-Indie… · 01- Masculiniste-Emotionn… | fiche (10), paroles (10), export audio (9) |
 | MeloDrama Project | 2 | 2 | 0 | HarmonyNelson · MeloDrama | fiche (2), paroles (2), export audio (2) |
 | Melody, Where are you | 5 | 5 | 0 | 11- NbLM echos de Cristal · 11- Premier Signal · 12 - Couleur Chair (Protocole de… · 13 - Tension H… | fiche (5), paroles (5), export audio (5) |
 | Mes Saints | 1 | 1 | 0 | Sabine | fiche (1), paroles (1), export audio (1) |
@@ -712,10 +712,11 @@
 | Pas le dernier Project | 3 | 3 | 0 | Pas le dernier · Pas le dernier 2 · Pas le dernier Disco Funk | fiche (3), paroles (3), export audio (3) |
 | pilote du désert | 1 | 1 | 1 | Dm teinte desertique | fiche (1), paroles (1) |
 | Play with San Pleu Project | 2 | 2 | 0 | Play with San Pleu · Play with San Pleu Reno | fiche (2), paroles (2), export audio (2) |
+| Plus Loin | 4 | 4 | 0 | 0 - Mel · 0 - Mel_Mapping · 01 - Morn · 02 - Mandez | fiche (4), paroles (4), export audio (4) |
 | podoum6jan Project | 1 | 1 | 0 | podoum6jan | fiche (1), paroles (1), export audio (1) |
 | Pop_RnB | 2 | 2 | 0 | PasTropTard,Mary avant refrain re… · PasTropTard,Mary | fiche (2), paroles (2), export audio (2) |
 | REncontre sensuelle Project | 1 | 1 | 0 | REncontre sensuelle | fiche (1), paroles (1), export audio (1) |
-| Reprises | 18 | 18 | 0 | 01 - Dance Little Sister · 01 - Danse Petite Soeur · C'est la Ouate - Caroline Loeb · Le plastique… | fiche (18), paroles (18), export audio (18) |
+| Reprises | 17 | 17 | 0 | 01 - Dance Little Sister · 01 - Danse Petite Soeur · C'est la Ouate - Caroline Loeb · Le plastique… | fiche (17), paroles (17), export audio (17) |
 | Riddim & Machine | 1 | 1 | 0 | Riddim & Machine | fiche (1), paroles (1), export audio (1) |
 | Ride - 21 pilotes Project | 1 | 1 | 0 | Ride - 21 pilotes | fiche (1), paroles (1), export audio (1) |
 | rien ou presque Project | 1 | 1 | 0 | rien ou presque | fiche (1), paroles (1), export audio (1) |

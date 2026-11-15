@@ -282,7 +282,7 @@ def discover_source_tracks(album_dir: Path) -> list[dict]:
             flags=re.I,
         ).strip()
         doc_title = re.sub(
-            r"\s*[—–-]\s*(fiche[ _-]?technique|status|paroles|analyse)\s*$",
+            r"\s*[—–-]\s*(fiche[ _-]?technique|status|paroles|analyse)\b.*$",
             "",
             doc_title,
             flags=re.I,
@@ -633,6 +633,34 @@ def make_id(album: str, title: str, number: int | None, seen: set[str]) -> str:
     return candidate
 
 
+def choose_track_for(candidate: dict, tracks: list[dict], *, is_export: bool) -> tuple[dict | None, float]:
+    """Choisit la meilleure production source pour une session ou un export."""
+    if is_export:
+        scope = candidate["scope"]
+        album_candidates = [t for t in tracks if t["album"].lower() == scope.lower()]
+        candidates = album_candidates if scope != "_racine" and album_candidates else tracks
+    else:
+        album_candidates = [t for t in tracks if source_album_matches(t["album"], candidate["album"])]
+        exact_candidates = [
+            t for t in tracks if norm(t["title"]) == norm(candidate["stem"])
+        ]
+        candidates = list({id(t): t for t in album_candidates + exact_candidates}.values())
+
+    best: tuple[float, dict] | None = None
+    for track in candidates:
+        if is_export and track["album"] == "Candidats 2027" and track["number"] is not None:
+            number_match = re.match(r"^0?(\d{1,3})\b", candidate["stem"])
+            if number_match and int(number_match.group(1)) != track["number"]:
+                continue
+        score = score_candidate(track["title"], track["album"], track["number"], candidate)
+        if best is None or score > best[0]:
+            best = (score, track)
+    threshold = 2.5 if is_export else 3.0
+    if best and best[0] >= threshold:
+        return best[1], best[0]
+    return None, 0.0
+
+
 def build() -> tuple[list[dict], list[dict], list[dict], list[dict], list[dict]]:
     source_tracks, source_albums = scan_sources(DEFAULT_SOURCES)
     print(f"Sources : {len(source_tracks)} productions dans {len(source_albums)} albums")
@@ -647,12 +675,59 @@ def build() -> tuple[list[dict], list[dict], list[dict], list[dict], list[dict]]
     seen_ids: set[str] = set()
     productions = []
     album_track_counts = Counter(track["album"] for track in source_tracks)
+    als_assign: dict[int, list[tuple[float, dict]]] = defaultdict(list)
+    export_assign: dict[int, list[tuple[float, dict]]] = defaultdict(list)
+
+    # Rapprochement global : chaque session/export va à la production la plus proche.
+    for item in als:
+        track, score = choose_track_for(item, source_tracks, is_export=False)
+        if track is not None:
+            als_assign[id(track)].append((score, item))
+    for item in exports:
+        track, score = choose_track_for(item, source_tracks, is_export=True)
+        if track is not None:
+            export_assign[id(track)].append((score, item))
+
+    assigned_als.update(str(item["path"]) for values in als_assign.values() for _, item in values)
+    assigned_exports.update(str(item["path"]) for values in export_assign.values() for _, item in values)
+
+    # Repli pour les albums à une seule production (sessions restées orphelines).
+    for track in source_tracks:
+        if not als_assign.get(id(track)) and album_track_counts[track["album"]] == 1:
+            for item in als:
+                if str(item["path"]) in assigned_als:
+                    continue
+                if source_album_matches(track["album"], item["album"]):
+                    als_assign[id(track)].append((1.0, item))
+                    assigned_als.add(str(item["path"]))
+        if not export_assign.get(id(track)) and album_track_counts[track["album"]] == 1:
+            for item in exports:
+                if str(item["path"]) in assigned_exports:
+                    continue
+                if item["scope"] == track["album"]:
+                    export_assign[id(track)].append((1.0, item))
+                    assigned_exports.add(str(item["path"]))
 
     for track in source_tracks:
-        single_album = album_track_counts[track["album"]] == 1
-        als_matches, export_matches, confidence = match_records(track, als, exports, single_album)
-        assigned_als.update(str(item["path"]) for item in als_matches)
-        assigned_exports.update(str(item["path"]) for item in export_matches)
+        als_values = sorted(
+            als_assign.get(id(track), []),
+            key=lambda pair: (-pair[0], -pair[1]["updated"]),
+        )
+        export_values = sorted(
+            export_assign.get(id(track), []),
+            key=lambda pair: (-pair[0], -pair[1]["updated"]),
+        )
+        als_matches = [item for _, item in als_values]
+        export_matches = [item for _, item in export_values]
+        best_als = als_values[0][0] if als_values else 0.0
+        best_export = export_values[0][0] if export_values else 0.0
+        if als_matches:
+            confidence = "élevée" if best_als >= 7 else ("moyenne" if best_als >= 3 else "faible")
+        elif export_matches:
+            confidence = "moyenne" if best_export >= 2.5 else "faible"
+        else:
+            confidence = "sans objet"
+
         mp3 = next((item for item in export_matches if item["kind"] == "mp3"), None)
         wav = next((item for item in export_matches if item["kind"] == "wav"), None)
         midi = next((item for item in export_matches if item["kind"] == "midi"), None)
