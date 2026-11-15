@@ -20,7 +20,7 @@
 | **Actions déjà menées** | Meetings, brochures, dénonciation du « vote utile » ; refus de faire barrage au RN en 2027. |
 | **Programme 2027** | Aucun salaire, revenu ou pension sous 2 200 euros net ; retraite à 60 ans ; confiscation des bénéfices des profiteurs de guerre pour financer hôpitaux et écoles. |
 | **Pour** | Critique radicale du capitalisme, sans compromis avec les institutions. |
-| **Contre** | Programme révolutionnaire, donc inapplicable dans le cadre constitutionnel actuel ; score historique (0,56 %) qui limite son impact. |
+| **Contre** | Programme révolutionnaire, donc inapplicable dans le cadre constitutionnel actuel ; 0,8 % (moyenne 2027etmoi.fr, 14/11/2026), ce qui limite son impact. |
 | **Actualité** | Sa quatrième candidature pose la question de la continuité d'une voix. |
 | **Transition Marseillaise** | « Aux armes, citoyens… mais contre qui ? » |
 

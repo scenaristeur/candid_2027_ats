@@ -1,6 +1,6 @@
 # 02 — Jordan Bardella — Le Delfín
 
-**Statut** : préparation documentaire — aucune session Ableton ouverte pour ce morceau.
+**Statut** : EN PAUSE au 14/11/2026 — Jordan Bardella n'est pas candidat ; il est désigné futur Premier ministre si Marine Le Pen gagne. La maquette existe mais ne doit pas être produite avant réévaluation.
 **Tempo** : 124 BPM *(proposition, à valider)*
 **Tonalité** : Fa dièse mineur (F#m) *(proposition, à valider à l'oreille)*
 **Signature** : 4/4

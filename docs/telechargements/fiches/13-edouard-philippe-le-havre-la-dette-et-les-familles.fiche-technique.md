@@ -20,7 +20,7 @@
 | **Actions déjà menées** | Gestion de la crise Covid, réforme de la SNCF, engagement sur les retraites ; maire du Havre. |
 | **Programme 2027** | Retraite à 65 ans ; non-remplacement d'un fonctionnaire sur trois ; indemnisation chômage limitée à 12 mois pour les moins de 50 ans ; allocation familiale unique de 350 euros dès le premier enfant ; réduction d'impôt d'environ 3 000 euros après une naissance. |
 | **Pour** | Stabilité institutionnelle, maîtrise des dépenses publiques, politique familiale incitative. |
-| **Contre** | Recul dans les sondages (11–14 %) ; politique sociale jugée peu redistributive ; risque d'une primaire à droite qui l'affaiblirait. |
+| **Contre** | 15,8 % (moyenne 2027etmoi.fr, 14/11/2026) ; politique sociale jugée peu redistributive ; risque d'une primaire à droite qui l'affaiblirait. |
 | **Actualité** | Programme dévoilé le 12 novembre 2026 ; pressé par Lisnard et Retailleau d'accepter une primaire. |
 | **Transition Marseillaise** | « Contre nous de la tyrannie… des déficits ? » |
 

@@ -18,7 +18,7 @@
 | **Profil** | Professeure de sciences politiques, candidate de « Solution démocratique ». |
 | **Couleur politique** | Démocratie directe, transpartisane. |
 | **Actions déjà menées** | A créé son mouvement en 2024 ; campagne transpartisane pour « changer les règles du jeu politique ». |
-| **Programme 2027** | Une seule mesure : réviser l'article 89 de la Constitution pour permettre à 700 000 citoyens de proposer une révision constitutionnelle, soumise ensuite au référendum. |
+| **Programme 2027** | Une seule mesure : réviser l'article 89 (suppression de l'alinéa 3, voie du Congrès) pour qu'une proposition signée par 700 000 électeurs en 18 mois soit soumise à référendum ; l'État doit aussi déléguer une compétence à la collectivité qui la demande, priorité à la commune. |
 | **Pour** | Redonner le pouvoir aux citoyens ; fatigue de la classe politique. |
 | **Contre** | Une seule mesure, sans programme économique ou social ; risque de paralysie institutionnelle. |
 | **Actualité** | Sa campagne porte un seul mot : référendum. |

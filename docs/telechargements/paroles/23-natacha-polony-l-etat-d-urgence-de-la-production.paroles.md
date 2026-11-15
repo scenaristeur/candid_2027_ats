@@ -25,7 +25,7 @@ Total : 48 mesures, 192 temps, environ 2 min 32 à 76 BPM.
 
 Natacha Polony, l'état d'urgence de la production,
 Journaliste, essayiste, ancienne de Marianne.
-Sans étiquette, hors des partis,
+Nous sommes la France, hors des partis,
 La souveraineté industrielle, pas la fracture.
 Candidate annoncée en octobre,
 Sans expérience élective, elle le dit.

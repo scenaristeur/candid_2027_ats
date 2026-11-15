@@ -1,5 +1,7 @@
 # 02 — Jordan Bardella — Le Delfín — Refrain
 
+> **EN PAUSE au 14/11/2026** — Jordan Bardella n'est pas candidat ; il est désigné futur Premier ministre si Marine Le Pen gagne. Ne pas enregistrer ni produire avant réévaluation.
+
 **Format retenu** : un refrain seul. C'est la cible de l'album pour l'instant ; les couplets et le pont viendront plus tard — ou pas.
 **Tonalité proposée** : Fa dièse mineur (F#m) *(à valider à l'oreille)*
 **Tempo proposé** : 124 BPM *(à valider)*

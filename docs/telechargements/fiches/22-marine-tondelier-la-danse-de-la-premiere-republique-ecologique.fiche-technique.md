@@ -18,10 +18,10 @@
 | **Profil** | Secrétaire nationale des Écologistes, candidate depuis octobre 2025. |
 | **Couleur politique** | Écologie politique, institutionnelle, féministe. |
 | **Actions déjà menées** | Structuration du parti ; programme de « Première République écologique et citoyenne » ; ISF climatique. |
-| **Programme 2027** | ISF climatique ; TVA verte ; fin du présidentialisme ; investissements massifs dans le ferroviaire et la rénovation. |
+| **Programme 2027** | ISF climatique ; TVA verte ; fin du présidentialisme ; investissements massifs dans le ferroviaire et la rénovation. Le site ajoute la hausse du SMIC, une sécurité sociale écologique (dont l'alimentation), un « ticket climat » pour les transports et la régularisation des travailleurs sans papiers. |
 | **Pour** | Écologie ambitieuse sans rupture avec les institutions ; alternative à Mélenchon. |
-| **Contre** | Fragmentation de l'écologie politique ; concurrence de Glucksmann ; risque d'un score faible dans un contexte polarisé. |
-| **Actualité** | L'écologie politique se cherche entre plusieurs candidatures. |
+| **Contre** | 3,2 % (moyenne 2027etmoi.fr, 14/11/2026) ; fragmentation de l'écologie politique ; concurrence de Glucksmann ; risque d'un score faible dans un contexte polarisé. |
+| **Actualité** | Candidature maintenue ; référendum interne du 10 au 13 décembre 2026 sur l'autonomie ou le retrait au profit d'un autre candidat. |
 | **Transition Marseillaise** | « Formez vos bataillons… en vélo ! » |
 
 > **Fiabilité** : contenu issu de `Candidats 2027.md` (compilation interne du 14/11/2026). Chaque chiffre, score et procédure doit être revérifié et **daté** avant l'enregistrement. L'album doit pouvoir dire sa date de vérité.

@@ -18,7 +18,7 @@
 | **Profil** | Candidat de La France insoumise, deuxième dans les sondages (17,5–19 %), souvent donné au second tour face à Le Pen. |
 | **Couleur politique** | Gauche radicale, écologiste et institutionnelle. |
 | **Actions déjà menées** | Député, ancien ministre, candidat en 2012, 2017 et 2022 ; a structuré LFI autour de la « Nouvelle France » et de l'urgence écologique. |
-| **Programme 2027** | Version actualisée de *L'Avenir en commun*, 1 069 mesures dont 238 nouvelles ; SMIC à 1 700 euros net ; retraite à 60 ans ; planification écologique. |
+| **Programme 2027** | Version actualisée de *L'Avenir en commun*, 1 069 mesures dont 238 nouvelles ; SMIC à 1 600 euros net ; retraite à 60 ans ; planification écologique. |
 | **Pour** | Redistribution forte, rupture avec la politique économique jugée néolibérale, planification écologique ambitieuse. |
 | **Contre** | Coût très élevé du programme ; méthode « tout changer » ; compatibilité avec les traités européens ; majorité parlementaire nécessaire pour appliquer 1 069 mesures. |
 | **Actualité** | Programme publié le 6 novembre 2026, meeting du Bourget le 7 novembre : dynamique relancée. |

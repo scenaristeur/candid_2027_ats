@@ -1,5 +1,7 @@
 # 14 — Olivier Faure — La Loi du Plus Juste (en 1700)
 
+> **EN PAUSE au 14/11/2026** — Olivier Faure a été éliminé au 1er tour de la primaire PS / Place publique / GRS le 11 octobre 2026 (14,46 %) ; Raphaël Glucksmann a été désigné. Ne pas enregistrer ni produire avant réévaluation.
+
 **Format** : chanson en plusieurs sections — différence, discours, partisans, refrain.
 **Tonalité de travail** : Do dièse mineur (C#m)
 **Tempo** : 88 BPM

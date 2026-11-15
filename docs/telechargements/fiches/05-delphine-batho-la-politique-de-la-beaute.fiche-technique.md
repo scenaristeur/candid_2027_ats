@@ -18,9 +18,9 @@
 | **Profil** | Députée des Deux-Sèvres, ancienne ministre de l'Écologie (2012–2013), candidate de Génération écologie. |
 | **Couleur politique** | Écologie politique, approche positive et territoriale. |
 | **Actions déjà menées** | A été ministre et députée ; candidate à la primaire écologiste de 2021 ; candidate déclarée à la présidentielle. |
-| **Programme 2027** | Écologie « crédible » et « capable de gouverner » : beauté des territoires, santé environnementale, justice sociale. |
+| **Programme 2027** | Écologie « crédible » et « capable de gouverner » : beauté des territoires, santé environnementale, justice sociale. Le site met en avant le réexamen des 70 000 plaintes de mineurs pour violences. |
 | **Pour** | Écologie qui parle de beau plutôt que de peur ; approche positive. |
-| **Contre** | Candidature isolée, sans parti majeur ; risque de dilution dans une offre écologiste déjà fragmentée. |
+| **Contre** | Non testée dans les sondages retenus au 14/11/2026 ; candidature isolée, sans parti majeur ; risque de dilution dans une offre écologiste déjà fragmentée. |
 | **Actualité** | Sa candidature reste minoritaire dans le champ écologiste. |
 | **Transition Marseillaise** | « Un sang impur… abreuve nos sols ! » |
 

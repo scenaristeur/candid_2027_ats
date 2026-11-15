@@ -1,5 +1,7 @@
 # 03 — Philippe Poutou — Le Fordiste Anticapitaliste — Refrain
 
+> **EN PAUSE au 14/11/2026** — le NPA-l'Anticapitaliste ne présente pas de candidat et soutient Jean-Luc Mélenchon. Ne pas enregistrer ni produire avant réévaluation.
+
 **Format retenu** : un refrain seul. C'est la cible de l'album pour l'instant ; les couplets et le pont viendront plus tard — ou pas.
 **Tonalité proposée** : Mi mineur (Em) *(à valider à l'oreille)*
 **Tempo proposé** : 160 BPM *(à valider)*

@@ -41,11 +41,11 @@ La révolution reste un meeting.
 
 ## Couplet 2 — Son discours
 
-Exproprier les actionnaires, pas négocier,
+Exproprier les banques, pas négocier,
 Le contrôle ouvrier dans les usines.
 L'internationalisme, pas la frontière,
 La grève comme seul programme.
-Pas de détail, pas de budget,
+SMIC à deux mille, retraite à soixante,
 La rue d'abord, l'urne ensuite.
 
 ## Pont — Le point de vue de ses partisans

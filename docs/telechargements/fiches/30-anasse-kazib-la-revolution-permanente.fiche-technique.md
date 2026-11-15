@@ -18,7 +18,7 @@
 | **Profil** | Cheminot, syndicaliste SUD Rail, dirigeant de Révolution permanente. |
 | **Couleur politique** | Communisme révolutionnaire, internationalisme ouvrier. |
 | **Actions déjà menées** | Luttes syndicales ; tentative de candidature en 2022 sans obtenir les 500 parrainages ; de nouveau candidat pour 2027. |
-| **Programme 2027** | Pas de programme détaillé : expropriation des actionnaires, contrôle ouvrier, internationalisme. |
+| **Programme 2027** | Expropriation des groupes bancaires, prêts à taux zéro et fin des agios ; SMIC à 2 000 € net, hausse des salaires de 500 €, indexation sur l'inflation ; retraite à 60 ans, et à 55 ans pour les métiers pénibles, sans condition d'annuités ; avortement, PMA et transitions libres et gratuits. |
 | **Pour** | Critique radicale du système, sans compromis avec les institutions. |
 | **Contre** | Candidature très minoritaire ; risque de ne pas obtenir les parrainages ; position critique envers LFI qui le marginalise. |
 | **Actualité** | La gauche radicale se divise entre LFI et ses critiques. |

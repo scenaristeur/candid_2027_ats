@@ -18,9 +18,9 @@
 | **Profil** | Conductrice de bus en région parisienne, 30 ans, porte-parole du NPA-Révolutionnaires. |
 | **Couleur politique** | Anticapitalisme radical, féminisme ouvrier. |
 | **Actions déjà menées** | Tête de liste aux européennes de 2024 (0,15 %) ; aux municipales de 2026 à Ivry-sur-Seine. |
-| **Programme 2027** | Interdiction de tous les licenciements ; ouverture des frontières ; expropriation des grandes entreprises ; partage du temps de travail. |
+| **Programme 2027** | Interdiction de tous les licenciements ; ouverture des frontières ; expropriation des grandes entreprises ; partage du temps de travail. Le site ajoute +400 €/mois pour tous, aucun revenu sous 2 000 € net, et la régularisation de tous les sans-papiers. |
 | **Pour** | Voix ouvrière, jeune et radicale, qui parle des conditions de travail réelles. |
-| **Contre** | Candidature très minoritaire, sans programme économique chiffré ; risque de ne pas obtenir les parrainages. |
+| **Contre** | Non testée dans les sondages retenus au 14/11/2026 ; candidature très minoritaire ; risque de ne pas obtenir les parrainages. |
 | **Actualité** | Le NPA-Révolutionnaires cherche une voix dans une gauche dominée par LFI. |
 | **Transition Marseillaise** | « Qu'un sang impur… abreuve nos bus ! » |
 

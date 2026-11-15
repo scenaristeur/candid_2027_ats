@@ -20,7 +20,7 @@
 | **Actions déjà menées** | A porté la loi « immigration » de 2024, des mesures de fermeté sur la sécurité, une politique nataliste. |
 | **Programme 2027** | 197 milliards d'euros d'économies jusqu'en 2032 pour ramener le déficit sous 3 % du PIB en 2031 sans hausse d'impôts ; référendum sur l'immigration ; réforme constitutionnelle ; revenu familial et congé de naissance prolongé. |
 | **Pour** | Politique migratoire restrictive ; baisse des dépenses publiques ; soutien affiché à la natalité. |
-| **Contre** | Les 197 milliards interrogent sur les services publics touchés ; 5–8 % dans les sondages, derrière Philippe et Lisnard dans son propre camp ; conformité constitutionnelle du référendum sur l'immigration. |
+| **Contre** | Les 197 milliards interrogent sur les services publics touchés ; 7,6 % (moyenne 2027etmoi.fr, 14/11/2026), derrière Philippe et Lisnard dans son propre camp ; conformité constitutionnelle du référendum sur l'immigration. |
 | **Actualité** | Plan d'économies présenté le 12 octobre 2026, référendum sur l'immigration le 3 novembre 2026. |
 | **Transition Marseillaise** | « Entendez-vous… dans nos campagnes ? » |
 
@@ -61,7 +61,7 @@ Tambour sec et centré, fifre légèrement à gauche, voix devant. Pas de reverb
 
 ## 7. À vérifier avant d'enregistrer
 
-- Le chiffre de 197 milliards et l'horizon 2031/2032.
+- Le chiffre de 197 milliards et l'horizon 2031/2032. 2027etmoi.fr détaille 25 Md€ d'allègements sur le coût du travail, 15 Md€ sur la fiscalité de production et 30 Md€ de cotisations ; le total de 197 Md€ n'est pas confirmé par cette source. Vérifier avant de garder le chiffre dans la chanson.
 - La recevabilité du référendum sur l'immigration au regard de la Constitution.
 - La loi immigration 2024 : ce qui a été censuré par le Conseil constitutionnel.
 

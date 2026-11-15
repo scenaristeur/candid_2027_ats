@@ -1,6 +1,6 @@
 # 26 - Ségolène Royal - La Primaire de la Rose
 
-**Statut** : maquette spartiate posée — session à sauvegarder, validation par extraits.
+**Statut** : EN PAUSE au 14/11/2026 — Ségolène Royal a été éliminée au 1er tour de la primaire PS / Place publique / GRS le 11 octobre 2026 (7,62 %). La maquette existe mais ne doit pas être produite avant réévaluation.
 **Tempo** : 92 BPM *(proposition, à valider)*
 **Tonalité** : Sol mineur (Gm) *(proposition, à valider à l'oreille)*
 **Signature** : 4/4

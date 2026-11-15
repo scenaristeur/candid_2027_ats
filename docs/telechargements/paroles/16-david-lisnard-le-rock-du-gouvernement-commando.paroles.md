@@ -27,23 +27,23 @@ David Lisnard, le gouvernement commando,
 Maire de Cannes, Nouvelle Énergie.
 Le libéral, le souverainiste,
 Pas le « en même temps », la rupture.
-Deux à trois cents milliards de coupes,
-La CSG de neuf virgule deux à six.
+Deux cents milliards de coupes,
+Cent vingt milliards de cotisations en moins.
 
 ## Refrain
 
 David Lisnard, le gouvernement commando,
-Deux à trois cents milliards dans l'État,
-La CSG de neuf virgule deux à six,
+Deux cents milliards dans l'État,
+Cent vingt milliards de cotisations en moins,
 Cannes comme vitrine, la France comme chantier.
 La rupture libérale a un prix :
 Elle ne dit pas quels services ferment.
 
 ## Couplet 2 — Son discours
 
-Deux à trois cents milliards dans l'État,
+Deux cents milliards dans l'État,
 Pas dans les collectivités, dans l'État.
-La CSG baisse, mais qui compense ?
+Les cotisations baissent, mais qui compense ?
 La Sécu, les hôpitaux, les retraites.
 Réformes rapides, méthode expéditive,
 Mais la notoriété reste à construire.

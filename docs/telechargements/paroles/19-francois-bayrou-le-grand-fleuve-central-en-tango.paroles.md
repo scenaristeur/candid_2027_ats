@@ -1,5 +1,7 @@
 # 19 - François Bayrou - Le Grand Fleuve Central (en tango)
 
+> **EN PAUSE au 14/11/2026** — François Bayrou n'est pas candidat (« Je ne suis pas candidat »). Ne pas enregistrer ni produire avant réévaluation.
+
 **Format** : chanson en plusieurs sections — différence, discours, partisans, refrain.
 **Tonalité de travail** : Ré mineur (Dm)
 **Tempo** : 96 BPM

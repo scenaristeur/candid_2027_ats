@@ -18,9 +18,9 @@
 | **Profil** | Candidat de Renaissance, ancien Premier ministre (2024), ancien ministre de l'Éducation nationale. |
 | **Couleur politique** | Continuité du macronisme, insistance sur l'école et l'économie. |
 | **Actions déjà menées** | A porté le « choc des savoirs » au collège, la réforme du lycée professionnel, des mesures sur le pouvoir d'achat. |
-| **Programme 2027** | Pas de suppression de postes dans l'Éducation nationale ; +200 euros nets par mois pour les enseignants, jusqu'à 500 euros en milieu de carrière ; moins de 20 élèves par classe en primaire ; « choc massif de simplification » pour les entreprises. |
+| **Programme 2027** | Pas de suppression de postes dans l'Éducation nationale ; +200 euros nets par mois pour les enseignants, jusqu'à 500 euros en milieu de carrière ; moins de 20 élèves par classe en primaire ; « choc massif de simplification » pour les entreprises. Le site ajoute 120 Md€ d'économies, la retraite par capitalisation et le rétablissement du « Choc des savoirs ». |
 | **Pour** | Continuité réformiste, investissement dans l'école, politique économique pro-entreprise. |
-| **Contre** | Héritage du macronisme dont il est le continuateur ; bilan social critiqué ; 9–10 % dans les sondages, derrière Philippe et Lisnard dans certains scénarios. |
+| **Contre** | Héritage du macronisme dont il est le continuateur ; bilan social critiqué ; 9,7 % (moyenne 2027etmoi.fr, 14/11/2026), derrière Philippe et Lisnard dans certains scénarios. |
 | **Actualité** | Programme éducatif détaillé le 12 novembre 2026 ; bloc central fragmenté. |
 | **Transition Marseillaise** | « Le jour de gloire est arrivé… à l'école ? » |
 

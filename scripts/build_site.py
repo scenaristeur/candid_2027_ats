@@ -53,9 +53,9 @@ ALBUM_DATE_ISO = "2026-11-14"
 GOOGLE_SITE_VERIFICATION = "a5K2yNZpsgoUVcvzllet8yvUxdDlO5TJaP8tZLZsK-I"
 ALBUM_NAME = "Candidats 2027 — l’album"
 ALBUM_DESCRIPTION = (
-    "31 maquettes, une par candidat à la présidentielle de 2027. Paroles, fiches "
-    "techniques et sessions Ableton à télécharger. Contributions ouvertes aux "
-    "musicien·nes et surtout aux chanteur·ses."
+    "Les maquettes de l’album Candidats 2027 : une chanson par candidat à la "
+    "présidentielle de 2027. Paroles, fiches techniques et sessions Ableton à "
+    "télécharger. Contributions ouvertes aux musicien·nes et surtout aux chanteur·ses."
 )
 
 # Palette éditoriale : une couleur par titre, cyclique.
@@ -554,7 +554,8 @@ def header(depth: int, active: str = "") -> str:
     prefix = "../" * depth
     home = f"{prefix}index.html"
     links = [
-        ("titres", f"{home}#titres", "Les 31 titres"),
+        ("titres", f"{home}#titres", "Les titres"),
+        ("catalogue", f"{prefix}catalogue.html", "Catalogue"),
         ("projet", f"{prefix}projet.html", "Le projet"),
         ("participer", f"{prefix}participer.html", "Participer"),
     ]
@@ -802,9 +803,9 @@ def build_index(tracks: list[dict]) -> str:
     <div class="hero-copy">
       <p class="kicker"><span class="kicker-dot" aria-hidden="true"></span>Album d’information civique · maquettes générées par IA · présidentielle 2027 <span class="status-pill">maquettes</span></p>
       <h1>Candidats<br><em>2027</em></h1>
-      <p class="lede">Trente et une chansons, un candidat par titre. Pour l’instant, ce sont des <strong>maquettes</strong> : les voix, les arrangements et le mix restent à faire. Comprendre ce qui distingue chaque programme, ce qu’il promet, ce qu’il coûte — et ce qu’on peut lui opposer.</p>
+      <p class="lede">{total} chansons, un candidat par titre. Pour l’instant, ce sont des <strong>maquettes</strong> : les voix, les arrangements et le mix restent à faire. Comprendre ce qui distingue chaque programme, ce qu’il promet, ce qu’il coûte — et ce qu’on peut lui opposer.</p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="#titres">Explorer les 31 titres</a>
+        <a class="btn btn-primary" href="#titres">Explorer les {total} titres</a>
         <a class="btn btn-ghost" href="participer.html#voix">Proposer une voix</a>
       </div>
       <p class="hero-note">Musicien·nes, chanteur·ses, interprètes : les maquettes sont ouvertes. Paroles, fiches techniques et sessions Ableton à télécharger. Sources datées du {TRUTH_DATE}.</p>
@@ -839,7 +840,7 @@ def build_index(tracks: list[dict]) -> str:
       <h2 id="maquettes-titre">Ce sont encore<br><em>des maquettes.</em></h2>
     </div>
     <div class="maquette-text">
-      <p>Les 31 titres existent aujourd’hui à l’état d’ébauches : paroles, fiches techniques, sessions Ableton, exports MP3 et MIDI. Les voix, les arrangements, l’interprétation et le mix restent largement à faire.</p>
+      <p>Les {total} titres existent aujourd’hui à l’état d’ébauches : paroles, fiches techniques, sessions Ableton, exports MP3 et MIDI. Les voix, les arrangements, l’interprétation et le mix restent largement à faire.</p>
       <p><strong>Nous cherchons des musicien·nes — et surtout des chanteur·ses.</strong> Une voix, une guitare, un piano, une basse, des cuivres, un beat, un mix : chaque contribution peut faire avancer un titre. Les maquettes sont là pour être reprises, pas pour être figées.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="participer.html#voix">Proposer une voix</a>
@@ -854,7 +855,7 @@ def build_index(tracks: list[dict]) -> str:
     <div class="section-head">
       <div>
         <p class="eyebrow">L’album</p>
-        <h2>Les 31 titres</h2>
+        <h2>Les {total} titres</h2>
         <p class="section-lede">Un ordre de passage tiré au sort, un style par candidat. Clique pour ouvrir la page du morceau, lire les paroles et télécharger les fichiers.</p>
       </div>
       <div class="section-count" aria-live="polite"><strong data-count>{total}</strong><span>titres affichés</span></div>
@@ -899,7 +900,7 @@ def build_index(tracks: list[dict]) -> str:
 {contribute_block()}
 """
     return page(
-        "Candidats 2027 — 31 maquettes, 31 candidats",
+        "Candidats 2027 — les maquettes de l’album",
         ALBUM_DESCRIPTION,
         0,
         body,
@@ -1347,7 +1348,7 @@ def build_contribute() -> str:
       <h2 id="voix-titre">Les maquettes attendent<br><em>des interprètes.</em></h2>
     </div>
     <div>
-      <p>Les 31 titres sont des maquettes : les instruments, les paroles et les fiches existent, mais les voix ne sont pas encore enregistrées. C’est le moment de proposer une interprétation, une couleur, une intention.</p>
+      <p>Les titres sont des maquettes : les instruments, les paroles et les fiches existent, mais les voix ne sont pas encore enregistrées. C’est le moment de proposer une interprétation, une couleur, une intention.</p>
       <p><strong>Chanteur·ses, chanteurs, chanteuses, musicien·nes :</strong> une voix lead, un chœur, une guitare, un piano, une basse, des cuivres, un beat ou un mix peuvent suffire à faire exister un titre. Aucune contribution n’est trop petite.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="{voice}">Proposer une voix<span aria-hidden="true">↗</span></a>
@@ -1456,7 +1457,7 @@ def build_404() -> str:
     <p class="lede">La page demandée n’existe pas ou a changé d’adresse. L’album, lui, est toujours là.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="index.html">Retour à l’album</a>
-      <a class="btn btn-ghost" href="index.html#titres">Voir les 31 titres</a>
+      <a class="btn btn-ghost" href="index.html#titres">Voir les titres</a>
     </div>
   </div>
 </header>
@@ -1497,6 +1498,8 @@ def copy_assets() -> None:
     shutil.copy2(SITE / "assets" / "style.css", assets_out / "style.css")
     shutil.copy2(SITE / "assets" / "app.js", assets_out / "app.js")
     shutil.copy2(SITE / "assets" / "favicon.svg", assets_out / "favicon.svg")
+    if (SITE / "assets" / "catalogue.js").is_file():
+        shutil.copy2(SITE / "assets" / "catalogue.js", assets_out / "catalogue.js")
     og_src = SITE / "assets" / "og"
     if og_src.is_dir():
         shutil.copytree(og_src, assets_out / "og", dirs_exist_ok=True)
@@ -1646,6 +1649,7 @@ def write_pages(tracks: list[dict], sources: Path, album_text: str) -> None:
 def write_extras(tracks: list[dict]) -> None:
     entries = [
         (f"{SITE_URL}/", "1.0", f"{SITE_URL}/assets/og/album.png", "Candidats 2027 — l’album"),
+        (f"{SITE_URL}/catalogue.html", "0.9", f"{SITE_URL}/assets/og/album.png", "Catalogue des productions"),
         (f"{SITE_URL}/projet.html", "0.7", f"{SITE_URL}/assets/og/album.png", "Le projet"),
         (f"{SITE_URL}/participer.html", "0.7", f"{SITE_URL}/assets/og/album.png", "Participer"),
     ]

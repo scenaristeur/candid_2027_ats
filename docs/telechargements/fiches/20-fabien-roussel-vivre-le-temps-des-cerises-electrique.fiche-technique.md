@@ -18,9 +18,9 @@
 | **Profil** | Secrétaire national du PCF, député du Nord, maire de Saint-Amand-les-Eaux. |
 | **Couleur politique** | Gauche communiste, laïque, attachée aux services publics et au monde du travail. |
 | **Actions déjà menées** | Candidature en 2022 (2,28 %) ; bataille pour les services publics ; proposition de 60 000 policiers et gendarmes de proximité. |
-| **Programme 2027** | 60 000 postes de policiers, gendarmes et douaniers de proximité ; défense des services publics ; hausse du SMIC ; retraite à 60 ans. |
+| **Programme 2027** | 60 000 postes de policiers, gendarmes et douaniers de proximité ; défense des services publics ; hausse du SMIC ; retraite à 60 ans. Le site ajoute le rétablissement de l'ISF, le blocage des carburants à 1,60 €/l, des cotisations sur les revenus financiers et l'objectif de « 100 % Sécu ». |
 | **Pour** | Gauche de rupture mais institutionnelle, attachée au service public et à la sécurité républicaine. |
-| **Contre** | Position minoritaire dans une gauche dominée par Mélenchon et Glucksmann ; risque d'être vu comme un candidat témoin. |
+| **Contre** | 2,4 % (moyenne 2027etmoi.fr, 14/11/2026), position minoritaire dans une gauche dominée par Mélenchon et Glucksmann ; risque d'être vu comme un candidat témoin. |
 | **Actualité** | Sa candidature existe surtout pour porter les services publics dans le débat. |
 | **Transition Marseillaise** | « Le jour de gloire est arrivé… pour les services publics ? » |
 

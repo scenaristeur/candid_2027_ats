@@ -1,6 +1,6 @@
 # 19 - François Bayrou - Le Grand Fleuve Central (en tango)
 
-**Statut** : maquette spartiate posée — session à sauvegarder, validation par extraits.
+**Statut** : EN PAUSE au 14/11/2026 — François Bayrou n'est pas candidat (« Je ne suis pas candidat »). La maquette existe mais ne doit pas être produite avant réévaluation.
 **Tempo** : 96 BPM *(proposition, à valider)*
 **Tonalité** : Ré mineur (Dm) *(proposition, à valider à l'oreille)*
 **Signature** : 4/4

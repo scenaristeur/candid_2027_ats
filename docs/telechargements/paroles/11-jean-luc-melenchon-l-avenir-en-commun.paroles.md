@@ -34,14 +34,14 @@ Et il assume le rapport de force.
 
 Jean-Luc Mélenchon, l'Avenir en commun,
 Mille soixante-neuf mesures, un livre, pas un tract,
-Smic à dix-sept cents, retraite à soixante,
+Smic à mille six cents, retraite à soixante,
 La planification écologique comme cap.
 Mais gouverner demande une majorité,
 Et le programme ne fait pas le Parlement.
 
 ## Couplet 2 — Son discours
 
-Le SMIC à dix-sept cents, pas un euro de moins,
+Le SMIC à mille six cents, pas un euro de moins,
 La retraite à soixante, le climat d'abord.
 La planification écologique, pas la croissance,
 Et la redistribution pour financer.
@@ -65,7 +65,7 @@ Et on verra après le second tour. »
 
 - Personnalité : le tribun, la gauche radicale institutionnelle.
 - Parcours : député, ancien ministre, trois campagnes présidentielles déjà menées.
-- Programme : 1 069 mesures dont 238 nouvelles, SMIC à 1 700 net, retraite à 60, planification écologique.
+- Programme : 1 069 mesures dont 238 nouvelles, SMIC à 1 600 net, retraite à 60, planification écologique.
 - Stratégie : créer une dynamique de second tour ; l'obstacle est la majorité parlementaire.
 - Partisans : la promesse sociale et climatique, la conviction que le programme prime sur les traités.
 
@@ -77,7 +77,7 @@ Programme, meeting du Bourget, scores et 1 069 mesures : `FICHE_TECHNIQUE.md` §
 ## Prudence
 
 - 1 069 mesures et 238 nouvelles sont des chiffres du brief : ne pas les arrondir en scène.
-- Le SMIC à 1 700 net et la retraite à 60 sont des **propositions**, pas des acquis.
+- Le SMIC à 1 600 net et la retraite à 60 sont des **propositions**, pas des acquis.
 - « Les traités européens ne suivent pas » est un obstacle institutionnel documenté, pas une insulte.
 - Les paroles des partisans sont présentées comme **leur point de vue**, pas comme une vérité objective.
 - Ne pas présenter le second tour comme acquis : le brief parle d'une dynamique, pas d'un résultat.

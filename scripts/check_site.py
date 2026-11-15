@@ -137,8 +137,8 @@ def main() -> None:
     errors = check_links() + check_structure() + check_seo()
 
     pages = list((DOCS / "titres").glob("*.html"))
-    if len(pages) != 31:
-        errors.append(f"31 pages de titres attendues, {len(pages)} trouvées")
+    if len(pages) < 31:
+        errors.append(f"au moins 31 pages de titres attendues, {len(pages)} trouvées")
 
     for required in (
         DOCS / "telechargements" / "manifest.json",

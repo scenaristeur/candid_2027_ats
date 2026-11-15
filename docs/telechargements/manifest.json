@@ -31,7 +31,7 @@
       "tempo": "124 BPM",
       "key": "Fa dièse mineur (Fm)",
       "duration": "≈ 2 min 20",
-      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "status": "EN PAUSE au 14/11/2026 — Jordan Bardella n'est pas candidat ; il est désigné futur Premier ministre si Marine Le Pen gagne. La maquette existe mais ne doit pas être produite avant réévaluation.",
       "files": {
         "als": null,
         "paroles": "paroles/02-jordan-bardella-le-delfin.paroles.md",
@@ -51,7 +51,7 @@
       "tempo": "160 BPM",
       "key": "Mi mineur (Em)",
       "duration": "≈ 2 min",
-      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "status": "EN PAUSE au 14/11/2026 — le NPA-l'Anticapitaliste ne présente pas de candidat et soutient Jean-Luc Mélenchon. La maquette existe mais ne doit pas être produite avant réévaluation.",
       "files": {
         "als": null,
         "paroles": "paroles/03-philippe-poutou-le-fordiste-anticapitaliste.paroles.md",
@@ -271,7 +271,7 @@
       "tempo": "88 BPM",
       "key": "Do dièse mineur (Cm)",
       "duration": "≈ 2 min 30",
-      "status": "maquette spartiate posée — session à sauvegarder, validation par extraits.",
+      "status": "EN PAUSE au 14/11/2026 — Olivier Faure a été éliminé au 1er tour de la primaire PS / Place publique / GRS le 11 octobre 2026 (14,46 %) ; Raphaël Glucksmann a été désigné. La maquette existe mais ne doit pas être produite avant réévaluation.",
       "files": {
         "als": "als/14-olivier-faure-la-loi-du-plus-juste-en-1700.als",
         "paroles": "paroles/14-olivier-faure-la-loi-du-plus-juste-en-1700.paroles.md",
@@ -351,7 +351,7 @@
       "tempo": "118 BPM",
       "key": "La mineur (Am)",
       "duration": "≈ 2 min 20",
-      "status": "maquette spartiate posée — session à sauvegarder, validation par extraits.",
+      "status": "EN PAUSE au 14/11/2026 — Laurent Wauquiez n'est pas candidat ; il cherche un candidat unique à droite pour avant Noël. La maquette existe mais ne doit pas être produite avant réévaluation.",
       "files": {
         "als": "als/18-laurent-wauquiez-i-will-survive-la-droite.als",
         "paroles": "paroles/18-laurent-wauquiez-i-will-survive-la-droite.paroles.md",
@@ -371,7 +371,7 @@
       "tempo": "96 BPM",
       "key": "Ré mineur (Dm)",
       "duration": "≈ 2 min 30",
-      "status": "maquette spartiate posée — session à sauvegarder, validation par extraits.",
+      "status": "EN PAUSE au 14/11/2026 — François Bayrou n'est pas candidat (« Je ne suis pas candidat »). La maquette existe mais ne doit pas être produite avant réévaluation.",
       "files": {
         "als": "als/19-francois-bayrou-le-grand-fleuve-central-en-tango.als",
         "paroles": "paroles/19-francois-bayrou-le-grand-fleuve-central-en-tango.paroles.md",
@@ -411,9 +411,9 @@
       "tempo": "104 BPM",
       "key": "Do dièse mineur (Cm)",
       "duration": "≈ 2 min 20",
-      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "status": "maquette spartiate posée — session à sauvegarder, validation par extraits.",
       "files": {
-        "als": null,
+        "als": "als/21-karim-bouamrane-le-federateur.als",
         "paroles": "paroles/21-karim-bouamrane-le-federateur.paroles.md",
         "ficheTechnique": "fiches/21-karim-bouamrane-le-federateur.fiche-technique.md",
         "versionLongue": null
@@ -511,7 +511,7 @@
       "tempo": "92 BPM",
       "key": "Sol mineur (Gm)",
       "duration": "≈ 2 min 25",
-      "status": "maquette spartiate posée — session à sauvegarder, validation par extraits.",
+      "status": "EN PAUSE au 14/11/2026 — Ségolène Royal a été éliminée au 1er tour de la primaire PS / Place publique / GRS le 11 octobre 2026 (7,62 %). La maquette existe mais ne doit pas être produite avant réévaluation.",
       "files": {
         "als": "als/26-segolene-royal-la-primaire-de-la-rose.als",
         "paroles": "paroles/26-segolene-royal-la-primaire-de-la-rose.paroles.md",
@@ -551,7 +551,7 @@
       "tempo": "72 BPM",
       "key": "Ré mineur (Dm)",
       "duration": "≈ 2 min 40",
-      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "status": "maquette spartiate posée — session à sauvegarder, validation par extraits.",
       "files": {
         "als": "als/28-eric-zemmour-la-france-francaise.als",
         "paroles": "paroles/28-eric-zemmour-la-france-francaise.paroles.md",
@@ -611,12 +611,32 @@
       "tempo": "96 BPM",
       "key": "Do dièse mineur (Cm)",
       "duration": "≈ 2 min 30",
-      "status": "préparation documentaire — aucune session Ableton ouverte pour ce morceau.",
+      "status": "maquette spartiate posée — session à sauvegarder, validation par extraits.",
       "files": {
-        "als": null,
+        "als": "als/31-marine-le-pen-la-patrie-en-heritage.als",
         "paroles": "paroles/31-marine-le-pen-la-patrie-en-heritage.paroles.md",
         "ficheTechnique": "fiches/31-marine-le-pen-la-patrie-en-heritage.fiche-technique.md",
         "versionLongue": "versions-longues/31-marine-le-pen-la-patrie-en-heritage.version-longue.md"
+      },
+      "media": {
+        "mp3": null,
+        "midi": null
+      }
+    },
+    {
+      "number": 32,
+      "candidate": "François Ruffin",
+      "title": "Le Statut des Essentiels",
+      "style": "Chanson rock / folk-punk du Nord, guitare, orgue, section rythmique",
+      "tempo": "124 BPM",
+      "key": "Sol majeur (G)",
+      "duration": "≈ 2 min 15",
+      "status": "maquette spartiate posée — session à sauvegarder, validation par extraits.",
+      "files": {
+        "als": "als/32-francois-ruffin-le-statut-des-essentiels.als",
+        "paroles": "paroles/32-francois-ruffin-le-statut-des-essentiels.paroles.md",
+        "ficheTechnique": "fiches/32-francois-ruffin-le-statut-des-essentiels.fiche-technique.md",
+        "versionLongue": null
       },
       "media": {
         "mp3": null,

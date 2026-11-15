@@ -287,25 +287,26 @@ def discover_source_tracks(album_dir: Path) -> list[dict]:
             doc_title,
             flags=re.I,
         ).strip()
+        candidate = ""
+        if album_dir.name.lower().startswith("candid"):
+            raw_parts = re.split(r"\s+[-–—]\s+", directory.name, maxsplit=2)
+            if len(raw_parts) >= 3:
+                candidate = raw_parts[1].strip()
+                title = raw_parts[2].strip()
         has_number = bool(re.match(r"^\d", directory.name))
-        if directory == album_dir:
-            title = re.sub(r"\s+Project$", "", album_dir.name, flags=re.I).strip()
-        elif has_number and folder_title:
-            title = folder_title
-        elif doc_title and not re.match(
-            r"^(fiche|status|paroles|analyse|adaptation|album|readme)", doc_title, re.I
-        ):
-            title = doc_title
-        else:
-            title = folder_title or title
+        if not candidate:
+            if directory == album_dir:
+                title = re.sub(r"\s+Project$", "", album_dir.name, flags=re.I).strip()
+            elif has_number and folder_title:
+                title = folder_title
+            elif doc_title and not re.match(
+                r"^(fiche|status|paroles|analyse|adaptation|album|readme)", doc_title, re.I
+            ):
+                title = doc_title
+            else:
+                title = folder_title or title
         number_match = re.match(r"^(\d{1,3})", directory.name)
         number = int(number_match.group(1)) if number_match else None
-
-        candidate = ""
-        parts = re.split(r"\s+[-–—]\s+", folder_title, maxsplit=2)
-        if len(parts) >= 3 and album_dir.name.lower().startswith("candid"):
-            candidate = parts[1].strip()
-            title = parts[2].strip()
 
         goals = md_bullets(md_section(fiche_text, "2."))
         summary = " ".join(goals[:3])
@@ -750,7 +751,7 @@ def build() -> tuple[list[dict], list[dict], list[dict], list[dict], list[dict]]
                 "mp3": mp3["path"] if mp3 else None,
                 "wav": wav["path"] if wav else None,
                 "midi": midi["path"] if midi else None,
-                "tempo": track["tempo"] or (f"{als_matches[0]['tempo']:g} BPM" if als_matches and als_matches[0]["tempo"] else ""),
+                "tempo": track["tempo"] or tempo_label(als_matches[0]["tempo"]) if als_matches else track["tempo"],
                 "key": track["key"],
                 "signature": track["signature"],
                 "duration": track["duration"],
@@ -807,7 +808,7 @@ def build() -> tuple[list[dict], list[dict], list[dict], list[dict], list[dict]]
                 "mp3": mp3["path"] if mp3 else None,
                 "wav": wav["path"] if wav else None,
                 "midi": midi["path"] if midi else None,
-                "tempo": f"{main['tempo']:g} BPM" if main["tempo"] else "",
+                "tempo": tempo_label(main["tempo"]),
                 "key": "",
                 "signature": "",
                 "duration": "",
@@ -874,6 +875,13 @@ def build() -> tuple[list[dict], list[dict], list[dict], list[dict], list[dict]]
 # ---------------------------------------------------------------------------
 # Écriture
 # ---------------------------------------------------------------------------
+
+
+def tempo_label(value: object) -> str:
+    try:
+        return f"{round(float(value), 1):g} BPM"
+    except (TypeError, ValueError):
+        return ""
 
 
 def iso_date(timestamp: float | None) -> str:
@@ -996,8 +1004,13 @@ def write_markdown(productions: list[dict], source_albums: list[dict]) -> None:
             als_label = f"{item['als_count']} session(s)" if item["als_count"] > 1 else ("1 session" if item["als_main"] else "—")
             audio_label = "MP3" if item["mp3"] else ("WAV" if item["wav"] else "—")
             summary = item["summary"] or item["atmosphere"] or item["status_source"] or "—"
+            label = (
+                f"{item['candidate']} — {item['title']}"
+                if item.get("candidate")
+                else item["title"]
+            )
             lines.append(
-                f"| {item['number'] or '—'} | {md_cell(item['title'], 48)} | "
+                f"| {item['number'] or '—'} | {md_cell(label, 48)} | "
                 f"{md_cell(item['stage'], 28)} | {item['confidence']} | "
                 f"{als_label} | {audio_label} | "
                 f"{md_cell(item['tempo'], 14)} | {md_cell(item['key'], 18)} | "

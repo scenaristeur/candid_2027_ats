@@ -18,9 +18,9 @@
 | **Profil** | Président de l'UPR depuis 2007, candidat pour la troisième fois. |
 | **Couleur politique** | Souverainisme intégral, gaullisme économique. |
 | **Actions déjà menées** | Confirmation de sa candidature en juillet 2026 ; obstacle principal : les 500 parrainages, qui lui avaient fait défaut en 2022. |
-| **Programme 2027** | Frexit complet ; rétablissement du contrôle des mouvements de capitaux ; sortie des traités européens ; retour au programme du Conseil national de la Résistance. |
+| **Programme 2027** | Frexit complet (UE, euro, OTAN) ; RIC ; rétablissement du contrôle des mouvements de capitaux ; sortie des traités européens ; retour au programme du Conseil national de la Résistance. |
 | **Pour** | Rupture totale et assumée avec les institutions européennes. |
-| **Contre** | Score historiquement très faible ; candidature qui n'a jamais dépassé le stade de la protestation souverainiste. |
+| **Contre** | Non testé dans les sondages retenus au 14/11/2026 ; candidature qui n'a jamais dépassé le stade de la protestation souverainiste. |
 | **Actualité** | La question des parrainages reste l'épreuve principale. |
 | **Transition Marseillaise** | « Allons enfants… de la patrie hors de l'UE ! » |
 

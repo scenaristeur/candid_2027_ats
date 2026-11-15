@@ -18,9 +18,9 @@
 | **Profil** | Maire de Cannes, président de l'Association des maires de France, fondateur de Nouvelle Énergie. |
 | **Couleur politique** | Droite libérale, souverainiste, très critique du « en même temps » macroniste. |
 | **Actions déjà menées** | Gestion rigoriste de Cannes, proposition de baisse de la CSG, offensive contre la dépense publique ; promet un « gouvernement commando » dès 2027. |
-| **Programme 2027** | 200 à 300 milliards d'euros d'économies dans les dépenses de l'État ; CSG sur les revenus d'activité de 9,2 % à 6 % ; réformes économiques rapides. |
+| **Programme 2027** | 200 milliards d'euros d'économies (120 Md€ rendus aux actifs, 40 Md€ de baisse des impôts de production, 40 Md€ pour la dette) ; baisse des cotisations de 120 Md€, soit environ 400 € de plus par mois et par salarié ; retraite par capitalisation obligatoire et collective ; conventionnement différencié. |
 | **Pour** | Rupture libérale nette ; baisse de la pression fiscale ; méthode expéditive revendiquée. |
-| **Contre** | L'ampleur des coupes pose la question des services publics ; notoriété nationale encore faible face à Philippe et Retailleau. |
+| **Contre** | 5,0 % (moyenne 2027etmoi.fr, 14/11/2026) ; l'ampleur des coupes pose la question des services publics ; notoriété nationale encore faible face à Philippe et Retailleau. |
 | **Actualité** | Sa percée fragmente la droite et le centre. |
 | **Transition Marseillaise** | « Contre nous de la tyrannie… des déficits ! » |
 

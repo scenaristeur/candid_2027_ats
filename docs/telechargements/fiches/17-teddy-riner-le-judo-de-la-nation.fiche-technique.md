@@ -15,13 +15,13 @@
 
 | | |
 | :--- | :--- |
-| **Profil** | Quintuple champion olympique de judo, icône du sport français, candidat de la société civile. |
+| **Profil** | Quintuple champion olympique de judo, icône du sport français, candidat déclaré le 9 novembre 2026, mouvement « La France qu'on veut », ni droite ni gauche. |
 | **Couleur politique** | Société civile, rassemblement, discipline. |
 | **Actions déjà menées** | Aucune action politique. Sa notoriété, sa discipline et son image de rassembleur sont son seul capital. |
-| **Programme 2027** | Encore flou : sécurité et retraites évoquées, sans cadre programmatique détaillé. |
+| **Programme 2027** | Réforme des retraites tenant compte de la démographie et de la pénibilité, répartition conservée, part de capitalisation possible ; hausse du salaire net par des allègements de cotisations, 35 heures maintenues. |
 | **Pour** | Rupture avec les professionnels de la politique ; figure d'unité. |
 | **Contre** | Absence totale d'expérience politique et de programme structuré ; risque de faire de l'élection un concours de popularité. |
-| **Actualité** | Sa candidature déplace la question de la légitimité. |
+| **Actualité** | Candidature annoncée le 9 novembre 2026 dans une vidéo et un entretien au Parisien ; structure de campagne à créer. |
 | **Transition Marseillaise** | « Entendez-vous… dans les stades ? » |
 
 > **Fiabilité** : contenu issu de `Candidats 2027.md` (compilation interne du 14/11/2026). Chaque chiffre, score et procédure doit être revérifié et **daté** avant l'enregistrement. L'album doit pouvoir dire sa date de vérité.

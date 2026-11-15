@@ -18,9 +18,9 @@
 | **Profil** | Ancien vice-président du FN, fondateur des Patriotes. |
 | **Couleur politique** | Souverainisme radical, sortie de l'UE et de l'euro. |
 | **Actions déjà menées** | Député européen, campagnes pour le Frexit, 98 mesures dont la sortie de l'OMS et le RIC. |
-| **Programme 2027** | Sortir de l'euro avec un nouveau franc (1 franc = 1 euro) ; protectionnisme ; division par trois du prix de l'électricité. |
+| **Programme 2027** | Frexit UE / euro / Schengen / CEDH / OTAN ; RIC inscrit dans la Constitution ; nouveau franc (1 franc = 1 euro) avec conversion de la dette ; sortie du marché européen de l'électricité et monopole public d'EDF ; protectionnisme. |
 | **Pour** | Rupture totale avec l'UE ; souveraineté monétaire. |
-| **Contre** | Scores très faibles ; Frexit rejeté par une large majorité de Français ; proximité passée avec le FN. |
+| **Contre** | Non testé dans les sondages retenus au 14/11/2026 ; Frexit rejeté par une large majorité de Français ; proximité passée avec le FN. |
 | **Actualité** | Le Frexit reste minoritaire dans l'opinion. |
 | **Transition Marseillaise** | « Allons enfants… de la patrie souveraine ! » |
 

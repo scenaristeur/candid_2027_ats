@@ -20,7 +20,7 @@
 | **Actions déjà menées** | Candidat en 2017 et 2022 (3,13 %) ; grève de la faim pour sauver des emplois ; chants à l'Assemblée ; cagnotte pour financer sa campagne. |
 | **Programme 2027** | Pas de programme 2027 publié ; le site de Résistons ! présente encore celui de 2022 : réduction forte de l'immigration légale, quotas annuels, restriction du droit du sol. |
 | **Pour** | Électeurs des territoires ruraux qui se sentent oubliés ; voix « contre le système ». |
-| **Contre** | Programme flou sur l'économie ; candidature non officiellement déclarée ; risque de ne pas obtenir les parrainages. |
+| **Contre** | Programme flou sur l'économie ; candidature pressentie, conditionnée à une cagnotte de 100 000 € ; environ 250 parrainages revendiqués. |
 | **Actualité** | Il parle de « chasse aux parrainages » plus que de campagne. |
 | **Transition Marseillaise** | « Entendez-vous… dans nos montagnes ? » |
 

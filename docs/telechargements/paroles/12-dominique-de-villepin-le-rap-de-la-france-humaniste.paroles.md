@@ -34,7 +34,7 @@ La France éternelle, au-dessus des partis.
 
 Dominique de Villepin, la France humaniste,
 L'ONU contre la guerre, la voix gaulliste,
-Trois pour cent, pas encore officiellement candidat,
+Un virgule neuf, pas encore officiellement candidat,
 Mais en campagne depuis des mois.
 La hauteur d'un ancien Premier ministre
 Qui attend son heure sans la fixer.
@@ -54,7 +54,7 @@ Chez ses partisans, on entend : « Il est trop tard,
 Mais sa voix porte quand les autres crient.
 On aime la hauteur, le gaullisme social,
 Et l'idée d'une France qui parle au monde.
-Trois pour cent, on le sait, mais on y croit,
+Un virgule neuf, on le sait, mais on y croit,
 Parce qu'un président, ce n'est pas un programme. »
 
 ## Refrain final
@@ -77,8 +77,8 @@ Statut, score, parcours et discours à l'ONU : `FICHE_TECHNIQUE.md` §1.
 ## Prudence
 
 - « Pas encore officiellement candidat » est le fait central : ne pas l'oublier.
-- Les « trois pour cent » viennent du brief : chiffre à revérifier et à dater avant enregistrement.
-- « Pas de programme publié » est un fait du brief, pas un jugement.
+- Le 1,9 % est une moyenne de sondages au 14/11/2026 (2027etmoi.fr) : institut et date à préciser avant enregistrement.
+- Le programme est celui publié par 2027etmoi.fr (9 impôts, 200 Md€ de cotisations vers la CSG, retraite par convention citoyenne, éducation) : à vérifier avant enregistrement.
 - Le discours à l'ONU de 2003 est nommé sans en rajouter sur son contenu.
 - Les paroles des partisans sont présentées comme **leur point de vue**, pas comme une vérité objective.
 

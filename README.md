@@ -57,7 +57,29 @@ Pour chaque titre :
 - un lien de contribution pré-rempli (correction factuelle, paroles, session).
 
 Le site contient aussi une page **Le projet** (note d’intention et règles
-éditoriales) et une page **Participer** (méthode, modèles d’issues GitHub).
+éditoriales), une page **Participer** (méthode, modèles d’issues GitHub) et une
+page **Catalogue** qui inventorie toutes les productions du projet.
+
+## Catalogue des productions
+
+La branche `plateforme-productions` prépare une plateforme multi-albums :
+Candidats 2027 devient un album parmi d’autres. La page
+`docs/catalogue.html` est générée depuis `catalog/productions.json` et permet
+de rechercher/filtrer les productions par album, statut, session ALS ou export.
+
+```powershell
+python scripts/build_catalog.py     # scanne les sources, ALS et exports
+python scripts/build_catalogue.py   # génère docs/catalogue.html
+python scripts/build_site.py        # régénère le reste du site
+python scripts/check_site.py
+```
+
+Le catalogue détaillé et sa méthode sont dans [`catalog/README.md`](catalog/README.md).
+Les rapprochements sont automatiques : la colonne « confiance » et la section
+« Rapprochements à vérifier » signalent les points à consolider.
+
+L’ordre recommandé est : `build_catalog.py`, puis `build_site.py`, puis
+`build_catalogue.py`, puis `check_site.py`.
 
 L’accueil affiche des statistiques calculées à chaque build :
 
@@ -90,7 +112,9 @@ Prérequis : **Python 3.10+**. Le build du site n’a besoin d’aucune dépenda
 externe.
 
 ```powershell
+python scripts/build_catalog.py
 python scripts/build_site.py
+python scripts/build_catalogue.py
 python scripts/check_site.py
 ```
 
@@ -372,10 +396,12 @@ Pour aller plus loin :
 ### 7.1 Après une modification des sources éditoriales
 
 ```powershell
+python scripts/build_catalog.py
 python scripts/build_site.py
+python scripts/build_catalogue.py
 python scripts/check_site.py
 git add -A
-git commit -m "Met à jour le site"
+git commit -m "Met à jour le site et le catalogue"
 git push
 ```
 
@@ -385,7 +411,9 @@ git push
 python scripts/upload_media.py --item candidats-2027-exports --dry-run
 python scripts/upload_media.py --item candidats-2027-exports
 python scripts/prepare_media.py --item candidats-2027-exports --verify
+python scripts/build_catalog.py
 python scripts/build_site.py
+python scripts/build_catalogue.py
 python scripts/check_site.py
 git add -A
 git commit -m "Publie les exports audio et MIDI"
@@ -401,6 +429,7 @@ fonctionne avec l’URL du nœud de stockage. Relancer simplement
 ```powershell
 python scripts/make_og.py
 python scripts/build_site.py
+python scripts/build_catalogue.py
 python scripts/check_site.py
 git add -A
 git commit -m "Met à jour les visuels et le SEO"
@@ -410,14 +439,16 @@ git push
 ### 7.4 Contrôle avant publication
 
 ```powershell
+python scripts/build_catalog.py
 python scripts/build_site.py
+python scripts/build_catalogue.py
 python scripts/check_site.py
 ```
 
 Le contrôle doit afficher :
 
 ```text
-✓ 31 pages de titres, liens, structure HTML et SEO valides
+✓ 32 pages de titres, liens, structure HTML et SEO valides
 ```
 
 ## 8. Publier sur GitHub Pages
@@ -444,11 +475,20 @@ Le fichier `docs/.nojekyll` évite le traitement Jekyll.
 ├── requirements-media.txt    # internetarchive + Pillow (outils optionnels)
 ├── scripts/
 │   ├── build_site.py         # génère docs/ depuis les sources (lecture seule)
+│   ├── build_catalog.py      # inventorie productions, ALS et exports
+│   ├── build_catalogue.py    # génère docs/catalogue.html
 │   ├── markdown.py           # rendu Markdown minimal, sans dépendance
 │   ├── make_og.py            # génère les images Open Graph 1200 × 630
 │   ├── prepare_media.py      # URLs et vérification des exports MP3/MIDI
 │   ├── upload_media.py       # upload MD5 vers Internet Archive
 │   └── check_site.py         # liens, HTML, SEO, JSON-LD, images OG
+├── catalog/
+│   ├── PRODUCTIONS.md        # catalogue lisible, groupé par album
+│   ├── productions.csv       # une ligne par production
+│   ├── productions.json      # données pour la plateforme
+│   ├── als_versions.csv      # inventaire des sessions .als
+│   ├── exports.csv           # inventaire des exports audio/MIDI
+│   └── README.md             # méthode et limites
 ├── site/
 │   ├── assets/style.css      # feuille de style source
 │   ├── assets/app.js         # recherche, filtres, thème
@@ -458,6 +498,7 @@ Le fichier `docs/.nojekyll` évite le traitement Jekyll.
 │   └── audio/                # optionnel : 01.mp3… pour un lecteur local
 ├── docs/                     # site généré, publié par GitHub Pages
 │   ├── index.html
+│   ├── catalogue.html
 │   ├── titres/NN-….html
 │   ├── projet.html
 │   ├── participer.html

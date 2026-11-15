@@ -1,5 +1,7 @@
 # 26 - Ségolène Royal - La Primaire de la Rose
 
+> **EN PAUSE au 14/11/2026** — Ségolène Royal a été éliminée au 1er tour de la primaire PS / Place publique / GRS le 11 octobre 2026 (7,62 %). Ne pas enregistrer ni produire avant réévaluation.
+
 **Format** : chanson en plusieurs sections — différence, discours, partisans, refrain.
 **Tonalité de travail** : Sol mineur (Gm)
 **Tempo** : 92 BPM

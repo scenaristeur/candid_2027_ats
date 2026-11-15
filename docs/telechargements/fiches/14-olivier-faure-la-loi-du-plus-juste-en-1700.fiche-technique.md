@@ -1,6 +1,6 @@
 # 14 — Olivier Faure — La Loi du Plus Juste (en 1700)
 
-**Statut** : maquette spartiate posée — session à sauvegarder, validation par extraits.
+**Statut** : EN PAUSE au 14/11/2026 — Olivier Faure a été éliminé au 1er tour de la primaire PS / Place publique / GRS le 11 octobre 2026 (14,46 %) ; Raphaël Glucksmann a été désigné. La maquette existe mais ne doit pas être produite avant réévaluation.
 **Tempo** : 88 BPM *(proposition, à valider)*
 **Tonalité** : Do dièse mineur (C#m) *(proposition, à valider à l'oreille)*
 **Signature** : 4/4

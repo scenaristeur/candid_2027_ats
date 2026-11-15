@@ -15,13 +15,13 @@
 
 | | |
 | :--- | :--- |
-| **Profil** | Journaliste et essayiste, ancienne directrice de *Marianne*, candidate annoncée en octobre 2026. |
-| **Couleur politique** | Sans étiquette, souverainisme de production, critique des « offres qui fracturent ». |
+| **Profil** | Journaliste et essayiste, ancienne directrice de *Marianne*, directrice de la revue *L'Audace !*, candidate annoncée le 14 octobre 2026. |
+| **Couleur politique** | Mouvement « Nous sommes la France », gaullisme social, souverainisme de production, critique des « offres qui fracturent ». |
 | **Actions déjà menées** | Aucune action politique élective ; tribunes, direction de *Marianne*, campagne pour « rassembler les orphelins de la politique ». |
 | **Programme 2027** | Augmentation des salaires de 20 à 30 % ; « état d'urgence de la production » ; priorité à la production française dans la commande publique ; suppression des aides aux entreprises non conditionnées à une production locale. |
 | **Pour** | Voix hors partis ; parle de production et de souveraineté industrielle sans la radicalité du RN ou de LFI. |
 | **Contre** | Absence d'expérience politique ; programme encore très général ; risque de ne pas réunir les 500 signatures, règle qu'elle juge elle-même « aberrante ». |
-| **Actualité** | Candidature annoncée en octobre 2026. |
+| **Actualité** | Candidature annoncée le 14 octobre 2026 sur France Inter ; mouvement « Nous sommes la France » lancé fin août 2026. |
 | **Transition Marseillaise** | « Marchons, marchons… vers la production française ! » |
 
 > **Fiabilité** : contenu issu de `Candidats 2027.md` (compilation interne du 14/11/2026). Chaque chiffre, score et procédure doit être revérifié et **daté** avant l'enregistrement. L'album doit pouvoir dire sa date de vérité.

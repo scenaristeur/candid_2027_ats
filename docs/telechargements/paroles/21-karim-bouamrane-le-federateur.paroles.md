@@ -1,19 +1,65 @@
-# 21 — Karim Bouamrane — Le Fédérateur — Refrain
+# 21 - Karim Bouamrane - Le Fédérateur
 
-**Format retenu** : un refrain seul. C'est la cible de l'album pour l'instant ; les couplets et le pont viendront plus tard — ou pas.
-**Tonalité proposée** : Do dièse mineur (C#m) *(à valider à l'oreille)*
-**Tempo proposé** : 104 BPM *(à valider)*
+**Format** : chanson en plusieurs sections — différence, discours, partisans, refrain.
+**Tonalité de travail** : Do dièse mineur (C#m)
+**Tempo** : 104 BPM
 **Voix** : baryton parlé-chanté, E3–B3 (MIDI 64–71, convention Ableton C3 = 60)
-**Longueur** : 6 vers, soit 8 mesures en 4/4 (à ajuster)
+**Grille** : couplet `| C#m | A | E | B |` · refrain `| A | E | B | C#m |` · pont `| F#m | A | E | B |`
+
+## Structure musicale de la maquette
+
+| Section | Mesures | Contenu |
+| :--- | :--- | :--- |
+| Intro | 4 | batterie, basse, claviers |
+| Couplet 1 | 8 | ce qui le différencie |
+| Refrain | 8 | le réel, les quartiers, la notoriété |
+| Couplet 2 | 8 | son discours |
+| Refrain | 8 | reprise |
+| Pont | 8 | point de vue de ses partisans |
+| Refrain final | 8 | sortie |
+| Outro | 4 | accord tenu, transition |
+
+Total : 56 mesures, 224 temps, environ 2 min 09 à 104 BPM.
+
+## Couplet 1 — Ce qui le différencie
+
+Karim Bouamrane, Saint-Ouen, le réel,
+Maire PS, candidat depuis juin.
+La gauche de terrain, pas la gauche de tribune,
+Les quartiers, le travail, l'école.
+Il parle aux gens, pas aux barons,
+Et il assume le mot « sécurité ».
 
 ## Refrain
 
-Karim Bouamrane, **Saint-Ouen, le réel**,
+Karim Bouamrane, Saint-Ouen, le réel,
 Sécurité, école, travail, territoires,
 La gauche qui parle aux quartiers
 Sans passer par la radicalité.
 Mais la notoriété reste locale,
 Et le PS se divise encore.
+
+## Couplet 2 — Son discours
+
+Pas de programme complet, des priorités :
+La sécurité, l'école, le travail.
+La reconnaissance des territoires populaires,
+Du concret, pas de la théorie.
+Mais la gauche modérée se divise,
+Et le PS cherche encore sa ligne.
+
+## Pont — Le point de vue de ses partisans
+
+Chez ses partisans, on dit : « Il connaît,
+Saint-Ouen, les cages d'escalier, le terrain.
+On aime la gauche qui travaille,
+Pas celle qui commente.
+Les barons le méprisent,
+Mais les gens le voient. »
+
+## Refrain final
+
+(identique au refrain)
 
 ## Idées portées
 
@@ -24,15 +70,21 @@ Et le PS se divise encore.
 
 ## Base factuelle
 
-Candidature de juin 2026 : `FICHE_TECHNIQUE.md` §1.
+Candidature de juin 2026, parcours et priorités : `FICHE_TECHNIQUE.md` §1.
+**Date de vérité : 14 novembre 2026.**
 
 ## Prudence
 
-Ne pas reprendre les mots « barons » comme une insulte : citer, ou reformuler.
+- Ne pas reprendre les mots « barons » comme une insulte : citer, ou reformuler.
+- Le programme n'est pas complet : ne pas inventer de mesures chiffrées.
+- La notoriété nationale faible est un fait de sondage à dater, pas un jugement sur sa ville.
+- « La gauche qui parle aux quartiers » est une promesse : ne pas la présenter comme un acquis.
+- Les paroles des partisans sont présentées comme **leur point de vue**, pas comme une vérité objective.
 
 ## Reste à faire
 
-- **Mélodie** : proposer une ligne dans E3–B3 (64–71) sur la grille du refrain, puis valider à l'oreille.
-- **Couplets / pont** : non écrits. À décider seulement si le refrain tient tout seul.
+- **Mélodie** : une ligne par section dans E3–B3 (64–71), à valider à l'oreille.
+- **Maquette** : version spartiate (batterie, basse, claviers, oud, guide) pour écouter la forme.
+- **Oud acoustique** : remplacer le Drift par un vrai oud quand le son sera travaillé.
 - **Transition Marseillaise** : « Formez vos bataillons… dans les quartiers ! »
-- **Vérification** : reconfirmer les chiffres et la date de vérité avant tout enregistrement.
+- **Vérification** : programme au 14/11/2026, accusations contre les « barons », score national, date de vérité.

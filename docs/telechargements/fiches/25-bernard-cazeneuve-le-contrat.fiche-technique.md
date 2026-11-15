@@ -17,10 +17,10 @@
 | :--- | :--- |
 | **Profil** | Ancien Premier ministre socialiste (2016–2017), ancien ministre de l'Intérieur. |
 | **Couleur politique** | Gauche de gouvernement, fermeté républicaine. |
-| **Actions déjà menées** | Ministre de l'Intérieur pendant les attentats de 2015–2016, Premier ministre ; a refusé de participer à la primaire socialiste et publie un « contrat » avec les Français. |
-| **Programme 2027** | Trois chantiers : éducation et santé ; modernisation des institutions ; sécurité. Pas de détail chiffré pour l'instant. |
+| **Actions déjà menées** | Ministre de l'Intérieur pendant les attentats de 2015–2016, Premier ministre ; candidature annoncée dans Le Figaro le 28 avril 2026, puis « Lettre aux Français » en juillet ; décline la primaire socialiste. |
+| **Programme 2027** | Trois chantiers : éducation et santé ; modernisation des institutions ; sécurité. Le site ajoute la baisse des impôts de production financée par la réduction des aides fiscales, la protection des transitions professionnelles, l'allongement de la durée de cotisation plutôt que l'âge légal, et la santé mentale comme grande cause nationale. |
 | **Pour** | Gauche de gouvernement, sérieuse et républicaine, sans compromis avec LFI. |
-| **Contre** | Positionnement perçu comme une difficulté à se renouveler ; divise la gauche modérée avec Glucksmann et Faure. |
+| **Contre** | Positionnement perçu comme une difficulté à se renouveler ; divise la gauche modérée avec Glucksmann et la gauche sociale-démocrate. |
 | **Actualité** | Son « contrat » est une lettre aux Français, pas encore un programme chiffré. |
 | **Transition Marseillaise** | « Tremblez, tyrans… et électeurs ! » |
 

@@ -20,8 +20,8 @@
 | **Actions déjà menées** | Eurodéputé, travaux sur l'ingérence étrangère et les droits humains ; structuration de Place publique. |
 | **Programme 2027** | 200 milliards d'euros d'investissements publics sur cinq ans dans la transition écologique ; sortie des énergies fossiles dès les 100 premiers jours ; concilier climat, pouvoir d'achat et réindustrialisation. |
 | **Pour** | Écologie ambitieuse sans rupture avec l'Europe ; alternative sociale-démocrate à Mélenchon. |
-| **Contre** | Baisse dans les sondages (11–13 %) ; financement des 200 milliards sans augmentation d'impôts pour les classes moyennes ; concurrence de Mélenchon à gauche. |
-| **Actualité** | Plan écologique présenté le 9 novembre 2026 ; perte de vitesse par rapport au début de campagne. |
+| **Contre** | 12,1 % (moyenne 2027etmoi.fr, 14/11/2026) ; financement des 200 milliards sans augmentation d'impôts pour les classes moyennes ; concurrence de Mélenchon à gauche. |
+| **Actualité** | Désigné candidat PS / Place publique / GRS dès le 1er tour de la primaire le 11 octobre 2026 (66,17 %) ; plan écologique présenté le 9 novembre 2026. |
 | **Transition Marseillaise** | « Formez vos bataillons… écologiques ! » |
 
 > **Fiabilité** : contenu issu de `Candidats 2027.md` (compilation interne du 14/11/2026). Chaque chiffre, score et procédure doit être revérifié et **daté** avant l'enregistrement. L'album doit pouvoir dire sa date de vérité.

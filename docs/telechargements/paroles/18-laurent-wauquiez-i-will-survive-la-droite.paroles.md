@@ -1,5 +1,7 @@
 # 18 - Laurent Wauquiez - I Will Survive (la droite)
 
+> **EN PAUSE au 14/11/2026** — Laurent Wauquiez n'est pas candidat ; il cherche un candidat unique à droite pour avant Noël. Ne pas enregistrer ni produire avant réévaluation.
+
 **Format** : chanson en plusieurs sections — différence, discours, partisans, refrain.
 **Tonalité de travail** : La mineur (Am)
 **Tempo** : 118 BPM

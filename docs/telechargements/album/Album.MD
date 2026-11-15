@@ -2,7 +2,7 @@
 
 **Dossier** : `sources/Candid_2027_ats/`
 **Date de vérité** : 14 novembre 2026
-**État** : production des maquettes — une session Ableton par candidat, Arthaud (09) en cours.
+**État** : 31 maquettes spartiates posées + Ruffin (32) en préparation — validation à l'oreille et mix en cours.
 
 ## Principe de production — maquette d'abord
 
@@ -34,13 +34,14 @@ Décisions prises :
 | Élément | État |
 | :--- | :--- |
 | `Candidats 2027.md` (brief d'origine) | intact, non modifié |
-| 31 dossiers `NN - Candidat - Titre` | créés |
-| 31 `FICHE_TECHNIQUE.md` | créés (brief, angle, structure, grille, palette, mix, points à vérifier) + **§9 steps de production** |
-| 31 `PAROLES.md` | refrain + sections à adapter (différence, discours, partisans) |
+| 32 dossiers `NN - Candidat - Titre` | créés (31 maquettes + Ruffin 32 en préparation) |
+| 32 `FICHE_TECHNIQUE.md` | créés (brief, angle, structure, grille, palette, mix, points à vérifier) + **§9 steps de production** |
+| 32 `PAROLES.md` | refrain + sections (différence, discours, partisans) |
 | `PLAN_SESSIONS.md` | **obsolète** : le modèle 6 sessions × 5 est abandonné, on passe à **une session par chanson** |
 | 4 versions longues de pilotes | archivées dans `_versions_longues/` |
-| Session Ableton | **Arthaud (09) ouverte** — maquette spartiate en cours |
-| Mix / master | non commencés — maquette brute seulement |
+| Session Ableton | 31 maquettes posées, une par chanson ; Ruffin 32 à ouvrir |
+| Mix / master | non commencés — validation à l'oreille en cours |
+| Veille 2027etmoi.fr | check des 31 fait ; 6 en pause ; corrections en cours ; voir `VEILLE_2027ETMOI.md` |
 
 ## Ordre de l'album
 
@@ -79,6 +80,7 @@ Tirage au sort effectué avec la seed **580851** (`random.Random(580851).shuffle
 | 29 | Bruno Retailleau | L'Hiver démographique | chant traditionnel |
 | 30 | Anasse Kazib | La Révolution Permanente | punk hardcore |
 | 31 | Marine Le Pen | La Patrie en héritage | variété populaire |
+| 32 | François Ruffin | Le Statut des Essentiels | chanson rock / folk-punk |
 
 ## Règle de prudence (à appliquer à chaque refrain)
 
@@ -140,6 +142,7 @@ Chaque fiche a sa section **§7 — À vérifier avant d'enregistrer**. Les poin
 sources/Candid_2027_ats/
 ├── Album.MD                     ← ce document
 ├── PLAN_SESSIONS.md             ← obsolète : une session par chanson
+├── VEILLE_2027ETMOI.md          ← check des 31 + 30 candidats supplémentaires
 ├── Candidats 2027.md            ← brief d'origine, intact
 ├── _versions_longues/           ← 4 versions longues de pilotes (référence)
 │   ├── 09 - Nathalie Arthaud...
@@ -160,3 +163,4 @@ sources/Candid_2027_ats/
    je configure la maquette.
 5. **Affiner les programmes et les personnalités** à partir de sources publiques comme
    https://2027etmoi.fr/ — vérifier et dater chaque information avant de l'intégrer aux fiches.
+   Premier check et liste des 30 candidats supplémentaires : `VEILLE_2027ETMOI.md`.

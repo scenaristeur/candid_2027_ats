@@ -17,10 +17,10 @@
 | :--- | :--- |
 | **Profil** | Ancien Premier ministre de Jacques Chirac, fondateur de « La France humaniste ». A confirmé qu'il serait candidat, mais juge que « ce n'est pas le bon moment » pour l'officialiser. |
 | **Couleur politique** | Gaullisme social et humaniste, critique des partis. |
-| **Actions déjà menées** | Ministre des Affaires étrangères (discours à l'ONU contre la guerre en Irak), Premier ministre ; en campagne de fait depuis plusieurs mois pour collecter les 500 parrainages. |
-| **Programme 2027** | Pas encore publié ; se positionne comme une alternative à Mélenchon et au RN, avec une ligne gaulliste et humaniste. |
+| **Actions déjà menées** | Ministre des Affaires étrangères (discours à l'ONU contre la guerre en Irak), Premier ministre ; en campagne de fait depuis plusieurs mois ; plus de 300 parrainages d'élus au 22 octobre 2026. |
+| **Programme 2027** | Ramener la fiscalité à neuf grands impôts et le code des impôts à quarante pages ; basculer plus de 200 Md€ de cotisations non contributives vers la CSG (environ 90 € de plus par mois au SMIC) ; réforme des retraites par conférence sociale et convention citoyenne, puis référendum ; sanctuariser l'éducation et augmenter de 20 % les dépenses réelles par élève. |
 | **Pour** | Voix de la « France éternelle », au-dessus des partis ; expérience internationale. |
-| **Contre** | Environ 3 % dans les sondages ; positionnement flou ; officialisation très tardive. |
+| **Contre** | 1,9 % (moyenne 2027etmoi.fr, 14/11/2026) ; positionnement flou ; officialisation très tardive. |
 | **Actualité** | La campagne de fait continue sans déclaration formelle. |
 | **Transition Marseillaise** | « Contre nous de la tyrannie… des partis ! » |
 
@@ -63,7 +63,7 @@ Voix devant, cordes larges mais basses. Le sample de voix doit être court et li
 
 - Son statut exact de candidature et le nombre de parrainages.
 - Le discours à l'ONU de 2003 : date et contexte.
-- Les 3 % de sondage : institut et date.
+- Le 1,9 % de sondage : institut et date.
 
 ## 8. Notes de production
 

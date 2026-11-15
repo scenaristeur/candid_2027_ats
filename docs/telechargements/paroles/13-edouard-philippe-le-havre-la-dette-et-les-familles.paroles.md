@@ -36,7 +36,7 @@ La stabilité, la dette, les familles.
 Retraite à soixante-cinq, un fonctionnaire sur trois,
 Trois cent cinquante euros pour chaque enfant,
 La stabilité comme programme.
-Onze à quatorze pour cent, et la primaire qui menace :
+Quinze virgule huit pour cent, et la primaire qui menace :
 Gouverner, c'est choisir qui reçoit le moins.
 
 ## Couplet 2 — Son discours
@@ -54,7 +54,7 @@ Chez ses partisans, on dit : « Il gère,
 Le Havre, le Covid, la SNCF, il a tenu.
 On aime la stabilité, le sérieux, l'Europe,
 Et tant pis si la primaire nous divise.
-Onze à quatorze pour cent, ce n'est pas fini,
+Quinze virgule huit pour cent, ce n'est pas fini,
 Un gestionnaire, ça se juge sur la durée. »
 
 ## Refrain final
@@ -77,7 +77,7 @@ Programme du 12/11/2026, parcours et score : `FICHE_TECHNIQUE.md` §1.
 
 - **Ne pas lui attribuer la réforme des retraites de 2023** (gouvernement Borne). Sa proposition 2027 est la retraite à 65 ans ; son projet 2019–2020 a été interrompu par le Covid.
 - L'allocation de 350 euros et la baisse d'impôt de 3 000 euros sont des **propositions** : montant, conditions et coût à revérifier.
-- Les 11–14 % sont une fourchette de sondages du brief : institut et date à préciser avant enregistrement.
+- Le 15,8 % est une moyenne de sondages au 14/11/2026 (2027etmoi.fr) : institut et date à préciser avant enregistrement.
 - « Gouverner, c'est choisir qui reçoit le moins » est une critique de la politique sociale, pas une attaque personnelle.
 - Les paroles des partisans sont présentées comme **leur point de vue**, pas comme une vérité objective.
 

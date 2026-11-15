@@ -18,9 +18,9 @@
 | **Profil** | Maire d'Yerres, président de Debout la France. |
 | **Couleur politique** | Droite souverainiste, attachée à l'État-nation. |
 | **Actions déjà menées** | Quatre campagnes présidentielles (2012, 2017, 2022, 2027), sans jamais dépasser 5 % ; candidature officialisée en septembre 2026. |
-| **Programme 2027** | Sortie de l'UE ; arrêt du financement de l'Ukraine ; préférence nationale ; baisse des impôts. |
+| **Programme 2027** | Sortie de l'UE ; arrêt du financement de l'Ukraine ; préférence nationale ; baisse des impôts. Le site ajoute un fonds souverain « à la norvégienne », la défiscalisation des heures supplémentaires, la retraite à 62 ans et 9 mois, et un minimum retraite par capitalisation. |
 | **Pour** | Droite souverainiste « classique », sans la radicalité du RN ou de Reconquête. |
-| **Contre** | Plafond de verre électoral ; positions sur l'Ukraine qui le marginalisent dans le débat actuel. |
+| **Contre** | 2,2 % (moyenne 2027etmoi.fr, 14/11/2026) ; plafond de verre électoral ; positions sur l'Ukraine qui le marginalisent dans le débat actuel. |
 | **Actualité** | Sa position sur l'Ukraine le coupe d'une partie de l'électorat de droite. |
 | **Transition Marseillaise** | « Marchons, marchons… hors de l'UE ! » |
 

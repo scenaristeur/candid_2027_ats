@@ -1,6 +1,6 @@
 # 18 - Laurent Wauquiez - I Will Survive (la droite)
 
-**Statut** : maquette spartiate posée — session à sauvegarder, validation par extraits.
+**Statut** : EN PAUSE au 14/11/2026 — Laurent Wauquiez n'est pas candidat ; il cherche un candidat unique à droite pour avant Noël. La maquette existe mais ne doit pas être produite avant réévaluation.
 **Tempo** : 118 BPM *(proposition, à valider)*
 **Tonalité** : La mineur (Am) *(proposition, à valider à l'oreille)*
 **Signature** : 4/4

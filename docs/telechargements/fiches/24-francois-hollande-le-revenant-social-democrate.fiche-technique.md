@@ -18,9 +18,9 @@
 | **Profil** | Ancien président de la République (2012–2017), député de Corrèze. N'est pas officiellement candidat. |
 | **Couleur politique** | Social-démocratie, recours de la gauche modérée. |
 | **Actions déjà menées** | A gouverné cinq ans, renoncé à se représenter en 2017 ; loue des locaux, publie un livre de 80 propositions et se pose en « recours ». |
-| **Programme 2027** | 80 propositions encore peu détaillées : éducation, santé, « modernisation des institutions ». |
+| **Programme 2027** | 80 propositions encore peu détaillées : éducation, santé, « modernisation des institutions ». Le site ajoute la retraite autour de 63 ans au 1er janvier 2028, la baisse des cotisations salariales financée par les grosses successions, et la TVA portée de 20 % à 24 %. |
 | **Pour** | Figure expérimentée, capable de rassembler la gauche modérée face à Mélenchon et Glucksmann. |
-| **Contre** | Bilan contesté au sein même de la gauche ; retour perçu comme une difficulté du personnel politique à se renouveler. |
+| **Contre** | 7,8 % (moyenne 2027etmoi.fr, 14/11/2026) ; bilan contesté au sein même de la gauche ; retour perçu comme une difficulté du personnel politique à se renouveler. |
 | **Actualité** | Il n'est pas candidat déclaré, mais tout le monde parle de son retour. |
 | **Transition Marseillaise** | « Allons enfants… de la patrie reconnaissante ? » |
 

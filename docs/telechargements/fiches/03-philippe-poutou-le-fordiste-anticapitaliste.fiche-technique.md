@@ -1,6 +1,6 @@
 # 03 — Philippe Poutou — Le Fordiste Anticapitaliste
 
-**Statut** : préparation documentaire — aucune session Ableton ouverte pour ce morceau.
+**Statut** : EN PAUSE au 14/11/2026 — le NPA-l'Anticapitaliste ne présente pas de candidat et soutient Jean-Luc Mélenchon. La maquette existe mais ne doit pas être produite avant réévaluation.
 **Tempo** : 160 BPM *(proposition, à valider)*
 **Tonalité** : Mi mineur (Em) *(proposition, à valider à l'oreille)*
 **Signature** : 4/4
