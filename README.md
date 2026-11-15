@@ -8,6 +8,11 @@ techniques, les sessions Ableton et les exports MP3/MIDI.
 - Dépôt : <https://github.com/scenaristeur/candid_2027_ats>
 - Médias : <https://archive.org/details/candidats-2027-exports>
 
+> **Branche `plateforme-productions`** — inventaire de toutes les productions
+> (sources, sessions Ableton, exports) dans [`catalog/`](catalog/README.md).
+> Cette branche prépare une plateforme multi-albums ; le site Candidats 2027
+> devient un événement parmi d’autres.
+
 > **Avertissement** — Les titres, paroles et musiques de cet album ont été
 > générés par IA. Ce sont des **brouillons de vulgarisation** : ils peuvent
 > contenir des erreurs factuelles, juridiques ou artistiques. Ils ne constituent
