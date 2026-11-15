@@ -320,6 +320,33 @@ python scripts/upload_media.py --item candidats-2027-exports --dry-run
 L’identifiant `candidats-2027-exports` doit être unique sur Internet Archive.
 On peut le changer avec `--item`.
 
+### 5.2 ter Publier les autres productions
+
+Les MP3 des productions hors Candidats 2027 et Désir sont publiés dans un item
+dédié, avec des noms de fichiers stables `<id>.mp3` :
+
+```powershell
+python scripts/prepare_batch_media.py
+
+python scripts/upload_media.py `
+  --exports "C:\Users\admin\Music\archive_clean\ableton-productions" `
+  --item ableton-productions `
+  --flat `
+  --title "Productions Ableton — exports audio" `
+  --creator "Scenaristeur" `
+  --skip-verify
+
+python scripts/prepare_batch_production_media.py `
+  --plan "C:\Users\admin\Music\archive_clean\ableton-productions\publication-plan.json" `
+  --item ableton-productions `
+  --verify
+```
+
+`prepare_batch_media.py` nettoie les tags et écrit un plan de publication.
+`upload_media.py --flat` envoie les fichiers sans attendre le préfixe `NN -`.
+`prepare_batch_production_media.py` vérifie les URLs et met à jour
+`site/media_productions.json` par identifiant de production.
+
 ### 5.3 Vérifier et publier
 
 ```powershell
@@ -523,6 +550,8 @@ Le fichier `docs/.nojekyll` évite le traitement Jekyll.
 │   ├── prepare_media.py      # URLs et vérification des exports MP3/MIDI
 │   ├── sanitize_media.py     # copie propre des MP3 avant Archive.org
 │   ├── upload_media.py       # upload MD5 vers Internet Archive
+│   ├── prepare_batch_media.py # staging des MP3 de toutes les productions
+│   ├── prepare_batch_production_media.py # manifeste du lot Archive.org
 │   └── check_site.py         # liens, HTML, SEO, JSON-LD, images OG
 ├── catalog/
 │   ├── PRODUCTIONS.md        # catalogue lisible, groupé par album

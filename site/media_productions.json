@@ -1,10 +1,70 @@
 {
-  "_comment": "URLs Archive.org par identifiant de production. Généré par scripts/prepare_production_media.py.",
-  "checkedAt": "2026-11-15T21:13:04+00:00",
+  "_comment": "URLs Archive.org par identifiant de production. Généré par prepare_production_media.py et prepare_batch_production_media.py.",
+  "checkedAt": "2026-11-15T23:25:11+00:00",
   "albums": {
     "Désir": {
       "item": "desir-maquettes",
       "baseUrl": "https://archive.org/download/desir-maquettes"
+    },
+    "Danse tes illusions": {
+      "item": "ableton-productions",
+      "baseUrl": "https://archive.org/download/ableton-productions"
+    },
+    "Le Château Des Robots": {
+      "item": "ableton-productions",
+      "baseUrl": "https://archive.org/download/ableton-productions"
+    },
+    "Melody, Where are you": {
+      "item": "ableton-productions",
+      "baseUrl": "https://archive.org/download/ableton-productions"
+    },
+    "Reprises": {
+      "item": "ableton-productions",
+      "baseUrl": "https://archive.org/download/ableton-productions"
+    },
+    "RudeGirl": {
+      "item": "ableton-productions",
+      "baseUrl": "https://archive.org/download/ableton-productions"
+    },
+    "1er geste Project": {
+      "item": "ableton-productions",
+      "baseUrl": "https://archive.org/download/ableton-productions"
+    },
+    "Dans mon bain la vipère Project": {
+      "item": "ableton-productions",
+      "baseUrl": "https://archive.org/download/ableton-productions"
+    },
+    "L'Echo des Calypsos Project": {
+      "item": "ableton-productions",
+      "baseUrl": "https://archive.org/download/ableton-productions"
+    },
+    "Masculinisme": {
+      "item": "ableton-productions",
+      "baseUrl": "https://archive.org/download/ableton-productions"
+    },
+    "Satie's Faction": {
+      "item": "ableton-productions",
+      "baseUrl": "https://archive.org/download/ableton-productions"
+    },
+    "Stranggae Project": {
+      "item": "ableton-productions",
+      "baseUrl": "https://archive.org/download/ableton-productions"
+    },
+    "Supplique Project": {
+      "item": "ableton-productions",
+      "baseUrl": "https://archive.org/download/ableton-productions"
+    },
+    "Tonton Cause Project": {
+      "item": "ableton-productions",
+      "baseUrl": "https://archive.org/download/ableton-productions"
+    },
+    "pilote du désert": {
+      "item": "ableton-productions",
+      "baseUrl": "https://archive.org/download/ableton-productions"
+    },
+    "_racine": {
+      "item": "ableton-productions",
+      "baseUrl": "https://archive.org/download/ableton-productions"
     }
   },
   "files": {
@@ -87,6 +147,234 @@
         "canonicalUrl": "https://archive.org/download/desir-maquettes/08-Apaisement.mp3",
         "verified": true,
         "bytes": 29364358,
+        "http": 200,
+        "via": "canonical",
+        "contentType": "audio/mpeg"
+      }
+    },
+    "danse-tes-illusions--danse-tes-illusions": {
+      "mp3": {
+        "file": "danse-tes-illusions--danse-tes-illusions.mp3",
+        "url": "https://archive.org/download/ableton-productions/danse-tes-illusions--danse-tes-illusions.mp3",
+        "canonicalUrl": "https://archive.org/download/ableton-productions/danse-tes-illusions--danse-tes-illusions.mp3",
+        "verified": true,
+        "bytes": 17549056,
+        "http": 200,
+        "via": "canonical",
+        "contentType": "audio/mpeg"
+      }
+    },
+    "le-chateau-des-robots--01-les-myopes": {
+      "mp3": {
+        "file": "le-chateau-des-robots--01-les-myopes.mp3",
+        "url": "https://archive.org/download/ableton-productions/le-chateau-des-robots--01-les-myopes.mp3",
+        "canonicalUrl": "https://archive.org/download/ableton-productions/le-chateau-des-robots--01-les-myopes.mp3",
+        "verified": true,
+        "bytes": 13715668,
+        "http": 200,
+        "via": "canonical",
+        "contentType": "audio/mpeg"
+      }
+    },
+    "melody-where-are-you--02-waves-of-you-part-i": {
+      "mp3": {
+        "file": "melody-where-are-you--02-waves-of-you-part-i.mp3",
+        "url": "https://archive.org/download/ableton-productions/melody-where-are-you--02-waves-of-you-part-i.mp3",
+        "canonicalUrl": "https://archive.org/download/ableton-productions/melody-where-are-you--02-waves-of-you-part-i.mp3",
+        "verified": true,
+        "bytes": 9397556,
+        "http": 200,
+        "via": "canonical",
+        "contentType": "audio/mpeg"
+      }
+    },
+    "melody-where-are-you--03-fantom-lover": {
+      "mp3": {
+        "file": "melody-where-are-you--03-fantom-lover.mp3",
+        "url": "https://archive.org/download/ableton-productions/melody-where-are-you--03-fantom-lover.mp3",
+        "canonicalUrl": "https://archive.org/download/ableton-productions/melody-where-are-you--03-fantom-lover.mp3",
+        "verified": true,
+        "bytes": 12544678,
+        "http": 200,
+        "via": "canonical",
+        "contentType": "audio/mpeg"
+      }
+    },
+    "melody-where-are-you--06-melody-s-ghost": {
+      "mp3": {
+        "file": "melody-where-are-you--06-melody-s-ghost.mp3",
+        "url": "https://archive.org/download/ableton-productions/melody-where-are-you--06-melody-s-ghost.mp3",
+        "canonicalUrl": "https://archive.org/download/ableton-productions/melody-where-are-you--06-melody-s-ghost.mp3",
+        "verified": true,
+        "bytes": 7368950,
+        "http": 200,
+        "via": "canonical",
+        "contentType": "audio/mpeg"
+      }
+    },
+    "reprises--another-brick-in-the-wall-part-2-reprise-moderne": {
+      "mp3": {
+        "file": "reprises--another-brick-in-the-wall-part-2-reprise-moderne.mp3",
+        "url": "https://archive.org/download/ableton-productions/reprises--another-brick-in-the-wall-part-2-reprise-moderne.mp3",
+        "canonicalUrl": "https://archive.org/download/ableton-productions/reprises--another-brick-in-the-wall-part-2-reprise-moderne.mp3",
+        "verified": false,
+        "bytes": null,
+        "http": 404,
+        "via": "canonical",
+        "contentType": null
+      }
+    },
+    "reprises--keep-talking-reprise-francaise": {
+      "mp3": {
+        "file": "reprises--keep-talking-reprise-francaise.mp3",
+        "url": "https://archive.org/download/ableton-productions/reprises--keep-talking-reprise-francaise.mp3",
+        "canonicalUrl": "https://archive.org/download/ableton-productions/reprises--keep-talking-reprise-francaise.mp3",
+        "verified": false,
+        "bytes": null,
+        "http": 404,
+        "via": "canonical",
+        "contentType": null
+      }
+    },
+    "reprises--la-vm": {
+      "mp3": {
+        "file": "reprises--la-vm.mp3",
+        "url": "https://archive.org/download/ableton-productions/reprises--la-vm.mp3",
+        "canonicalUrl": "https://archive.org/download/ableton-productions/reprises--la-vm.mp3",
+        "verified": false,
+        "bytes": null,
+        "http": 404,
+        "via": "canonical",
+        "contentType": null
+      }
+    },
+    "rudegirl--rudegirl": {
+      "mp3": {
+        "file": "rudegirl--rudegirl.mp3",
+        "url": "https://archive.org/download/ableton-productions/rudegirl--rudegirl.mp3",
+        "canonicalUrl": "https://archive.org/download/ableton-productions/rudegirl--rudegirl.mp3",
+        "verified": false,
+        "bytes": null,
+        "http": 404,
+        "via": "canonical",
+        "contentType": null
+      }
+    },
+    "1er-geste-project--1er-geste": {
+      "mp3": {
+        "file": "1er-geste-project--1er-geste.mp3",
+        "url": "https://archive.org/download/ableton-productions/1er-geste-project--1er-geste.mp3",
+        "canonicalUrl": "https://archive.org/download/ableton-productions/1er-geste-project--1er-geste.mp3",
+        "verified": true,
+        "bytes": 469849,
+        "http": 200,
+        "via": "canonical",
+        "contentType": "audio/mpeg"
+      }
+    },
+    "dans-mon-bain-la-vipere-project--dans-mon-bain-la-vipere": {
+      "mp3": {
+        "file": "dans-mon-bain-la-vipere-project--dans-mon-bain-la-vipere.mp3",
+        "url": "https://archive.org/download/ableton-productions/dans-mon-bain-la-vipere-project--dans-mon-bain-la-vipere.mp3",
+        "canonicalUrl": "https://archive.org/download/ableton-productions/dans-mon-bain-la-vipere-project--dans-mon-bain-la-vipere.mp3",
+        "verified": true,
+        "bytes": 5227954,
+        "http": 200,
+        "via": "canonical",
+        "contentType": "audio/mpeg"
+      }
+    },
+    "l-echo-des-calypsos-project--copie-l-echo-des-calypsos-bass-cradok": {
+      "mp3": {
+        "file": "l-echo-des-calypsos-project--copie-l-echo-des-calypsos-bass-cradok.mp3",
+        "url": "https://archive.org/download/ableton-productions/l-echo-des-calypsos-project--copie-l-echo-des-calypsos-bass-cradok.mp3",
+        "canonicalUrl": "https://archive.org/download/ableton-productions/l-echo-des-calypsos-project--copie-l-echo-des-calypsos-bass-cradok.mp3",
+        "verified": true,
+        "bytes": 8787214,
+        "http": 200,
+        "via": "canonical",
+        "contentType": "audio/mpeg"
+      }
+    },
+    "masculinisme--01-masculiniste-emotionnal-indie-rock": {
+      "mp3": {
+        "file": "masculinisme--01-masculiniste-emotionnal-indie-rock.mp3",
+        "url": "https://archive.org/download/ableton-productions/masculinisme--01-masculiniste-emotionnal-indie-rock.mp3",
+        "canonicalUrl": "https://archive.org/download/ableton-productions/masculinisme--01-masculiniste-emotionnal-indie-rock.mp3",
+        "verified": true,
+        "bytes": 2219176,
+        "http": 200,
+        "via": "canonical",
+        "contentType": "audio/mpeg"
+      }
+    },
+    "satie-s-faction--cool-world": {
+      "mp3": {
+        "file": "satie-s-faction--cool-world.mp3",
+        "url": "https://archive.org/download/ableton-productions/satie-s-faction--cool-world.mp3",
+        "canonicalUrl": "https://archive.org/download/ableton-productions/satie-s-faction--cool-world.mp3",
+        "verified": false,
+        "bytes": null,
+        "http": 404,
+        "via": "canonical",
+        "contentType": null
+      }
+    },
+    "stranggae-project--stranggae": {
+      "mp3": {
+        "file": "stranggae-project--stranggae.mp3",
+        "url": "https://archive.org/download/ableton-productions/stranggae-project--stranggae.mp3",
+        "canonicalUrl": "https://archive.org/download/ableton-productions/stranggae-project--stranggae.mp3",
+        "verified": false,
+        "bytes": null,
+        "http": 404,
+        "via": "canonical",
+        "contentType": null
+      }
+    },
+    "supplique-project--copie-supplique": {
+      "mp3": {
+        "file": "supplique-project--copie-supplique.mp3",
+        "url": "https://archive.org/download/ableton-productions/supplique-project--copie-supplique.mp3",
+        "canonicalUrl": "https://archive.org/download/ableton-productions/supplique-project--copie-supplique.mp3",
+        "verified": false,
+        "bytes": null,
+        "http": 404,
+        "via": "canonical",
+        "contentType": null
+      }
+    },
+    "tonton-cause-project--tonton-cause": {
+      "mp3": {
+        "file": "tonton-cause-project--tonton-cause.mp3",
+        "url": "https://archive.org/download/ableton-productions/tonton-cause-project--tonton-cause.mp3",
+        "canonicalUrl": "https://archive.org/download/ableton-productions/tonton-cause-project--tonton-cause.mp3",
+        "verified": false,
+        "bytes": null,
+        "http": 404,
+        "via": "canonical",
+        "contentType": null
+      }
+    },
+    "pilote-du-desert--dm-teinte-desertique": {
+      "mp3": {
+        "file": "pilote-du-desert--dm-teinte-desertique.mp3",
+        "url": "https://archive.org/download/ableton-productions/pilote-du-desert--dm-teinte-desertique.mp3",
+        "canonicalUrl": "https://archive.org/download/ableton-productions/pilote-du-desert--dm-teinte-desertique.mp3",
+        "verified": true,
+        "bytes": 12627893,
+        "http": 200,
+        "via": "canonical",
+        "contentType": "audio/mpeg"
+      }
+    },
+    "racine--regstam": {
+      "mp3": {
+        "file": "racine--regstam.mp3",
+        "url": "https://archive.org/download/ableton-productions/racine--regstam.mp3",
+        "canonicalUrl": "https://archive.org/download/ableton-productions/racine--regstam.mp3",
+        "verified": true,
+        "bytes": 6564538,
         "http": 200,
         "via": "canonical",
         "contentType": "audio/mpeg"

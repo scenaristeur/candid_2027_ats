@@ -29,10 +29,10 @@ from pathlib import Path
 from internetarchive import get_session
 
 try:
-    from prepare_media import DEFAULT_EXPORTS, USER_AGENT, scan
+    from prepare_media import DEFAULT_EXPORTS, KINDS, USER_AGENT, scan
 except ImportError:  # exécution depuis un autre répertoire
     sys.path.insert(0, str(Path(__file__).resolve().parent))
-    from prepare_media import DEFAULT_EXPORTS, USER_AGENT, scan
+    from prepare_media import DEFAULT_EXPORTS, KINDS, USER_AGENT, scan
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
@@ -104,6 +104,7 @@ def main() -> None:
     parser.add_argument("--creator", default="Candidats 2027")
     parser.add_argument("--date", default="2026-11-14")
     parser.add_argument("--description", default="")
+    parser.add_argument("--flat", action="store_true", help="envoyer tous les médias sans préfixe NN")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--skip-verify", action="store_true")
     args = parser.parse_args()
@@ -111,13 +112,22 @@ def main() -> None:
     item = args.item.strip()
     access, secret = load_credentials()
 
-    found, warnings = scan(args.exports)
-    if not found:
-        raise SystemExit(f"Aucun MP3/MIDI trouvé dans {args.exports}")
-
-    local_files = sorted(
-        path for entries in found.values() for path in entries.values()
-    )
+    if args.flat:
+        local_files = sorted(
+            path
+            for path in args.exports.rglob("*")
+            if path.is_file() and path.suffix.lower() in KINDS
+        )
+        warnings = []
+        if not local_files:
+            raise SystemExit(f"Aucun média trouvé dans {args.exports}")
+    else:
+        found, warnings = scan(args.exports)
+        if not found:
+            raise SystemExit(f"Aucun MP3/MIDI trouvé dans {args.exports}")
+        local_files = sorted(
+            path for entries in found.values() for path in entries.values()
+        )
     existing = remote_files(item)
 
     to_upload: list[Path] = []

@@ -147,7 +147,7 @@ def main() -> None:
     generated = 0
     sitemap_entries: list[tuple[str, str]] = []
     for production in productions:
-        if production.get("kind") not in {"source", "als"}:
+        if production.get("kind") not in {"source", "als", "export"}:
             continue
         if production.get("album") == "Candidats 2027":
             continue
@@ -215,10 +215,10 @@ def main() -> None:
             )
 
         media_note = ""
-        if production.get("album") == "Désir" and not mp3:
+        if production.get("mp3") and not mp3:
             media_note = (
                 '<p class="download-note">L’export MP3 de cette production est en cours '
-                "de catalogage sur Internet Archive.</p>"
+                "de publication ou de catalogage sur Internet Archive.</p>"
             )
 
         description = (
