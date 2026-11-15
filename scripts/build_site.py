@@ -20,6 +20,7 @@ import json
 import os
 import re
 import shutil
+import sys
 import unicodedata
 import zipfile
 from datetime import date
@@ -27,6 +28,11 @@ from pathlib import Path
 from urllib.parse import quote
 
 import markdown as md
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8")
 
 ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs"

@@ -13,6 +13,11 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8")
+
 ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs"
 SITE_URL = "https://scenaristeur.github.io/candid_2027_ats"

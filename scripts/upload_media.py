@@ -34,6 +34,11 @@ except ImportError:  # exécution depuis un autre répertoire
     sys.path.insert(0, str(Path(__file__).resolve().parent))
     from prepare_media import DEFAULT_EXPORTS, USER_AGENT, scan
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8")
+
 ROOT = Path(__file__).resolve().parent.parent
 ENV_FILE = ROOT / ".env"
 UPLOADER_USER_AGENT = "Candidats2027-uploader/1.0 (DeepSeek V4.1 Flash 1017)"

@@ -35,6 +35,11 @@ from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Iterable
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8")
+
 ROOT = Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "catalog"
 CACHE = CATALOG / ".cache" / "als.json"
@@ -1214,21 +1219,6 @@ def main() -> None:
     )
 
     write_markdown(productions, source_albums)
-
-    (CATALOG / "README.md").write_text(
-        "# Catalogue des productions\n\n"
-        "Ce dossier est généré par `scripts/build_catalog.py`.\n\n"
-        "## Fichiers\n\n"
-        "- `PRODUCTIONS.md` : vue lisible, groupée par album.\n"
-        "- `productions.csv` : une ligne par production.\n"
-        "- `productions.json` : données structurées pour un futur site.\n"
-        "- `als_versions.csv` : inventaire des sessions `.als` principales.\n"
-        "- `exports.csv` : inventaire des exports audio/MIDI.\n\n"
-        "## Régénérer\n\n"
-        "```powershell\npython scripts/build_catalog.py\n```\n\n"
-        "Les sources sont lues en lecture seule. Seul `catalog/` est écrit.\n",
-        encoding="utf-8",
-    )
 
     print(f"✓ catalogue écrit dans {CATALOG}")
     print(f"  {len(productions)} productions · {len(als)} sessions ALS · {len(exports)} exports")

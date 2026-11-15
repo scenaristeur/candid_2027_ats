@@ -13,11 +13,17 @@ from __future__ import annotations
 
 import html
 import json
+import sys
 import unicodedata
 from collections import Counter
 from pathlib import Path
 
 import build_site
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8")
 
 ROOT = Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "catalog" / "productions.json"
