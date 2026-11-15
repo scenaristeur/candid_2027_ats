@@ -276,6 +276,34 @@ Ce que fait `upload_media.py` :
 - réessaie en cas d’erreur réseau ;
 - relance automatiquement `prepare_media.py --verify`.
 
+### 5.2 bis Nettoyer les métadonnées avant l’envoi
+
+Les MP3 peuvent contenir des tags ID3 personnels (nom, e-mail, logiciel,
+commentaires, pochettes). `sanitize_media.py` crée une copie propre **sans
+modifier les originaux** :
+
+```powershell
+python scripts/sanitize_media.py `
+  --input  "C:\Users\admin\Music\exports ableton\Candid_2027_ats" `
+  --output "C:\Users\admin\Music\archive_clean\Candid_2027_ats"
+
+python scripts/upload_media.py `
+  --exports "C:\Users\admin\Music\archive_clean\Candid_2027_ats" `
+  --item candidats-2027-exports
+```
+
+Le script :
+
+- supprime tous les tags ID3 existants ;
+- écrit uniquement des tags publics : titre, artiste, album, année, genre,
+  commentaire ;
+- copie les WAV/MIDI sans les modifier ;
+- produit `sanitization-report.json` pour garder la trace.
+
+Les `.als` publiés par le site sont également nettoyés : les chemins
+`C:/Users/<nom>` sont remplacés par `C:/Users/Public` au moment du build, sans
+toucher aux sources.
+
 Voir ce qui serait envoyé sans rien téléverser :
 
 ```powershell
@@ -480,6 +508,7 @@ Le fichier `docs/.nojekyll` évite le traitement Jekyll.
 │   ├── markdown.py           # rendu Markdown minimal, sans dépendance
 │   ├── make_og.py            # génère les images Open Graph 1200 × 630
 │   ├── prepare_media.py      # URLs et vérification des exports MP3/MIDI
+│   ├── sanitize_media.py     # copie propre des MP3 avant Archive.org
 │   ├── upload_media.py       # upload MD5 vers Internet Archive
 │   └── check_site.py         # liens, HTML, SEO, JSON-LD, images OG
 ├── catalog/

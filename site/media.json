@@ -4,17 +4,17 @@
   "item": "candidats-2027-exports",
   "baseUrl": "https://archive.org/download/candidats-2027-exports",
   "requireVerified": true,
-  "checkedAt": "2026-11-14T14:24:34+00:00",
+  "checkedAt": "2026-11-15T20:27:07+00:00",
   "files": {
     "15": {
       "mp3": {
         "file": "15 - François Asselineau - Le Frexit intégral.mp3",
         "url": "https://archive.org/download/candidats-2027-exports/15%20-%20Fran%C3%A7ois%20Asselineau%20-%20Le%20Frexit%20int%C3%A9gral.mp3",
         "canonicalUrl": "https://archive.org/download/candidats-2027-exports/15%20-%20Fran%C3%A7ois%20Asselineau%20-%20Le%20Frexit%20int%C3%A9gral.mp3",
-        "bytes": null,
-        "verified": false,
-        "contentType": null,
-        "http": 404,
+        "bytes": 5382681,
+        "verified": true,
+        "contentType": "audio/mpeg",
+        "http": 200,
         "via": "canonical"
       }
     },
@@ -23,10 +23,10 @@
         "file": "16 - David Lisnard - Le Rock du Gouvernement Commando.mp3",
         "url": "https://archive.org/download/candidats-2027-exports/16%20-%20David%20Lisnard%20-%20Le%20Rock%20du%20Gouvernement%20Commando.mp3",
         "canonicalUrl": "https://archive.org/download/candidats-2027-exports/16%20-%20David%20Lisnard%20-%20Le%20Rock%20du%20Gouvernement%20Commando.mp3",
-        "bytes": null,
-        "verified": false,
-        "contentType": null,
-        "http": 404,
+        "bytes": 4417282,
+        "verified": true,
+        "contentType": "audio/mpeg",
+        "http": 200,
         "via": "canonical"
       }
     },
@@ -35,7 +35,7 @@
         "file": "17 - Teddy Riner - Le Judo de la Nation.mp3",
         "url": "https://archive.org/download/candidats-2027-exports/17%20-%20Teddy%20Riner%20-%20Le%20Judo%20de%20la%20Nation.mp3",
         "canonicalUrl": "https://archive.org/download/candidats-2027-exports/17%20-%20Teddy%20Riner%20-%20Le%20Judo%20de%20la%20Nation.mp3",
-        "bytes": 5844113,
+        "bytes": 5851256,
         "verified": true,
         "contentType": "audio/mpeg",
         "http": 200,
@@ -47,10 +47,10 @@
         "file": "18 - Laurent Wauquiez - I Will Survive (sous-titre à confirmer).mp3",
         "url": "https://archive.org/download/candidats-2027-exports/18%20-%20Laurent%20Wauquiez%20-%20I%20Will%20Survive%20%28sous-titre%20%C3%A0%20confirmer%29.mp3",
         "canonicalUrl": "https://archive.org/download/candidats-2027-exports/18%20-%20Laurent%20Wauquiez%20-%20I%20Will%20Survive%20%28sous-titre%20%C3%A0%20confirmer%29.mp3",
-        "bytes": null,
-        "verified": false,
-        "contentType": null,
-        "http": 404,
+        "bytes": 5213255,
+        "verified": true,
+        "contentType": "audio/mpeg",
+        "http": 200,
         "via": "canonical"
       }
     },
@@ -59,7 +59,19 @@
         "file": "20 - Fabien Roussel - Vivre (Le Temps des Cerises électrique)..mp3",
         "url": "https://archive.org/download/candidats-2027-exports/20%20-%20Fabien%20Roussel%20-%20Vivre%20%28Le%20Temps%20des%20Cerises%20%C3%A9lectrique%29..mp3",
         "canonicalUrl": "https://archive.org/download/candidats-2027-exports/20%20-%20Fabien%20Roussel%20-%20Vivre%20%28Le%20Temps%20des%20Cerises%20%C3%A9lectrique%29..mp3",
-        "bytes": 5296586,
+        "bytes": 5303205,
+        "verified": true,
+        "contentType": "audio/mpeg",
+        "http": 200,
+        "via": "canonical"
+      }
+    },
+    "21": {
+      "mp3": {
+        "file": "21 - Karim Bouamrane - Le Fédérateur.mp3",
+        "url": "https://archive.org/download/candidats-2027-exports/21%20-%20Karim%20Bouamrane%20-%20Le%20F%C3%A9d%C3%A9rateur.mp3",
+        "canonicalUrl": "https://archive.org/download/candidats-2027-exports/21%20-%20Karim%20Bouamrane%20-%20Le%20F%C3%A9d%C3%A9rateur.mp3",
+        "bytes": 5175576,
         "verified": true,
         "contentType": "audio/mpeg",
         "http": 200,
@@ -71,7 +83,7 @@
         "file": "22 - Marine Tondelier - La Danse de la Première République écologique.mp3",
         "url": "https://archive.org/download/candidats-2027-exports/22%20-%20Marine%20Tondelier%20-%20La%20Danse%20de%20la%20Premi%C3%A8re%20R%C3%A9publique%20%C3%A9cologique.mp3",
         "canonicalUrl": "https://archive.org/download/candidats-2027-exports/22%20-%20Marine%20Tondelier%20-%20La%20Danse%20de%20la%20Premi%C3%A8re%20R%C3%A9publique%20%C3%A9cologique.mp3",
-        "bytes": 5036407,
+        "bytes": 5042775,
         "verified": true,
         "contentType": "audio/mpeg",
         "http": 200,
@@ -83,7 +95,7 @@
         "file": "25 - Bernard Cazeneuve - Le Contrat.mp3",
         "url": "https://archive.org/download/candidats-2027-exports/25%20-%20Bernard%20Cazeneuve%20-%20Le%20Contrat.mp3",
         "canonicalUrl": "https://archive.org/download/candidats-2027-exports/25%20-%20Bernard%20Cazeneuve%20-%20Le%20Contrat.mp3",
-        "bytes": 6582856,
+        "bytes": 6590733,
         "verified": true,
         "contentType": "audio/mpeg",
         "http": 200,
@@ -95,7 +107,7 @@
         "file": "26 - Ségolène Royal - La Primaire de la Rose.mp3",
         "url": "https://archive.org/download/candidats-2027-exports/26%20-%20S%C3%A9gol%C3%A8ne%20Royal%20-%20La%20Primaire%20de%20la%20Rose.mp3",
         "canonicalUrl": "https://archive.org/download/candidats-2027-exports/26%20-%20S%C3%A9gol%C3%A8ne%20Royal%20-%20La%20Primaire%20de%20la%20Rose.mp3",
-        "bytes": 5844113,
+        "bytes": 5851263,
         "verified": true,
         "contentType": "audio/mpeg",
         "http": 200,
@@ -108,6 +120,30 @@
         "url": "https://archive.org/download/candidats-2027-exports/29%20-%20Bruno%20Retailleau%20-%20L%27Hiver%20d%C3%A9mographique.mp3",
         "canonicalUrl": "https://archive.org/download/candidats-2027-exports/29%20-%20Bruno%20Retailleau%20-%20L%27Hiver%20d%C3%A9mographique.mp3",
         "bytes": 6109517,
+        "verified": true,
+        "contentType": "audio/mpeg",
+        "http": 200,
+        "via": "canonical"
+      }
+    },
+    "31": {
+      "mp3": {
+        "file": "31 - Marine Le Pen - La Patrie en héritage.mp3",
+        "url": "https://archive.org/download/candidats-2027-exports/31%20-%20Marine%20Le%20Pen%20-%20La%20Patrie%20en%20h%C3%A9ritage.mp3",
+        "canonicalUrl": "https://archive.org/download/candidats-2027-exports/31%20-%20Marine%20Le%20Pen%20-%20La%20Patrie%20en%20h%C3%A9ritage.mp3",
+        "bytes": 5607555,
+        "verified": true,
+        "contentType": "audio/mpeg",
+        "http": 200,
+        "via": "canonical"
+      }
+    },
+    "32": {
+      "mp3": {
+        "file": "32 - François Ruffin - Le Statut des Essentiels.mp3",
+        "url": "https://archive.org/download/candidats-2027-exports/32%20-%20Fran%C3%A7ois%20Ruffin%20-%20Le%20Statut%20des%20Essentiels.mp3",
+        "canonicalUrl": "https://archive.org/download/candidats-2027-exports/32%20-%20Fran%C3%A7ois%20Ruffin%20-%20Le%20Statut%20des%20Essentiels.mp3",
+        "bytes": 4340923,
         "verified": true,
         "contentType": "audio/mpeg",
         "http": 200,

@@ -15,6 +15,7 @@ Variables d'environnement équivalentes : CANDIDAT_SOURCES, CANDIDAT_ALS_DIR.
 from __future__ import annotations
 
 import argparse
+import gzip
 import html
 import json
 import os
@@ -1511,6 +1512,24 @@ def copy_assets() -> None:
         shutil.copytree(og_src, assets_out / "og", dirs_exist_ok=True)
 
 
+def copy_als_sanitized(source: Path, destination: Path) -> None:
+    """Copie un .als en neutralisant les chemins utilisateur locaux.
+
+    Les références de samples restent présentes via les chemins relatifs.
+    Le nom d'utilisateur Windows n'est pas publié.
+    """
+    raw = source.read_bytes()
+    compressed = raw[:2] == b"\x1f\x8b"
+    xml = gzip.decompress(raw) if compressed else raw
+    xml = re.sub(
+        rb"C:[\\/]Users[\\/][^\\/\s\"<>]+",
+        b"C:/Users/Public",
+        xml,
+        flags=re.I,
+    )
+    destination.write_bytes(gzip.compress(xml) if compressed else xml)
+
+
 def write_downloads(tracks: list[dict], sources: Path, album_text: str) -> None:
     base = DOCS / "telechargements"
     for sub in ("als", "paroles", "fiches", "versions-longues", "album"):
@@ -1526,7 +1545,7 @@ def write_downloads(tracks: list[dict], sources: Path, album_text: str) -> None:
             base / "fiches" / f"{track['slug']}.fiche-technique.md",
         )
         if track["als"]:
-            shutil.copy2(track["als"], base / "als" / f"{track['slug']}.als")
+            copy_als_sanitized(track["als"], base / "als" / f"{track['slug']}.als")
         if track["long"]:
             shutil.copyfile(
                 track["long"],

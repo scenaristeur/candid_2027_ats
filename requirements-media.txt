@@ -2,3 +2,4 @@
 # Le build du site lui-même n'a besoin d'aucune dépendance externe.
 internetarchive>=5.12
 Pillow>=10
+mutagen>=1.47

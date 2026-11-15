@@ -299,7 +299,7 @@
         "versionLongue": null
       },
       "media": {
-        "mp3": null,
+        "mp3": "https://archive.org/download/candidats-2027-exports/15%20-%20Fran%C3%A7ois%20Asselineau%20-%20Le%20Frexit%20int%C3%A9gral.mp3",
         "midi": null
       }
     },
@@ -319,7 +319,7 @@
         "versionLongue": null
       },
       "media": {
-        "mp3": null,
+        "mp3": "https://archive.org/download/candidats-2027-exports/16%20-%20David%20Lisnard%20-%20Le%20Rock%20du%20Gouvernement%20Commando.mp3",
         "midi": null
       }
     },
@@ -359,7 +359,7 @@
         "versionLongue": null
       },
       "media": {
-        "mp3": null,
+        "mp3": "https://archive.org/download/candidats-2027-exports/18%20-%20Laurent%20Wauquiez%20-%20I%20Will%20Survive%20%28sous-titre%20%C3%A0%20confirmer%29.mp3",
         "midi": null
       }
     },
@@ -419,7 +419,7 @@
         "versionLongue": null
       },
       "media": {
-        "mp3": null,
+        "mp3": "https://archive.org/download/candidats-2027-exports/21%20-%20Karim%20Bouamrane%20-%20Le%20F%C3%A9d%C3%A9rateur.mp3",
         "midi": null
       }
     },
@@ -619,7 +619,7 @@
         "versionLongue": "versions-longues/31-marine-le-pen-la-patrie-en-heritage.version-longue.md"
       },
       "media": {
-        "mp3": null,
+        "mp3": "https://archive.org/download/candidats-2027-exports/31%20-%20Marine%20Le%20Pen%20-%20La%20Patrie%20en%20h%C3%A9ritage.mp3",
         "midi": null
       }
     },
@@ -639,7 +639,7 @@
         "versionLongue": null
       },
       "media": {
-        "mp3": null,
+        "mp3": "https://archive.org/download/candidats-2027-exports/32%20-%20Fran%C3%A7ois%20Ruffin%20-%20Le%20Statut%20des%20Essentiels.mp3",
         "midi": null
       }
     }
