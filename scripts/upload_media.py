@@ -100,6 +100,10 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--exports", type=Path, default=DEFAULT_EXPORTS)
     parser.add_argument("--item", default="candidats-2027-exports")
+    parser.add_argument("--title", default="Candidats 2027 - exports audio et MIDI")
+    parser.add_argument("--creator", default="Candidats 2027")
+    parser.add_argument("--date", default="2026-11-14")
+    parser.add_argument("--description", default="")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--skip-verify", action="store_true")
     args = parser.parse_args()
@@ -132,13 +136,14 @@ def main() -> None:
         print(f"Mode dry-run : {len(to_upload)} fichier(s) seraient envoyés.")
     else:
         metadata = {
-            "title": "Candidats 2027 — exports audio et MIDI",
-            "creator": "Candidats 2027",
-            "date": "2026-11-14",
+            "title": args.title,
+            "creator": args.creator,
+            "date": args.date,
             "language": "fre",
             "mediatype": "audio",
             "collection": "opensource_audio",
-            "description": (
+            "description": args.description
+            or (
                 "Exports MP3 et MIDI de l'album Candidats 2027 : trente et une "
                 "chansons, une par candidat à la présidentielle de 2027. Exercice "
                 "de collaboration musicale et culturelle partagé, sans intention de "

@@ -8,7 +8,15 @@
 
 `docs/catalogue.html` est générée par `scripts/build_catalogue.py`. Elle charge
 `productions.json`, affiche les statistiques, une recherche, un filtre par album
-et par statut, et renvoie vers les pages Candidats 2027 lorsqu’elles existent.
+et par statut, et renvoie vers les pages Candidats 2027 ou vers les pages de
+production.
+
+Chaque production documentée ou session ALS a une page
+`docs/productions/<id>.html` générée par `scripts/build_productions.py`, avec :
+
+- les documents sources copiés dans `docs/telechargements/productions/<id>/documents/` ;
+- les sessions ALS copiées et nettoyées dans `.../als/` ;
+- les exports MP3/MIDI publiés sur Archive.org, via `site/media_productions.json`.
 
 ## Arborescences lues
 

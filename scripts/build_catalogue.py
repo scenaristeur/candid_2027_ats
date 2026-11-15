@@ -55,15 +55,17 @@ def status_group(stage: str) -> str:
 
 
 def site_link(item: dict) -> str:
-    if item.get("album") != "Candidats 2027" or not item.get("candidate"):
-        return ""
-    slug = (
-        f"{int(item['number']):02d}-"
-        f"{build_site.slugify(item['candidate'])}-"
-        f"{build_site.slugify(item['title'])}"
-    )
-    if (ROOT / "docs" / "titres" / f"{slug}.html").is_file():
-        return f"titres/{slug}.html"
+    if item.get("album") == "Candidats 2027" and item.get("candidate"):
+        slug = (
+            f"{int(item['number']):02d}-"
+            f"{build_site.slugify(item['candidate'])}-"
+            f"{build_site.slugify(item['title'])}"
+        )
+        if (ROOT / "docs" / "titres" / f"{slug}.html").is_file():
+            return f"titres/{slug}.html"
+    production_page = ROOT / "docs" / "productions" / f"{item['id']}.html"
+    if production_page.is_file():
+        return f"productions/{item['id']}.html"
     return ""
 
 

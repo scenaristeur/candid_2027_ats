@@ -1487,10 +1487,20 @@ def build_404() -> str:
 
 def prepare_docs() -> None:
     DOCS.mkdir(parents=True, exist_ok=True)
-    for name in ("assets", "titres", "telechargements", "audio"):
+    for name in ("assets", "titres", "audio"):
         target = DOCS / name
         if target.exists():
             shutil.rmtree(target)
+    downloads = DOCS / "telechargements"
+    downloads.mkdir(parents=True, exist_ok=True)
+    for name in ("als", "paroles", "fiches", "versions-longues", "album"):
+        target = downloads / name
+        if target.exists():
+            shutil.rmtree(target)
+    for name in ("manifest.json", "candidats-2027-pack.zip", "LISEZ-MOI.txt"):
+        target = downloads / name
+        if target.exists():
+            target.unlink()
     for name in ("index.html", "projet.html", "participer.html", "404.html"):
         target = DOCS / name
         if target.exists():

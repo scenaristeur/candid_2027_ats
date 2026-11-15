@@ -68,18 +68,24 @@ Candidats 2027 devient un album parmi d’autres. La page
 de rechercher/filtrer les productions par album, statut, session ALS ou export.
 
 ```powershell
-python scripts/build_catalog.py     # scanne les sources, ALS et exports
-python scripts/build_catalogue.py   # génère docs/catalogue.html
-python scripts/build_site.py        # régénère le reste du site
+python scripts/build_catalog.py        # scanne les sources, ALS et exports
+python scripts/build_site.py           # régénère les pages Candidats 2027
+python scripts/build_productions.py    # pages + téléchargements des autres productions
+python scripts/build_catalogue.py      # génère docs/catalogue.html
 python scripts/check_site.py
 ```
 
 Le catalogue détaillé et sa méthode sont dans [`catalog/README.md`](catalog/README.md).
+Chaque production documentée possède aussi une page
+`docs/productions/<id>.html` avec ses documents sources, sa session Ableton et,
+quand il est publié, son export MP3. Les fichiers sont copiés dans
+`docs/telechargements/productions/<id>/` ; les MP3 pointent vers Archive.org.
+
 Les rapprochements sont automatiques : la colonne « confiance » et la section
 « Rapprochements à vérifier » signalent les points à consolider.
 
-L’ordre recommandé est : `build_catalog.py`, puis `build_site.py`, puis
-`build_catalogue.py`, puis `check_site.py`.
+L’ordre recommandé est : `build_catalog.py`, `build_site.py`,
+`build_productions.py`, `build_catalogue.py`, puis `check_site.py`.
 
 L’accueil affiche des statistiques calculées à chaque build :
 
@@ -114,6 +120,7 @@ externe.
 ```powershell
 python scripts/build_catalog.py
 python scripts/build_site.py
+python scripts/build_productions.py
 python scripts/build_catalogue.py
 python scripts/check_site.py
 ```
@@ -426,6 +433,7 @@ Pour aller plus loin :
 ```powershell
 python scripts/build_catalog.py
 python scripts/build_site.py
+python scripts/build_productions.py
 python scripts/build_catalogue.py
 python scripts/check_site.py
 git add -A
@@ -441,6 +449,7 @@ python scripts/upload_media.py --item candidats-2027-exports
 python scripts/prepare_media.py --item candidats-2027-exports --verify
 python scripts/build_catalog.py
 python scripts/build_site.py
+python scripts/build_productions.py
 python scripts/build_catalogue.py
 python scripts/check_site.py
 git add -A
@@ -457,6 +466,7 @@ fonctionne avec l’URL du nœud de stockage. Relancer simplement
 ```powershell
 python scripts/make_og.py
 python scripts/build_site.py
+python scripts/build_productions.py
 python scripts/build_catalogue.py
 python scripts/check_site.py
 git add -A
@@ -469,6 +479,7 @@ git push
 ```powershell
 python scripts/build_catalog.py
 python scripts/build_site.py
+python scripts/build_productions.py
 python scripts/build_catalogue.py
 python scripts/check_site.py
 ```
@@ -505,6 +516,8 @@ Le fichier `docs/.nojekyll` évite le traitement Jekyll.
 │   ├── build_site.py         # génère docs/ depuis les sources (lecture seule)
 │   ├── build_catalog.py      # inventorie productions, ALS et exports
 │   ├── build_catalogue.py    # génère docs/catalogue.html
+│   ├── build_productions.py  # pages de production + téléchargements
+│   ├── prepare_production_media.py # URLs Archive.org par production
 │   ├── markdown.py           # rendu Markdown minimal, sans dépendance
 │   ├── make_og.py            # génère les images Open Graph 1200 × 630
 │   ├── prepare_media.py      # URLs et vérification des exports MP3/MIDI
@@ -524,11 +537,13 @@ Le fichier `docs/.nojekyll` évite le traitement Jekyll.
 │   ├── assets/favicon.svg
 │   ├── assets/og/            # images Open Graph générées
 │   ├── media.json            # URLs des exports hébergés
+│   ├── media_productions.json # URLs Archive.org par production
 │   └── audio/                # optionnel : 01.mp3… pour un lecteur local
 ├── docs/                     # site généré, publié par GitHub Pages
 │   ├── index.html
 │   ├── catalogue.html
 │   ├── titres/NN-….html
+│   ├── productions/<id>.html
 │   ├── projet.html
 │   ├── participer.html
 │   ├── 404.html
@@ -539,6 +554,7 @@ Le fichier `docs/.nojekyll` évite le traitement Jekyll.
 │       ├── als/
 │       ├── paroles/
 │       ├── fiches/
+│       ├── productions/      # documents et ALS par production
 │       ├── versions-longues/
 │       ├── album/Album.MD
 │       ├── manifest.json
