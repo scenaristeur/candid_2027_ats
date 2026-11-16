@@ -160,9 +160,12 @@ def main() -> None:
 
         download_cards = []
         audio_card = ""
+        media_note = ""
         mp3 = media.get("mp3")
         if mp3:
-            audio_card = f"""<figure class="audio-card">
+            from_release = mp3.get("via") == "github-release"
+            if not from_release:
+                audio_card = f"""<figure class="audio-card">
   <figcaption class="audio-head">
     <span class="audio-label">Écouter</span>
     <strong>Export audio</strong>
@@ -170,13 +173,27 @@ def main() -> None:
   </figcaption>
   <audio controls preload="metadata" src="{e(mp3['url'])}"></audio>
 </figure>"""
+            else:
+                media_note = (
+                    '<p class="download-note">MP3 hébergé temporairement sur GitHub '
+                    "Releases en attendant la fin du catalogage Internet Archive. "
+                    "Le téléchargement est disponible ci-dessous.</p>"
+                )
             download_cards.append(
                 build_site.download_card(
                     kind="audio",
                     title="Export MP3",
-                    description="Écoute et téléchargement sur Internet Archive.",
+                    description=(
+                        "Téléchargement GitHub Releases (relais Archive.org)."
+                        if from_release
+                        else "Écoute et téléchargement sur Internet Archive."
+                    ),
                     href=mp3["url"],
-                    meta="MP3 · Internet Archive",
+                    meta=(
+                        "MP3 · GitHub Releases"
+                        if from_release
+                        else "MP3 · Internet Archive"
+                    ),
                     external=True,
                 )
             )
@@ -214,7 +231,6 @@ def main() -> None:
                 )
             )
 
-        media_note = ""
         if production.get("mp3") and not mp3:
             media_note = (
                 '<p class="download-note">L’export MP3 de cette production est en cours '

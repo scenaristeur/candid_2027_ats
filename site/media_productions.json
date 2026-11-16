@@ -215,49 +215,49 @@
     "reprises--another-brick-in-the-wall-part-2-reprise-moderne": {
       "mp3": {
         "file": "reprises--another-brick-in-the-wall-part-2-reprise-moderne.mp3",
-        "url": "https://archive.org/download/ableton-productions/reprises--another-brick-in-the-wall-part-2-reprise-moderne.mp3",
+        "url": "https://github.com/scenaristeur/candid_2027_ats/releases/download/exports-productions/reprises--another-brick-in-the-wall-part-2-reprise-moderne.mp3",
         "canonicalUrl": "https://archive.org/download/ableton-productions/reprises--another-brick-in-the-wall-part-2-reprise-moderne.mp3",
-        "verified": false,
-        "bytes": null,
-        "http": 404,
-        "via": "canonical",
-        "contentType": null
+        "verified": true,
+        "bytes": 6728769,
+        "http": 200,
+        "contentType": "application/octet-stream",
+        "via": "github-release"
       }
     },
     "reprises--keep-talking-reprise-francaise": {
       "mp3": {
         "file": "reprises--keep-talking-reprise-francaise.mp3",
-        "url": "https://archive.org/download/ableton-productions/reprises--keep-talking-reprise-francaise.mp3",
+        "url": "https://github.com/scenaristeur/candid_2027_ats/releases/download/exports-productions/reprises--keep-talking-reprise-francaise.mp3",
         "canonicalUrl": "https://archive.org/download/ableton-productions/reprises--keep-talking-reprise-francaise.mp3",
-        "verified": false,
-        "bytes": null,
-        "http": 404,
-        "via": "canonical",
-        "contentType": null
+        "verified": true,
+        "bytes": 14510584,
+        "http": 200,
+        "contentType": "application/octet-stream",
+        "via": "github-release"
       }
     },
     "reprises--la-vm": {
       "mp3": {
         "file": "reprises--la-vm.mp3",
-        "url": "https://archive.org/download/ableton-productions/reprises--la-vm.mp3",
+        "url": "https://github.com/scenaristeur/candid_2027_ats/releases/download/exports-productions/reprises--la-vm.mp3",
         "canonicalUrl": "https://archive.org/download/ableton-productions/reprises--la-vm.mp3",
-        "verified": false,
-        "bytes": null,
-        "http": 404,
-        "via": "canonical",
-        "contentType": null
+        "verified": true,
+        "bytes": 4806319,
+        "http": 200,
+        "contentType": "application/octet-stream",
+        "via": "github-release"
       }
     },
     "rudegirl--rudegirl": {
       "mp3": {
         "file": "rudegirl--rudegirl.mp3",
-        "url": "https://archive.org/download/ableton-productions/rudegirl--rudegirl.mp3",
+        "url": "https://github.com/scenaristeur/candid_2027_ats/releases/download/exports-productions/rudegirl--rudegirl.mp3",
         "canonicalUrl": "https://archive.org/download/ableton-productions/rudegirl--rudegirl.mp3",
-        "verified": false,
-        "bytes": null,
-        "http": 404,
-        "via": "canonical",
-        "contentType": null
+        "verified": true,
+        "bytes": 6151396,
+        "http": 200,
+        "contentType": "application/octet-stream",
+        "via": "github-release"
       }
     },
     "1er-geste-project--1er-geste": {
@@ -311,49 +311,49 @@
     "satie-s-faction--cool-world": {
       "mp3": {
         "file": "satie-s-faction--cool-world.mp3",
-        "url": "https://archive.org/download/ableton-productions/satie-s-faction--cool-world.mp3",
+        "url": "https://github.com/scenaristeur/candid_2027_ats/releases/download/exports-productions/satie-s-faction--cool-world.mp3",
         "canonicalUrl": "https://archive.org/download/ableton-productions/satie-s-faction--cool-world.mp3",
-        "verified": false,
-        "bytes": null,
-        "http": 404,
-        "via": "canonical",
-        "contentType": null
+        "verified": true,
+        "bytes": 4272727,
+        "http": 200,
+        "contentType": "application/octet-stream",
+        "via": "github-release"
       }
     },
     "stranggae-project--stranggae": {
       "mp3": {
         "file": "stranggae-project--stranggae.mp3",
-        "url": "https://archive.org/download/ableton-productions/stranggae-project--stranggae.mp3",
+        "url": "https://github.com/scenaristeur/candid_2027_ats/releases/download/exports-productions/stranggae-project--stranggae.mp3",
         "canonicalUrl": "https://archive.org/download/ableton-productions/stranggae-project--stranggae.mp3",
-        "verified": false,
-        "bytes": null,
-        "http": 404,
-        "via": "canonical",
-        "contentType": null
+        "verified": true,
+        "bytes": 18957927,
+        "http": 200,
+        "contentType": "application/octet-stream",
+        "via": "github-release"
       }
     },
     "supplique-project--copie-supplique": {
       "mp3": {
         "file": "supplique-project--copie-supplique.mp3",
-        "url": "https://archive.org/download/ableton-productions/supplique-project--copie-supplique.mp3",
+        "url": "https://github.com/scenaristeur/candid_2027_ats/releases/download/exports-productions/supplique-project--copie-supplique.mp3",
         "canonicalUrl": "https://archive.org/download/ableton-productions/supplique-project--copie-supplique.mp3",
-        "verified": false,
-        "bytes": null,
-        "http": 404,
-        "via": "canonical",
-        "contentType": null
+        "verified": true,
+        "bytes": 18791872,
+        "http": 200,
+        "contentType": "application/octet-stream",
+        "via": "github-release"
       }
     },
     "tonton-cause-project--tonton-cause": {
       "mp3": {
         "file": "tonton-cause-project--tonton-cause.mp3",
-        "url": "https://archive.org/download/ableton-productions/tonton-cause-project--tonton-cause.mp3",
+        "url": "https://github.com/scenaristeur/candid_2027_ats/releases/download/exports-productions/tonton-cause-project--tonton-cause.mp3",
         "canonicalUrl": "https://archive.org/download/ableton-productions/tonton-cause-project--tonton-cause.mp3",
-        "verified": false,
-        "bytes": null,
-        "http": 404,
-        "via": "canonical",
-        "contentType": null
+        "verified": true,
+        "bytes": 3308536,
+        "http": 200,
+        "contentType": "application/octet-stream",
+        "via": "github-release"
       }
     },
     "pilote-du-desert--dm-teinte-desertique": {
